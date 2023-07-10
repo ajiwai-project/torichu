@@ -1,4 +1,4 @@
-import 'package:flutter_template/model/task.dart';
+import 'package:flutter_template/features/task_edit/task.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_state.freezed.dart';

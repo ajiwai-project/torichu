@@ -1,7 +1,7 @@
+import 'package:flutter_template/features/task_edit/task.dart';
 import 'package:flutter_template/infrastructure/model/task_entity.dart';
 import 'package:flutter_template/infrastructure/repository/task_db_repository.dart';
 import 'package:flutter_template/infrastructure/repository/task_repository.dart';
-import 'package:flutter_template/model/task.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final taskEditViewModelProvider = StateNotifierProvider.autoDispose(

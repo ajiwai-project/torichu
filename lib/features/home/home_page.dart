@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/view/task_edit_page.dart';
-import 'package:flutter_template/view/widget/task_item.dart';
-import 'package:flutter_template/viewmodel/home_view_model.dart';
+import 'package:flutter_template/features/home/home_view_model.dart';
+import 'package:flutter_template/features/task_edit/task_edit_page.dart';
+import 'package:flutter_template/features/task_edit/task_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {

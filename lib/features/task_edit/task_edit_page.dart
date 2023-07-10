@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/model/task.dart';
-import 'package:flutter_template/viewmodel/task_edit_view_model.dart';
+import 'package:flutter_template/features/task_edit/task.dart';
+import 'package:flutter_template/features/task_edit/task_edit_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TaskEditPage extends HookConsumerWidget {
