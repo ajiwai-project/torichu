@@ -49,18 +49,20 @@ class CostDaoModel extends HiveObject {
   bool operator ==(other) =>
       other is CostDaoModel &&
       id == other.id &&
+      title == other.title &&
       amount == other.amount &&
       point == other.point &&
       date == other.date &&
       category == other.category;
 
   @override
-  int get hashCode => Object.hash(id, amount, point, date, category);
+  int get hashCode => Object.hash(id, title, amount, point, date, category);
 
   @override
   String toString() {
     return 'TaskEntity('
         'id: $id, '
+        'title: $title, '
         'amount: $amount, '
         'point: $point, '
         'date: $date, '
