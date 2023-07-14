@@ -1,5 +1,5 @@
-import 'package:flutter_template/infrastructure/model/cost_dao_model.dart';
+import 'package:flutter_template/features/models/cost.dart';
 
 abstract class CostRepository {
-  Future<void> save(CostDaoModel cost);
+  Future<void> save(Cost cost);
 }

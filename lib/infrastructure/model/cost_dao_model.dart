@@ -23,7 +23,7 @@ class CostDaoModel extends HiveObject {
   @HiveField(5)
   String category;
 
-  CostDaoModel._(
+  CostDaoModel(
       {required this.id,
       required this.title,
       required this.amount,
@@ -36,7 +36,7 @@ class CostDaoModel extends HiveObject {
       required amount,
       required int point,
       required String category}) {
-    return CostDaoModel._(
+    return CostDaoModel(
         id: const Uuid().v4(),
         title: title,
         amount: amount,
