@@ -4,17 +4,6 @@ import 'package:flutter_template/features/models/point.dart';
 class Cost {
   static const _maxTitleLength = 100;
   static const _maxAmount = 9999999;
-  static const _categoryPattern = {
-    '食費',
-    '趣味・娯楽',
-    '交際費',
-    '衣服・美容',
-    '健康・医療',
-    '教養・教育',
-    '水道・光熱費',
-    '住宅',
-    '保険,通信費'
-  };
 
   late String _title;
   late int _amount;
