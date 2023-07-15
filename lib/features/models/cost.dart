@@ -1,3 +1,4 @@
+import 'package:flutter_template/features/models/category.dart';
 import 'package:flutter_template/features/models/point.dart';
 
 class Cost {
@@ -18,23 +19,19 @@ class Cost {
   late String _title;
   late int _amount;
   late Point _point;
-  late String _category;
+  late Category _category;
 
   Cost(
       {required String title,
       required int amount,
       required Point point,
-      required String category}) {
+      required Category category}) {
     if (title.length > _maxTitleLength) {
       throw Exception('Title must be 100 characters or less.');
     }
 
     if (amount > _maxAmount) {
       throw Exception('Amount must be less than 9999999');
-    }
-
-    if (!_categoryPattern.contains(category)) {
-      throw Exception('Category must be in $_categoryPattern');
     }
 
     _title = title;
@@ -46,5 +43,5 @@ class Cost {
   String get title => _title;
   int get amount => _amount;
   Point get point => _point;
-  String get category => _category;
+  Category get category => _category;
 }

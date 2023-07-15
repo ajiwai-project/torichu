@@ -1,3 +1,4 @@
+import 'package:flutter_template/features/models/category.dart';
 import 'package:flutter_template/features/models/cost.dart';
 import 'package:flutter_template/features/models/point.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,7 +7,7 @@ void main() {
   const dummyTitle = 'dummy';
   const dummyAmount = 1;
   const dummyPoint = Point.one;
-  const dummyCategory = '食費';
+  const dummyCategory = Category.food;
 
   String generateStrings(int num) {
     return Iterable<String>.generate(num, (_) => 'a').join('');
@@ -17,7 +18,7 @@ void main() {
       var title = 'title';
       var amount = 10;
       var point = Point.two;
-      var category = '食費';
+      var category = Category.food;
       var cost =
           Cost(title: title, amount: amount, point: point, category: category);
 
@@ -47,16 +48,6 @@ void main() {
               amount: invalidAmount,
               point: dummyPoint,
               category: dummyCategory),
-          throwsException);
-    });
-
-    test('should throw when category is invalid', () {
-      expect(
-          () => Cost(
-              title: dummyTitle,
-              amount: dummyAmount,
-              point: dummyPoint,
-              category: 'invalid'),
           throwsException);
     });
   });
