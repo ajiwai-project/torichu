@@ -1,9 +1,9 @@
-import 'package:flutter_template/features/task_edit/task.dart';
+import 'package:flutter_template/domain/expense/expense.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_state.freezed.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState({@Default([]) List<Task> tasks}) = _HomeState;
+  const factory HomeState({@Default([]) List<Expense> expenses}) = _HomeState;
 }

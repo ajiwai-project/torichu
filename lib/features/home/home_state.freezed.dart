@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  List<Task> get tasks => throw _privateConstructorUsedError;
+  List<Expense> get expenses => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,7 +28,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<Task> tasks});
+  $Res call({List<Expense> expenses});
 }
 
 /// @nodoc
@@ -44,13 +44,13 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tasks = null,
+    Object? expenses = null,
   }) {
     return _then(_value.copyWith(
-      tasks: null == tasks
-          ? _value.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
+      expenses: null == expenses
+          ? _value.expenses
+          : expenses // ignore: cast_nullable_to_non_nullable
+              as List<Expense>,
     ) as $Val);
   }
 }
@@ -62,7 +62,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Task> tasks});
+  $Res call({List<Expense> expenses});
 }
 
 /// @nodoc
@@ -76,13 +76,13 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tasks = null,
+    Object? expenses = null,
   }) {
     return _then(_$_HomeState(
-      tasks: null == tasks
-          ? _value._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
+      expenses: null == expenses
+          ? _value._expenses
+          : expenses // ignore: cast_nullable_to_non_nullable
+              as List<Expense>,
     ));
   }
 }
@@ -90,20 +90,21 @@ class __$$_HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({final List<Task> tasks = const []}) : _tasks = tasks;
+  const _$_HomeState({final List<Expense> expenses = const []})
+      : _expenses = expenses;
 
-  final List<Task> _tasks;
+  final List<Expense> _expenses;
   @override
   @JsonKey()
-  List<Task> get tasks {
-    if (_tasks is EqualUnmodifiableListView) return _tasks;
+  List<Expense> get expenses {
+    if (_expenses is EqualUnmodifiableListView) return _expenses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tasks);
+    return EqualUnmodifiableListView(_expenses);
   }
 
   @override
   String toString() {
-    return 'HomeState(tasks: $tasks)';
+    return 'HomeState(expenses: $expenses)';
   }
 
   @override
@@ -111,12 +112,12 @@ class _$_HomeState implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._expenses, _expenses));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_expenses));
 
   @JsonKey(ignore: true)
   @override
@@ -126,10 +127,10 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final List<Task> tasks}) = _$_HomeState;
+  const factory _HomeState({final List<Expense> expenses}) = _$_HomeState;
 
   @override
-  List<Task> get tasks;
+  List<Expense> get expenses;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
