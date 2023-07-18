@@ -12,19 +12,8 @@ class RegistrationPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(registrationViewModelProvider);
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
-
-    var title = useState<String>('');
-    var titleController = useTextEditingController();
-
-    var price = useState<int>(0);
-    var priceController = useTextEditingController();
-
-    var point = useState<Point?>(null);
-    var points = Point.values;
-
-    var category = useState<Category?>(null);
-    var categories = Category.values;
 
     return Scaffold(
         appBar: AppBar(title: const Text('入力')),
@@ -36,47 +25,37 @@ class RegistrationPage extends HookConsumerWidget {
                 Column(children: [
                   TextField(
                     key: const Key('title-field'),
-                    controller: titleController,
                     decoration: const InputDecoration(
                         hintText: 'タイトルを入力', labelText: 'タイトル'),
-                    onChanged: (value) {
-                      title.value = value;
-                    },
+                    onChanged: (value) => viewModel.setTitle(value),
                   ),
                   TextField(
                     key: const Key('price-field'),
-                    controller: priceController,
                     decoration: const InputDecoration(
                         hintText: '金額を入力', labelText: '金額'),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    onChanged: (value) {
-                      price.value = int.parse(value);
-                    },
+                    onChanged: (value) => viewModel.setPrice(int.parse(value)),
                   ),
                   DropdownButtonFormField<Point>(
                     key: const Key('point-field'),
-                    value: point.value,
-                    items: points.map((value) {
+                    value: state.point,
+                    items: Point.values.map((value) {
                       return DropdownMenuItem<Point>(
                           value: value, child: Text(value.value.toString()));
                     }).toList(),
-                    onChanged: (Point? value) {
-                      point.value = value;
-                    },
+                    onChanged: (Point? value) => viewModel.setPoint(value!),
                     decoration: const InputDecoration(
                         hintText: 'ポイントを入力', labelText: 'ポイント'),
                   ),
                   DropdownButtonFormField<Category>(
                     key: const Key('category-field'),
-                    value: category.value,
-                    items: categories.map((value) {
+                    value: state.category,
+                    items: Category.values.map((value) {
                       return DropdownMenuItem<Category>(
                           value: value, child: Text(value.value));
                     }).toList(),
-                    onChanged: (Category? value) {
-                      category.value = value;
-                    },
+                    onChanged: (Category? value) => viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
                   )
@@ -86,14 +65,14 @@ class RegistrationPage extends HookConsumerWidget {
                     child: ElevatedButton(
                         key: const Key('register-button'),
                         onPressed: () {
-                          if (point.value == null || category.value == null) {
+                          if (state.point == null || state.category == null) {
                             return;
                           }
                           viewModel.register(Cost(
-                              title: title.value,
-                              amount: price.value,
-                              point: point.value!,
-                              category: category.value!));
+                              title: state.title,
+                              amount: state.price,
+                              point: state.point!,
+                              category: state.category!));
                         },
                         child: const Text('確定')))
               ],

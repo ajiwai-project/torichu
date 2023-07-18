@@ -1,4 +1,6 @@
+import 'package:flutter_template/features/models/category.dart';
 import 'package:flutter_template/features/models/cost.dart';
+import 'package:flutter_template/features/models/point.dart';
 import 'package:flutter_template/features/registration/registration_view_model.dart';
 import 'package:flutter_template/infrastructure/repository/cost_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,8 +21,7 @@ void main() {
 
   group('Register', () {
     test('should save cost', () async {
-      var cost =
-          Cost(title: 'title', category: 'category', point: 1, amount: 1000);
+      var cost = const Cost(title: 'title', category: Category.food, point: Point.one, amount: 1000);
 
       await sut.register(cost);
 
