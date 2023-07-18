@@ -21,10 +21,18 @@ void main() {
 
   group('Register', () {
     test('should save cost', () async {
-      var cost = const Cost(title: 'title', category: Category.food, point: Point.one, amount: 1000);
+      sut.setTitle('title');
+      sut.setPrice(1000);
+      sut.setCategory(Category.food);
+      sut.setPoint(Point.one);
 
-      await sut.register(cost);
+      await sut.register();
 
+      var cost = const Cost(
+          title: 'title',
+          category: Category.food,
+          point: Point.one,
+          amount: 1000);
       verify(costRepository.save(cost)).called(1);
     });
   });

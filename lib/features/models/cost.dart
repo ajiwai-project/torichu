@@ -25,7 +25,7 @@ class Cost with _$Cost {
     }
 
     if (amount > _maxAmount) {
-      throw Exception('Amount must be less than 9999999');
+      throw Exception('Amount must be less than 9999999.');
     }
 
     return Cost(title: title, amount: amount, point: point, category: category);

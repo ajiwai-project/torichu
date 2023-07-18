@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/features/models/category.dart';
 import 'package:flutter_template/features/models/cost.dart';
 import 'package:flutter_template/features/models/point.dart';
@@ -27,7 +26,7 @@ class RegistrationPage extends HookConsumerWidget {
                     key: const Key('title-field'),
                     decoration: const InputDecoration(
                         hintText: 'タイトルを入力', labelText: 'タイトル'),
-                    onChanged: (value) => viewModel.setTitle(value),
+                    onChanged: (value) => viewModel.setTitle(value)
                   ),
                   TextField(
                     key: const Key('price-field'),
@@ -64,16 +63,7 @@ class RegistrationPage extends HookConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                         key: const Key('register-button'),
-                        onPressed: () {
-                          if (state.point == null || state.category == null) {
-                            return;
-                          }
-                          viewModel.register(Cost(
-                              title: state.title,
-                              amount: state.price,
-                              point: state.point!,
-                              category: state.category!));
-                        },
+                        onPressed: () => viewModel.register(),
                         child: const Text('確定')))
               ],
             )));

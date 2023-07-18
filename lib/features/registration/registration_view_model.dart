@@ -6,9 +6,9 @@ import 'package:flutter_template/infrastructure/repository/cost_db_repository.da
 import 'package:flutter_template/infrastructure/repository/cost_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final registrationViewModelProvider = StateNotifierProvider<RegistrationViewModel, RegistartionState>(
-    (ref) => RegistrationViewModel(ref.read(costRepositoryProvider)));
-
+final registrationViewModelProvider =
+    StateNotifierProvider<RegistrationViewModel, RegistartionState>(
+        (ref) => RegistrationViewModel(ref.read(costRepositoryProvider)));
 
 class RegistrationViewModel extends StateNotifier<RegistartionState> {
   final CostRepository _costRepository;
@@ -16,8 +16,16 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
   RegistrationViewModel(this._costRepository)
       : super(const RegistartionState());
 
-  Future<void> register(Cost cost) async {
-    await _costRepository.save(cost);
+  Future<void> register() async {
+    if (state.point == null || state.category == null) {
+      return;
+    }
+
+    await _costRepository.save(Cost.of(
+        title: state.title,
+        amount: state.price,
+        point: state.point!,
+        category: state.category!));
   }
 
   void setTitle(String value) {
@@ -35,5 +43,4 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
   void setCategory(Category value) {
     state = state.copyWith(category: value);
   }
-
 }
