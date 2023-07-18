@@ -13,4 +13,8 @@ enum Point {
   final int value;
 
   const Point(this.value);
+
+  factory Point.of(int value) {
+    return Point.values.firstWhere((e) => e.value == value);
+  }
 }

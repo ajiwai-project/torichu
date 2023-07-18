@@ -12,18 +12,18 @@ class ExpenseListItem extends StatelessWidget {
     return ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        title: Text(expense.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(expense.title,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            CategoryIcon(category: expense.category),
-          Text('￥${NumberFormat("#,###").format(expense.amount)}'),
-          Text(DateFormat('dd/MM/yyyy').format(expense.date)),
-        ]),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              CategoryIcon(category: expense.category),
+              Text('￥${NumberFormat("#,###").format(expense.amount)}'),
+              Text(DateFormat('dd/MM/yyyy').format(expense.date)),
+            ]),
         trailing: Text(
-            expense.point.value.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          )
-    );
+          expense.point.value.toString(),
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ));
   }
 }

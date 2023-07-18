@@ -10,7 +10,11 @@ enum Category {
   ensuarance('保険'),
   communication('通信費');
 
-  final String displayName;
+  final String name;
 
-  const Category(this.displayName);
+  const Category(this.name);
+
+  factory Category.of(String name) {
+    return Category.values.firstWhere((e) => e.name == name);
+  }
 }
