@@ -22,11 +22,10 @@ class RegistrationPage extends HookConsumerWidget {
               children: [
                 Column(children: [
                   TextField(
-                    key: const Key('title-field'),
-                    decoration: const InputDecoration(
-                        hintText: 'タイトルを入力', labelText: 'タイトル'),
-                    onChanged: (value) => viewModel.setTitle(value)
-                  ),
+                      key: const Key('title-field'),
+                      decoration: const InputDecoration(
+                          hintText: 'タイトルを入力', labelText: 'タイトル'),
+                      onChanged: (value) => viewModel.setTitle(value)),
                   TextField(
                     key: const Key('price-field'),
                     decoration: const InputDecoration(
@@ -53,7 +52,8 @@ class RegistrationPage extends HookConsumerWidget {
                       return DropdownMenuItem<Category>(
                           value: value, child: Text(value.value));
                     }).toList(),
-                    onChanged: (Category? value) => viewModel.setCategory(value!),
+                    onChanged: (Category? value) =>
+                        viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
                   )

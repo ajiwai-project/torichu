@@ -14,17 +14,15 @@ import 'registration_page_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
-  late Provider<CostRepository> mockCostRepositoryProvider;
   late CostRepository mockCostRepository;
 
   setUp(() {
     mockCostRepository = MockCostRepository();
-    mockCostRepositoryProvider = Provider((_) => mockCostRepository);
   });
 
   render(tester) async {
     await tester.pumpWidget(ProviderScope(overrides: [
-      costRepositoryProvider.overrideWithProvider(mockCostRepositoryProvider)
+      costRepositoryProvider.overrideWith((ref) => mockCostRepository)
     ], child: const MaterialApp(home: RegistrationPage())));
   }
 
