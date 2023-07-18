@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/features/models/category.dart';
-import 'package:flutter_template/features/models/cost.dart';
 import 'package:flutter_template/features/models/point.dart';
 import 'package:flutter_template/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,11 +22,10 @@ class RegistrationPage extends HookConsumerWidget {
               children: [
                 Column(children: [
                   TextField(
-                    key: const Key('title-field'),
-                    decoration: const InputDecoration(
-                        hintText: 'タイトルを入力', labelText: 'タイトル'),
-                    onChanged: (value) => viewModel.setTitle(value)
-                  ),
+                      key: const Key('title-field'),
+                      decoration: const InputDecoration(
+                          hintText: 'タイトルを入力', labelText: 'タイトル'),
+                      onChanged: (value) => viewModel.setTitle(value)),
                   TextField(
                     key: const Key('price-field'),
                     decoration: const InputDecoration(
@@ -54,7 +52,8 @@ class RegistrationPage extends HookConsumerWidget {
                       return DropdownMenuItem<Category>(
                           value: value, child: Text(value.value));
                     }).toList(),
-                    onChanged: (Category? value) => viewModel.setCategory(value!),
+                    onChanged: (Category? value) =>
+                        viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
                   )

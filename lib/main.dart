@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 void main() async {
   await Hive.initFlutter();
 
-
   Hive.registerAdapter(CostDaoModelAdapter());
   await Hive.openBox<CostDaoModel>('costBox');
 
