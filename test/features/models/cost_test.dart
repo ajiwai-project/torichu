@@ -13,14 +13,14 @@ void main() {
     return Iterable<String>.generate(num, (_) => 'a').join('');
   }
 
-  group('Constructor', () {
+  group('Factory', () {
     test('should have the values', () {
       var title = 'title';
       var amount = 10;
       var point = Point.two;
       var category = Category.food;
-      var cost =
-          Cost(title: title, amount: amount, point: point, category: category);
+      var cost = Cost.of(
+          title: title, amount: amount, point: point, category: category);
 
       expect(cost.title, title);
       expect(cost.amount, amount);
@@ -32,7 +32,7 @@ void main() {
       var characters = generateStrings(101);
 
       expect(
-          () => Cost(
+          () => Cost.of(
               title: characters,
               amount: dummyAmount,
               point: dummyPoint,
@@ -43,7 +43,7 @@ void main() {
     test('should throw when amount exceeds 9999999', () {
       var invalidAmount = 9999999 + 1;
       expect(
-          () => Cost(
+          () => Cost.of(
               title: dummyTitle,
               amount: invalidAmount,
               point: dummyPoint,

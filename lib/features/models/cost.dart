@@ -1,16 +1,21 @@
 import 'package:flutter_template/features/models/category.dart';
 import 'package:flutter_template/features/models/point.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Cost {
+part 'cost.freezed.dart';
+
+@freezed
+class Cost with _$Cost {
   static const _maxTitleLength = 100;
   static const _maxAmount = 9999999;
 
-  late String _title;
-  late int _amount;
-  late Point _point;
-  late Category _category;
+  const factory Cost(
+      {required String title,
+      required int amount,
+      required Point point,
+      required Category category}) = _Cost;
 
-  Cost(
+  factory Cost.of(
       {required String title,
       required int amount,
       required Point point,
@@ -23,14 +28,6 @@ class Cost {
       throw Exception('Amount must be less than 9999999');
     }
 
-    _title = title;
-    _amount = amount;
-    _point = point;
-    _category = category;
+    return Cost(title: title, amount: amount, point: point, category: category);
   }
-
-  String get title => _title;
-  int get amount => _amount;
-  Point get point => _point;
-  Category get category => _category;
 }
