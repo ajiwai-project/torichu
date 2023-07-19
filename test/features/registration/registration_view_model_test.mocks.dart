@@ -30,6 +30,14 @@ class MockCostRepository extends _i1.Mock implements _i2.CostRepository {
   }
 
   @override
+  _i3.Future<List<_i4.Cost>> getAll() => (super.noSuchMethod(
+        Invocation.method(
+          #getAll,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i4.Cost>>.value(<_i4.Cost>[]),
+      ) as _i3.Future<List<_i4.Cost>>);
+  @override
   _i3.Future<void> save(_i4.Cost? cost) => (super.noSuchMethod(
         Invocation.method(
           #save,
