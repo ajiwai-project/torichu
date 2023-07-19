@@ -36,20 +36,21 @@ void main() {
   }
 
   testWidgets('Should show cost items', (tester) async {
-      const cost = Cost(
-        title: 'title',
-        amount: 100,
-        point: Point.one,
-        category: Category.food,
-      );
-      when(mockCostRepository.getAll()).thenAnswer((_) async => [cost]);
+    const cost = Cost(
+      title: 'title',
+      amount: 100,
+      point: Point.one,
+      category: Category.food,
+    );
+    when(mockCostRepository.getAll()).thenAnswer((_) async => [cost]);
     await render(tester);
     await tester.pumpAndSettle();
 
     expect(find.byType(CostListItem), findsOneWidget);
   });
 
-  testWidgets('should move to registration page when floading button is pushed', (tester) async {
+  testWidgets('should move to registration page when floading button is pushed',
+      (tester) async {
     when(mockCostRepository.getAll()).thenAnswer((_) async => []);
     await render(tester);
 
