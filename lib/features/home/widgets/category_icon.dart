@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/domain/expense/category.dart';
+import 'package:flutter_template/features/models/category.dart';
 
 class CategoryIcon extends StatelessWidget {
   final Category category;
@@ -8,6 +8,6 @@ class CategoryIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(category.name);
+    return Text(category.value);
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/features/home/widgets/expense_list_item.dart';
 import 'package:flutter_template/features/home/home_view_model.dart';
-import 'package:flutter_template/features/task_edit/task_edit_page.dart';
+import 'package:flutter_template/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -22,10 +22,10 @@ class HomePage extends HookConsumerWidget {
       body: state.when(
           data: (data) {
             return ListView.builder(
-                itemCount: data.expenses.length,
+                itemCount: data.costs.length,
                 itemBuilder: (context, index) {
-                  var expense = data.expenses[index];
-                  return ExpenseListItem(expense: expense);
+                  var cost = data.costs[index];
+                  return CostListItem(cost: cost);
                 });
           },
           error: (e, msg) => const Text('Error'),
@@ -36,8 +36,10 @@ class HomePage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const TaskEditPage()))
+          Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegistrationPage()))
               .then((value) => viewModel.load());
         },
       ),
