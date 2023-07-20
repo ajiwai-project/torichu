@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
-import 'package:flutter_template/features/home/widgets/category_icon.dart';
+import 'package:flutter_template/presentation/features/home/widgets/category_icon.dart';
 import 'package:intl/intl.dart';
 
 class CostListItem extends StatelessWidget {

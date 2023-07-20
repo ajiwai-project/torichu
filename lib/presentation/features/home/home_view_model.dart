@@ -1,5 +1,5 @@
 import 'package:flutter_template/domain/cost/cost_repository.dart';
-import 'package:flutter_template/features/home/home_state.dart';
+import 'package:flutter_template/presentation/features/home/home_state.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

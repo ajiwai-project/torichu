@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/features/registration/registration_view_model.dart';
+import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RegistrationPage extends HookConsumerWidget {

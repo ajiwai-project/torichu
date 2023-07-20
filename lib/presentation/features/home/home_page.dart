@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/features/home/widgets/cost_list_item.dart';
-import 'package:flutter_template/features/home/home_view_model.dart';
-import 'package:flutter_template/features/registration/registration_page.dart';
+import 'package:flutter_template/presentation/features/home/widgets/cost_list_item.dart';
+import 'package:flutter_template/presentation/features/home/home_view_model.dart';
+import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
