@@ -15,4 +15,8 @@ enum Category {
   const Category(this._value);
 
   get value => _value;
+
+  factory Category.of(String value) {
+    return Category.values.firstWhere((e) => e._value == value);
+  }
 }
