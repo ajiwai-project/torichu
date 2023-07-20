@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/models/category.dart';
+import 'package:flutter_template/domain/cost/category.dart';
 
 class CategoryIcon extends StatelessWidget {
   final Category category;

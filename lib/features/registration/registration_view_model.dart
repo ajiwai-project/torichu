@@ -1,9 +1,9 @@
-import 'package:flutter_template/features/models/category.dart';
-import 'package:flutter_template/features/models/cost.dart';
-import 'package:flutter_template/features/models/point.dart';
+import 'package:flutter_template/domain/cost/category.dart';
+import 'package:flutter_template/domain/cost/cost.dart';
+import 'package:flutter_template/domain/cost/cost_repository.dart';
+import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/features/registration/registration_state.dart';
-import 'package:flutter_template/infrastructure/repository/cost_db_repository.dart';
-import 'package:flutter_template/infrastructure/repository/cost_repository.dart';
+import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final registrationViewModelProvider =

@@ -48,8 +48,8 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
   $Res call({
     Object? title = null,
     Object? amount = null,
-    Object? point = null,
-    Object? category = null,
+    Object? point = freezed,
+    Object? category = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -60,11 +60,11 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      point: null == point
+      point: freezed == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
@@ -92,8 +92,8 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
   $Res call({
     Object? title = null,
     Object? amount = null,
-    Object? point = null,
-    Object? category = null,
+    Object? point = freezed,
+    Object? category = freezed,
   }) {
     return _then(_$_Cost(
       title: null == title
@@ -104,11 +104,11 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      point: null == point
+      point: freezed == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
@@ -146,13 +146,17 @@ class _$_Cost implements _Cost {
             other is _$_Cost &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.point, point) || other.point == point) &&
-            (identical(other.category, category) ||
-                other.category == category));
+            const DeepCollectionEquality().equals(other.point, point) &&
+            const DeepCollectionEquality().equals(other.category, category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, amount, point, category);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      amount,
+      const DeepCollectionEquality().hash(point),
+      const DeepCollectionEquality().hash(category));
 
   @JsonKey(ignore: true)
   @override

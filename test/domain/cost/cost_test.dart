@@ -1,6 +1,6 @@
-import 'package:flutter_template/features/models/category.dart';
-import 'package:flutter_template/features/models/cost.dart';
-import 'package:flutter_template/features/models/point.dart';
+import 'package:flutter_template/domain/cost/category.dart';
+import 'package:flutter_template/domain/cost/cost.dart';
+import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

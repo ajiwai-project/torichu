@@ -1,4 +1,4 @@
-import 'package:flutter_template/features/models/cost.dart';
+import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_state.freezed.dart';

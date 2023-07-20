@@ -1,5 +1,5 @@
-import 'package:flutter_template/features/models/category.dart';
-import 'package:flutter_template/features/models/point.dart';
+import 'package:flutter_template/domain/cost/category.dart';
+import 'package:flutter_template/domain/cost/point.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cost.freezed.dart';
