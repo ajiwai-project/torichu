@@ -1,0 +1,43 @@
+import 'package:collection/collection.dart';
+import 'package:flutter_template/domain/cost/category.dart';
+import 'package:flutter_template/domain/cost/cost.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'costs.freezed.dart';
+
+@freezed
+class Costs with _$Costs {
+  const factory Costs({required List<Cost> values}) = _Costs;
+}
+
+extension CostsExtention on Costs {
+  int get sumOfAmount => values.map((e) => e.amount).reduce((a, b) => a + b);
+  int get sumOfPoint =>
+      values.map((e) => e.point.value).reduce((a, b) => a + b);
+
+  Map<Category, int> get amountGroupByCategory {
+    Map<Category, int> amountMap = {};
+
+    groupBy<Cost, Category>(values, (value) => value.category)
+        .entries
+        .forEach((entry) {
+      amountMap[entry.key] =
+          entry.value.map((e) => e.amount).reduce((a, b) => a + b);
+    });
+
+    return amountMap;
+  }
+
+  Map<Category, int> get pointGroupByCategory {
+    Map<Category, int> pointMap = {};
+
+    groupBy<Cost, Category>(values, (value) => value.category)
+        .entries
+        .forEach((entry) {
+      pointMap[entry.key] =
+          entry.value.map((e) => e.point.value).reduce((a, b) => a + b);
+    });
+
+    return pointMap;
+  }
+}
