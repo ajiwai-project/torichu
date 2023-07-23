@@ -25,7 +25,7 @@ class HomePage extends HookConsumerWidget {
                 itemCount: data.costs.length,
                 itemBuilder: (context, index) {
                   var cost = data.costs[index];
-                  return CostListItem(cost: cost);
+                  return CostListItem(cost: cost, onDismissed: (_) {viewModel.remove(cost.id!);},);
                 });
           },
           error: (e, msg) => const Text('Error'),

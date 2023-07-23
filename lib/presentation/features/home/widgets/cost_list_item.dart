@@ -5,11 +5,18 @@ import 'package:intl/intl.dart';
 
 class CostListItem extends StatelessWidget {
   final Cost cost;
-  const CostListItem({Key? key, required this.cost}) : super(key: key);
+  final Function(DismissDirection) onDismissed;
+  const CostListItem({Key? key, required this.cost, required this.onDismissed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return Dismissible(key: UniqueKey(),onDismissed: onDismissed, direction: DismissDirection.startToEnd,
+background: Container(
+            padding: const EdgeInsets.all(16),
+            alignment: Alignment.centerLeft,
+            color: Colors.redAccent,
+            child: const Icon(Icons.delete, color: Colors.white)),
+      child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         title: Text(cost.title,
@@ -23,6 +30,6 @@ class CostListItem extends StatelessWidget {
         trailing: Text(
           cost.point.value.toString(),
           style: const TextStyle(fontWeight: FontWeight.bold),
-        ));
+        )));
   }
 }
