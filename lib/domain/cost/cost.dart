@@ -10,17 +10,20 @@ class Cost with _$Cost {
   static const _maxAmount = 9999999;
 
   const factory Cost(
-      {required String title,
+      {String? id,
+      required String title,
       required int amount,
       required Point point,
       required Category category}) = _Cost;
 
-  factory Cost.of(
+  factory Cost.initial(
       {required String title,
       required int amount,
       required Point point,
       required Category category}) {
     _validate(title, amount);
+    return Cost(title: title, amount: amount, point: point, category: category);
+  }
 
   //FIXME titleとamountは値オブジェクトにする
   static void _validate(String title, int amount) {
