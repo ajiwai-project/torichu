@@ -72,7 +72,10 @@ void main() {
       category: Category.food,
     );
     var callCount = 0;
-    when(mockCostRepository.getAll()).thenAnswer((_) async => [<Cost>[cost], <Cost>[]][callCount++]);
+    when(mockCostRepository.getAll()).thenAnswer((_) async => [
+          <Cost>[cost],
+          <Cost>[]
+        ][callCount++]);
     await render(tester);
     await tester.pumpAndSettle();
 
