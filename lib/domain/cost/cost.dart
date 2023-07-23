@@ -20,6 +20,10 @@ class Cost with _$Cost {
       required int amount,
       required Point point,
       required Category category}) {
+    _validate(title, amount);
+
+  //FIXME titleとamountは値オブジェクトにする
+  static void _validate(String title, int amount) {
     if (title.length > _maxTitleLength) {
       throw Exception('Title must be 100 characters or less.');
     }
@@ -27,7 +31,5 @@ class Cost with _$Cost {
     if (amount > _maxAmount) {
       throw Exception('Amount must be less than 9999999.');
     }
-
-    return Cost(title: title, amount: amount, point: point, category: category);
   }
 }
