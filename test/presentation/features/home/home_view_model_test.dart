@@ -35,5 +35,15 @@ void main() {
       verify(costRepository.getAll()).called(1);
       expect(sut.debugState.value!.costs, [cost]);
     });
+
+    test('Remove cost', () async {
+      const costId = 'id1';
+      when(costRepository.getAll()).thenAnswer((_) async => []);
+
+      await sut.remove(costId);
+
+      verify(costRepository.remove(costId)).called(1);
+      verify(costRepository.getAll()).called(1);
+    });
   });
 }

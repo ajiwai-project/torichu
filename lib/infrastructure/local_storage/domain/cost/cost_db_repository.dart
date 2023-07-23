@@ -35,4 +35,9 @@ class CostDBRepository implements CostRepository {
             category: Category.of(e.category)))
         .toList());
   }
+
+  @override
+  Future<void> remove(String id) async {
+    await box.delete(id);
+  }
 }

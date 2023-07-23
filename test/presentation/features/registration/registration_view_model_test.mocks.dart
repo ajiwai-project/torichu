@@ -45,4 +45,13 @@ class MockCostRepository extends _i1.Mock implements _i2.CostRepository {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> remove(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [id],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

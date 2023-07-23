@@ -4,4 +4,6 @@ abstract class CostRepository {
   Future<List<Cost>> getAll();
 
   Future<void> save(Cost cost);
+
+  Future<void> remove(String id);
 }
