@@ -15,6 +15,8 @@ extension CostsExtention on Costs {
   int get sumOfPoint =>
       values.map((e) => e.point.value).reduce((a, b) => a + b);
 
+  int get length => values.length;
+
   Map<Category, int> get amountGroupByCategory {
     Map<Category, int> amountMap = {};
 
@@ -40,4 +42,6 @@ extension CostsExtention on Costs {
 
     return pointMap;
   }
+
+  Cost get(int index) => values[index];
 }
