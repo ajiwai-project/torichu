@@ -21,7 +21,8 @@ void main() {
 
   group('HomeViewModel', () {
     test('should be initialized', () async {
-      const cost = Cost(
+      final cost = Cost.of(
+        id: 'id1',
         title: 'title',
         amount: 100,
         point: Point.one,

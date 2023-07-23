@@ -27,7 +27,8 @@ class CostDBRepository implements CostRepository {
   @override
   Future<List<Cost>> getAll() {
     return Future.value(box.values
-        .map((e) => Cost(
+        .map((e) => Cost.of(
+            id: e.id,
             title: e.title,
             amount: e.amount,
             point: Point.of(e.point),
