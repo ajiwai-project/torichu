@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/presentation/features/home/widgets/cost_list_item.dart';
+import 'package:flutter_template/presentation/features/home/widgets/cost_list.dart';
 import 'package:flutter_template/presentation/features/home/home_view_model.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,17 +21,7 @@ class HomePage extends HookConsumerWidget {
     return Scaffold(
       body: state.when(
           data: (data) {
-            return ListView.builder(
-                itemCount: data.costs.length,
-                itemBuilder: (context, index) {
-                  var cost = data.costs[index];
-                  return CostListItem(
-                    cost: cost,
-                    onDismissed: (_) {
-                      viewModel.remove(cost.id!);
-                    },
-                  );
-                });
+            return CostList(data.costs, viewModel.remove);
           },
           error: (e, msg) => const Text('Error'),
           loading: () => const Scaffold(
