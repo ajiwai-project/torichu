@@ -43,7 +43,8 @@ void main() {
       point: Point.one,
       category: Category.food,
     );
-    when(mockCostRepository.getAll()).thenAnswer((_) async => const Costs(values: [cost]));
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: [cost]));
     await render(tester);
     await tester.pumpAndSettle();
 
@@ -52,7 +53,8 @@ void main() {
 
   testWidgets('should move to registration page when floading button is pushed',
       (tester) async {
-    when(mockCostRepository.getAll()).thenAnswer((_) async => const Costs(values: []));
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: []));
     await render(tester);
 
     await tester.tap(find.byType(FloatingActionButton));

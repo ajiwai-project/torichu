@@ -5,5 +5,6 @@ part 'home_state.freezed.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState({@Default(Costs(values: [])) Costs costs}) = _HomeState;
+  const factory HomeState({@Default(Costs(values: [])) Costs costs}) =
+      _HomeState;
 }

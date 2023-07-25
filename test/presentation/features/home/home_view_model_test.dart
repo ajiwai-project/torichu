@@ -28,7 +28,8 @@ void main() {
         point: Point.one,
         category: Category.food,
       );
-      when(costRepository.getAll()).thenAnswer((_) async => const Costs(values: [cost]));
+      when(costRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: [cost]));
 
       await sut.load();
 
