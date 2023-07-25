@@ -14,7 +14,7 @@ void main() {
           .pumpWidget(MaterialApp(home: Scaffold(body: Summary(costs: costs))));
     }
 
-    testWidgets('should display one pie charts at first', (tester) async {
+    testWidgets('should display one pie chart at first', (tester) async {
       var cost = CostBuilder().build();
       var costs = Costs(values: [cost]);
       await render(tester, costs);
