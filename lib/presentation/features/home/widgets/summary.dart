@@ -20,7 +20,10 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfAmount;
       return costs.amountGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value, value: e.value / sumOfPoint))
+              title: e.key.value,
+              value: e.value / sumOfPoint,
+              color: e.key.color,
+              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
           .toList();
     }, [costs]);
 
@@ -28,7 +31,10 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfPoint;
       return costs.pointGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value, value: e.value / sumOfPoint))
+              title: e.key.value,
+              value: e.value / sumOfPoint,
+              color: e.key.color,
+              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
           .toList();
     }, [costs]);
 
@@ -51,19 +57,19 @@ class Summary extends HookWidget {
           Expanded(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width / 2,
+            Expanded(
                 child: tabIndex.value == 0
                     ? _Chart(data: toExpenseGraphData())
                     : _Chart(data: toPointGraphData())),
-            Expanded(
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.4,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                  _SumItem(
-                      label: '支出', value: costs.sumOfAmount, isPrice: true),
-                  _SumItem(label: 'ポイント', value: costs.sumOfPoint),
-                ]))
+                      _SumItem(
+                          label: '支出', value: costs.sumOfAmount, isPrice: true),
+                      _SumItem(label: 'ポイント', value: costs.sumOfPoint),
+                    ]))
           ]))
         ]));
   }
@@ -89,7 +95,7 @@ class _Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(16),
-        child: PieChart(PieChartData(sections: data)));
+        child: PieChart(PieChartData(sections: data, centerSpaceRadius: 48)));
   }
 }
 
