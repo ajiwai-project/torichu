@@ -11,22 +11,26 @@ class Summary extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    var sampleExpenseData = [
-      PieChartSectionData(value: 10, color: Colors.purple),
-      PieChartSectionData(value: 20, color: Colors.amber),
-      PieChartSectionData(value: 30, color: Colors.green)
-    ];
-    var samplePointData = [
-      PieChartSectionData(value: 20, color: Colors.purple),
-      PieChartSectionData(value: 25, color: Colors.amber),
-      PieChartSectionData(value: 10, color: Colors.green)
-    ];
-
     var tabIndex = useState<int>(0);
     var handleTab = useCallback((int index) {
       tabIndex.value = index;
     }, []);
+
+    var toExpenseGraphData = useCallback(() {
+      var sumOfPoint = costs.sumOfAmount;
+      return costs.amountGroupByCategory.entries
+          .map((e) => PieChartSectionData(
+              title: e.key.value, value: e.value / sumOfPoint))
+          .toList();
+    }, [costs]);
+
+    var toPointGraphData = useCallback(() {
+      var sumOfPoint = costs.sumOfPoint;
+      return costs.pointGroupByCategory.entries
+          .map((e) => PieChartSectionData(
+              title: e.key.value, value: e.value / sumOfPoint))
+          .toList();
+    }, [costs]);
 
     return DefaultTabController(
         length: 2,
@@ -50,8 +54,8 @@ class Summary extends HookWidget {
             SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: tabIndex.value == 0
-                    ? _Chart(data: sampleExpenseData)
-                    : _Chart(data: samplePointData)),
+                    ? _Chart(data: toExpenseGraphData())
+                    : _Chart(data: toPointGraphData())),
             Expanded(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
