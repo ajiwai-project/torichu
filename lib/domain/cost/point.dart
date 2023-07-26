@@ -13,7 +13,7 @@ enum Point {
 
   const Point(this._value);
 
-  get value => _value;
+  int get value => _value;
 
   factory Point.of(int value) {
     return Point.values.firstWhere((e) => e._value == value);

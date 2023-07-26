@@ -11,9 +11,9 @@ class Costs with _$Costs {
 }
 
 extension CostsExtention on Costs {
-  int get sumOfAmount => values.map((e) => e.amount).reduce((a, b) => a + b);
+  int get sumOfAmount => values.map((e) => e.amount).fold(0, (a, b) => a + b);
   int get sumOfPoint =>
-      values.map((e) => e.point.value).reduce((a, b) => a + b);
+      values.map((e) => e.point.value).fold(0, (a, b) => a + b);
 
   int get length => values.length;
 
@@ -24,7 +24,7 @@ extension CostsExtention on Costs {
         .entries
         .forEach((entry) {
       amountMap[entry.key] =
-          entry.value.map((e) => e.amount).reduce((a, b) => a + b);
+          entry.value.map((e) => e.amount).fold(0, (a, b) => a + b);
     });
 
     return amountMap;
@@ -37,7 +37,7 @@ extension CostsExtention on Costs {
         .entries
         .forEach((entry) {
       pointMap[entry.key] =
-          entry.value.map((e) => e.point.value).reduce((a, b) => a + b);
+          entry.value.map((e) => e.point.value).fold(0, (a, b) => a + b);
     });
 
     return pointMap;
