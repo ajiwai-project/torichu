@@ -61,7 +61,6 @@ void main() {
     expect(find.byType(RegistrationPage), findsOneWidget);
   });
 
-  //TODO DismissibleのonDismissedが呼ばれない
   testWidgets('支出を左から右方向へスワイプすると支出が削除されること', (tester) async {
     const costId = 'id1';
     final cost = Cost.of(
@@ -79,9 +78,9 @@ void main() {
     await render(tester);
     await tester.pumpAndSettle();
 
-    await tester.drag(find.byType(Dismissible), const Offset(0, 500));
+    await tester.drag(find.byType(Dismissible), const Offset(500, 0));
     await tester.pumpAndSettle();
 
     expect(find.byType(CostListItem), findsNothing);
-  }, skip: true);
+  });
 }
