@@ -59,8 +59,8 @@ class Summary extends HookWidget {
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Expanded(
                 child: tabIndex.value == 0
-                    ? _Chart(data: toExpenseGraphData())
-                    : _Chart(data: toPointGraphData())),
+                    ? _Chart(data: toPointGraphData())
+                    : _Chart(data: toExpenseGraphData())),
             SizedBox(
                 width: MediaQuery.of(context).size.width * 0.4,
                 child: Column(
