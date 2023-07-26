@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
+import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
@@ -43,7 +44,8 @@ void main() {
       point: Point.one,
       category: Category.food,
     );
-    when(mockCostRepository.getAll()).thenAnswer((_) async => [cost]);
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => Costs(values: [cost]));
     await render(tester);
     await tester.pumpAndSettle();
 
@@ -52,7 +54,8 @@ void main() {
 
   testWidgets('should move to registration page when floading button is pushed',
       (tester) async {
-    when(mockCostRepository.getAll()).thenAnswer((_) async => []);
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: []));
     await render(tester);
 
     await tester.tap(find.byType(FloatingActionButton));
@@ -72,8 +75,8 @@ void main() {
     );
     var callCount = 0;
     when(mockCostRepository.getAll()).thenAnswer((_) async => [
-          <Cost>[cost],
-          <Cost>[]
+          Costs(values: [cost]),
+          const Costs(values: [])
         ][callCount++]);
     await render(tester);
     await tester.pumpAndSettle();

@@ -1,6 +1,7 @@
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
+import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/presentation/features/home/home_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -28,17 +29,19 @@ void main() {
         point: Point.one,
         category: Category.food,
       );
-      when(costRepository.getAll()).thenAnswer((_) async => [cost]);
+      when(costRepository.getAll())
+          .thenAnswer((_) async => Costs(values: [cost]));
 
       await sut.load();
 
       verify(costRepository.getAll()).called(1);
-      expect(sut.debugState.value!.costs, [cost]);
+      expect(sut.debugState.value!.costs, Costs(values: [cost]));
     });
 
     test('Remove cost', () async {
       const costId = 'id1';
-      when(costRepository.getAll()).thenAnswer((_) async => []);
+      when(costRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: []));
 
       await sut.remove(costId);
 
