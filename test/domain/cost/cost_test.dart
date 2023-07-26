@@ -19,7 +19,7 @@ void main() {
       var amount = 10;
       var point = Point.two;
       var category = Category.food;
-      var cost = Cost.of(
+      var cost = Cost.initial(
           title: title, amount: amount, point: point, category: category);
 
       expect(cost.title, title);
@@ -32,7 +32,7 @@ void main() {
       var characters = generateStrings(101);
 
       expect(
-          () => Cost.of(
+          () => Cost.initial(
               title: characters,
               amount: dummyAmount,
               point: dummyPoint,
@@ -43,7 +43,7 @@ void main() {
     test('should throw when amount exceeds 9999999', () {
       var invalidAmount = 9999999 + 1;
       expect(
-          () => Cost.of(
+          () => Cost.initial(
               title: dummyTitle,
               amount: invalidAmount,
               point: dummyPoint,

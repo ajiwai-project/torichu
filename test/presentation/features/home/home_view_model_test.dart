@@ -21,7 +21,8 @@ void main() {
 
   group('HomeViewModel', () {
     test('should be initialized', () async {
-      const cost = Cost(
+      final cost = Cost.of(
+        id: 'id1',
         title: 'title',
         amount: 100,
         point: Point.one,
@@ -33,6 +34,16 @@ void main() {
 
       verify(costRepository.getAll()).called(1);
       expect(sut.debugState.value!.costs, [cost]);
+    });
+
+    test('Remove cost', () async {
+      const costId = 'id1';
+      when(costRepository.getAll()).thenAnswer((_) async => []);
+
+      await sut.remove(costId);
+
+      verify(costRepository.remove(costId)).called(1);
+      verify(costRepository.getAll()).called(1);
     });
   });
 }

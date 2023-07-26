@@ -36,7 +36,8 @@ void main() {
   }
 
   testWidgets('Should show cost items', (tester) async {
-    const cost = Cost(
+    final cost = Cost.of(
+      id: 'id1',
       title: 'title',
       amount: 100,
       point: Point.one,
@@ -58,5 +59,28 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(RegistrationPage), findsOneWidget);
+  });
+
+  testWidgets('支出を左から右方向へスワイプすると支出が削除されること', (tester) async {
+    const costId = 'id1';
+    final cost = Cost.of(
+      id: costId,
+      title: 'hoge',
+      amount: 100,
+      point: Point.one,
+      category: Category.food,
+    );
+    var callCount = 0;
+    when(mockCostRepository.getAll()).thenAnswer((_) async => [
+          <Cost>[cost],
+          <Cost>[]
+        ][callCount++]);
+    await render(tester);
+    await tester.pumpAndSettle();
+
+    await tester.drag(find.byType(Dismissible), const Offset(500, 0));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(CostListItem), findsNothing);
   });
 }

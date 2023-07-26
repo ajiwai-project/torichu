@@ -21,7 +21,7 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
       return;
     }
 
-    await _costRepository.save(Cost.of(
+    await _costRepository.save(Cost.initial(
         title: state.title,
         amount: state.price,
         point: state.point!,
