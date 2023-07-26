@@ -22,19 +22,31 @@ void main() {
 
   group('HomeViewModel', () {
     test('should be initialized', () async {
-      const cost = Cost(
+      final cost = Cost.of(
+        id: 'id1',
         title: 'title',
         amount: 100,
         point: Point.one,
         category: Category.food,
       );
       when(costRepository.getAll())
-          .thenAnswer((_) async => const Costs(values: [cost]));
+          .thenAnswer((_) async => Costs(values: [cost]));
 
       await sut.load();
 
       verify(costRepository.getAll()).called(1);
-      expect(sut.debugState.value!.costs, const Costs(values: [cost]));
+      expect(sut.debugState.value!.costs, Costs(values: [cost]));
+    });
+
+    test('Remove cost', () async {
+      const costId = 'id1';
+      when(costRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: []));
+
+      await sut.remove(costId);
+
+      verify(costRepository.remove(costId)).called(1);
+      verify(costRepository.getAll()).called(1);
     });
   });
 }

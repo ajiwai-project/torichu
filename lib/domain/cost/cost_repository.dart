@@ -5,4 +5,6 @@ abstract class CostRepository {
   Future<Costs> getAll();
 
   Future<void> save(Cost cost);
+
+  Future<void> remove(String id);
 }

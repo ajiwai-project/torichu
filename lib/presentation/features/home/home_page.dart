@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/presentation/features/home/widgets/cost_list_item.dart';
+import 'package:flutter_template/presentation/features/home/widgets/cost_list.dart';
 import 'package:flutter_template/presentation/features/home/home_view_model.dart';
 import 'package:flutter_template/presentation/features/home/widgets/summary.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
@@ -26,10 +25,7 @@ class HomePage extends HookConsumerWidget {
                 Expanded(child: Summary(costs: data.costs)),
                 SizedBox(
                     height: 300,
-                    child: ListView.builder(
-                        itemCount: data.costs.length,
-                        itemBuilder: (context, index) =>
-                            CostListItem(cost: data.costs.get(index))))
+                    child: CostList(data.costs.values, viewModel.remove))
               ]),
           error: (e, msg) => const Text('Error'),
           loading: () => const Scaffold(

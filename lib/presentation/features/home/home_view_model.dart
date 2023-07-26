@@ -19,4 +19,13 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
       state = AsyncValue.error(err, stack);
     }
   }
+
+  Future<void> remove(String id) async {
+    try {
+      await _costRepository.remove(id);
+      await load();
+    } on Exception catch (err, stack) {
+      state = AsyncValue.error(err, stack);
+    }
+  }
 }

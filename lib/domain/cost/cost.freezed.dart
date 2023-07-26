@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Cost {
+  String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
@@ -30,7 +31,8 @@ abstract class $CostCopyWith<$Res> {
   factory $CostCopyWith(Cost value, $Res Function(Cost) then) =
       _$CostCopyWithImpl<$Res, Cost>;
   @useResult
-  $Res call({String title, int amount, Point point, Category category});
+  $Res call(
+      {String? id, String title, int amount, Point point, Category category});
 }
 
 /// @nodoc
@@ -46,12 +48,17 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = null,
     Object? amount = null,
     Object? point = null,
     Object? category = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -78,7 +85,8 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
       __$$_CostCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, int amount, Point point, Category category});
+  $Res call(
+      {String? id, String title, int amount, Point point, Category category});
 }
 
 /// @nodoc
@@ -90,12 +98,17 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = null,
     Object? amount = null,
     Object? point = null,
     Object? category = null,
   }) {
     return _then(_$_Cost(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -120,11 +133,14 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
 
 class _$_Cost implements _Cost {
   const _$_Cost(
-      {required this.title,
+      {this.id,
+      required this.title,
       required this.amount,
       required this.point,
       required this.category});
 
+  @override
+  final String? id;
   @override
   final String title;
   @override
@@ -136,7 +152,7 @@ class _$_Cost implements _Cost {
 
   @override
   String toString() {
-    return 'Cost(title: $title, amount: $amount, point: $point, category: $category)';
+    return 'Cost(id: $id, title: $title, amount: $amount, point: $point, category: $category)';
   }
 
   @override
@@ -144,6 +160,7 @@ class _$_Cost implements _Cost {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Cost &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.point, point) || other.point == point) &&
@@ -152,7 +169,8 @@ class _$_Cost implements _Cost {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, amount, point, category);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, amount, point, category);
 
   @JsonKey(ignore: true)
   @override
@@ -163,11 +181,14 @@ class _$_Cost implements _Cost {
 
 abstract class _Cost implements Cost {
   const factory _Cost(
-      {required final String title,
+      {final String? id,
+      required final String title,
       required final int amount,
       required final Point point,
       required final Category category}) = _$_Cost;
 
+  @override
+  String? get id;
   @override
   String get title;
   @override

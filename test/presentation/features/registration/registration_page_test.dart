@@ -53,7 +53,7 @@ void main() {
     await tester.tap(submitButton);
     await tester.pumpAndSettle();
 
-    var cost = Cost.of(
+    var cost = Cost.initial(
         title: 'すき家の牛丼',
         amount: 1000,
         point: Point.one,

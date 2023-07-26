@@ -29,6 +29,7 @@ class CostDBRepository implements CostRepository {
   Future<Costs> getAll() {
     var costs = box.values
         .map((e) => Cost(
+            id: e.id,
             title: e.title,
             amount: e.amount,
             point: Point.of(e.point),
@@ -36,5 +37,10 @@ class CostDBRepository implements CostRepository {
         .toList();
 
     return Future.value(Costs(values: costs));
+  }
+
+  @override
+  Future<void> remove(String id) async {
+    await box.delete(id);
   }
 }
