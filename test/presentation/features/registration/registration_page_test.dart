@@ -26,9 +26,7 @@ void main() {
     ], child: const MaterialApp(home: RegistrationPage())));
   }
 
-  testWidgets('should save cost when push submit button', (tester) async {
-    await render(tester);
-
+  inputForm(WidgetTester tester, Cost cost) async {
     final titleField = find.byKey(const Key('title-field'));
     await tester.enterText(titleField, 'すき家の牛丼');
 
@@ -48,16 +46,21 @@ void main() {
     final categoryItem = find.text('食費');
     await tester.tap(categoryItem);
     await tester.pumpAndSettle();
+  }
+
+  testWidgets('should save cost when push submit button', (tester) async {
+    await render(tester);
+    final cost = Cost.initial(
+        title: 'すき家の牛丼',
+        amount: 1000,
+        point: Point.one,
+        category: Category.food);
+    await inputForm(tester, cost);
 
     final submitButton = find.byKey(const Key('register-button'));
     await tester.tap(submitButton);
     await tester.pumpAndSettle();
 
-    var cost = Cost.initial(
-        title: 'すき家の牛丼',
-        amount: 1000,
-        point: Point.one,
-        category: Category.food);
     verify(mockCostRepository.save(cost)).called(1);
   });
 }
