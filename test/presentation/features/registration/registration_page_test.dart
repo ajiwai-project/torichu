@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
+import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,6 +18,12 @@ import 'registration_page_test.mocks.dart';
 void main() {
   late CostRepository mockCostRepository;
 
+  const dummyCost = Cost(
+      id: "id1",
+      title: 'すき家の牛丼',
+      amount: 1000,
+      point: Point.one,
+      category: Category.food);
   setUp(() {
     mockCostRepository = MockCostRepository();
   });
@@ -64,5 +72,19 @@ void main() {
         point: Point.one,
         category: Category.food);
     verify(mockCostRepository.save(costWithoutId)).called(1);
+  });
+
+  testWidgets('should move to home page when push submit button',
+      (tester) async {
+    await render(tester);
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+    await inputForm(tester, dummyCost);
+
+    final submitButton = find.byKey(const Key('register-button'));
+    await tester.tap(submitButton);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(HomePage), findsOneWidget);
   });
 }
