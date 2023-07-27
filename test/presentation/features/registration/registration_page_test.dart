@@ -28,39 +28,41 @@ void main() {
 
   inputForm(WidgetTester tester, Cost cost) async {
     final titleField = find.byKey(const Key('title-field'));
-    await tester.enterText(titleField, 'すき家の牛丼');
+    await tester.enterText(titleField, cost.title);
 
     final priceField = find.byKey(const Key('price-field'));
-    await tester.enterText(priceField, '1000');
+    await tester.enterText(priceField, cost.amount.toString());
 
     final pointField = find.byKey(const Key('point-field'));
     await tester.tap(pointField);
     await tester.pumpAndSettle();
-    final pointItem = find.text('1');
+    final pointItem = find.text(cost.point.value.toString());
     await tester.tap(pointItem);
     await tester.pumpAndSettle();
 
     final categoryField = find.byKey(const Key('category-field'));
     await tester.tap(categoryField);
     await tester.pumpAndSettle();
-    final categoryItem = find.text('食費');
+    final categoryItem = find.text(cost.category.value.toString());
     await tester.tap(categoryItem);
     await tester.pumpAndSettle();
   }
 
   testWidgets('should save cost when push submit button', (tester) async {
     await render(tester);
-    final cost = Cost.initial(
-        title: 'すき家の牛丼',
-        amount: 1000,
-        point: Point.one,
-        category: Category.food);
-    await inputForm(tester, cost);
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+    await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));
     await tester.tap(submitButton);
     await tester.pumpAndSettle();
 
-    verify(mockCostRepository.save(cost)).called(1);
+    final costWithoutId = Cost.initial(
+        title: 'すき家の牛丼',
+        amount: 1000,
+        point: Point.one,
+        category: Category.food);
+    verify(mockCostRepository.save(costWithoutId)).called(1);
   });
 }
