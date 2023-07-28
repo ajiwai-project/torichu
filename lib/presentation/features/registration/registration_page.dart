@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -62,9 +63,17 @@ class RegistrationPage extends HookConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                         key: const Key('register-button'),
-                        onPressed: () => viewModel.register(),
+                        onPressed: () => viewModel
+                            .register()
+                            .then((_) => _navigateToHome(context)),
                         child: const Text('確定')))
               ],
             )));
+  }
+
+  _navigateToHome(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return const HomePage();
+    }));
   }
 }
