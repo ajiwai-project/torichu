@@ -11,7 +11,7 @@ class CostListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var formattedDate = DateFormat('M月d日').format(cost.datetime!);
+    var formattedDate = cost.datetime == null ? '' : DateFormat('M月d日').format(cost.datetime!);
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
