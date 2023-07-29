@@ -11,6 +11,7 @@ class CostListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formattedDate = DateFormat('M月d日').format(cost.datetime!);
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
@@ -23,17 +24,26 @@ class CostListItem extends StatelessWidget {
         child: ListTile(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            title: Text(cost.title,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  CategoryIcon(category: cost.category),
-                  Text('￥${NumberFormat("#,###").format(cost.amount)}'),
-                ]),
-            trailing: Text(
-              cost.point.value.toString(),
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(cost.title,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text(cost.point.value.toString())
+              ],
+            ),
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      CategoryIcon(category: cost.category),
+                      Text('￥${NumberFormat("#,###").format(cost.amount)}')
+                    ]),
+                Text(formattedDate)
+              ],
             )));
   }
 }

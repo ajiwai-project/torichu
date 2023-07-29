@@ -15,7 +15,8 @@ class Cost with _$Cost {
       required String title,
       required int amount,
       required Point point,
-      required Category category}) = _Cost;
+      required Category category,
+      DateTime? datetime}) = _Cost;
 
   factory Cost.of(
       {required String id,

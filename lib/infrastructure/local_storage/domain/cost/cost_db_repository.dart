@@ -33,7 +33,8 @@ class CostDBRepository implements CostRepository {
             title: e.title,
             amount: e.amount,
             point: Point.of(e.point),
-            category: Category.of(e.category)))
+            category: Category.of(e.category),
+            datetime: DateTime.parse(e.date)))
         .toList();
 
     return Future.value(Costs(values: costs));

@@ -41,7 +41,7 @@ class CostDaoModel extends HiveObject {
         title: title,
         amount: amount,
         point: point,
-        date: DateTime.now().toString(),
+        date: DateTime.now().toIso8601String(),
         category: category);
   }
 
