@@ -15,7 +15,11 @@ class RegistrationPage extends HookConsumerWidget {
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('入力')),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
+        ),
         body: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -40,7 +44,12 @@ class RegistrationPage extends HookConsumerWidget {
                     value: state.point,
                     items: Point.values.map((value) {
                       return DropdownMenuItem<Point>(
-                          value: value, child: Text(value.value.toString()));
+                          value: value,
+                          child: Text(value.value.toString(),
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground)));
                     }).toList(),
                     onChanged: (Point? value) => viewModel.setPoint(value!),
                     decoration: const InputDecoration(
@@ -51,7 +60,12 @@ class RegistrationPage extends HookConsumerWidget {
                     value: state.category,
                     items: Category.values.map((value) {
                       return DropdownMenuItem<Category>(
-                          value: value, child: Text(value.value));
+                          value: value,
+                          child: Text(value.value,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground)));
                     }).toList(),
                     onChanged: (Category? value) =>
                         viewModel.setCategory(value!),
@@ -61,12 +75,18 @@ class RegistrationPage extends HookConsumerWidget {
                 ]),
                 SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    child: ElevatedButton.icon(
                         key: const Key('register-button'),
                         onPressed: () => viewModel
                             .register()
                             .then((_) => _navigateToHome(context)),
-                        child: const Text('確定')))
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(16),
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onBackground,
+                        ),
+                        icon: const Icon(Icons.add),
+                        label: const Text('Add to list')))
               ],
             )));
   }
