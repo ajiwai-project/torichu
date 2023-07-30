@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_template">
+    package="com.torichu.spender">
    <application
-        android:label="flutter_template"
+        android:label="Spender"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
