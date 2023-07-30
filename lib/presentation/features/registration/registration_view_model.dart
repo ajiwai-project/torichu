@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/cost/category.dart';
-import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/unregistered_cost.dart';
 import 'package:flutter_template/presentation/features/registration/registration_state.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,7 +21,7 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
       return;
     }
 
-    await _costRepository.save(Cost.initial(
+    await _costRepository.save(UnregisteredCost.of(
         title: state.title,
         amount: state.price,
         point: state.point!,

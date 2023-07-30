@@ -5,9 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_template/domain/cost/cost.dart' as _i5;
 import 'package:flutter_template/domain/cost/cost_repository.dart' as _i3;
 import 'package:flutter_template/domain/cost/costs.dart' as _i2;
+import 'package:flutter_template/domain/cost/unregistered_cost.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -54,7 +54,7 @@ class MockCostRepository extends _i1.Mock implements _i3.CostRepository {
         )),
       ) as _i4.Future<_i2.Costs>);
   @override
-  _i4.Future<void> save(_i5.Cost? cost) => (super.noSuchMethod(
+  _i4.Future<void> save(_i5.UnregisteredCost? cost) => (super.noSuchMethod(
         Invocation.method(
           #save,
           [cost],

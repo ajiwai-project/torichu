@@ -9,33 +9,29 @@ class Cost with _$Cost {
   static const _maxTitleLength = 100;
   static const _maxAmount = 9999999;
 
-  //FIXME IDのあるなしは型で表現したい
   const factory Cost(
-      {String? id,
+      {required String id,
       required String title,
       required int amount,
       required Point point,
       required Category category,
-      DateTime? datetime}) = _Cost;
+      required DateTime registeredAt}) = _Cost;
 
   factory Cost.of(
       {required String id,
       required String title,
       required int amount,
       required Point point,
-      required Category category}) {
+      required Category category,
+      required DateTime registeredAt}) {
     _validate(title, amount);
     return Cost(
-        id: id, title: title, amount: amount, point: point, category: category);
-  }
-
-  factory Cost.initial(
-      {required String title,
-      required int amount,
-      required Point point,
-      required Category category}) {
-    _validate(title, amount);
-    return Cost(title: title, amount: amount, point: point, category: category);
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        category: category,
+        registeredAt: registeredAt);
   }
 
   //FIXME titleとamountは値オブジェクトにする

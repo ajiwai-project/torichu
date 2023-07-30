@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/cost/category.dart';
-import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/unregistered_cost.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -28,7 +28,7 @@ void main() {
 
       await sut.register();
 
-      var cost = const Cost(
+      var cost = const UnregisteredCost(
           title: 'title',
           category: Category.food,
           point: Point.one,

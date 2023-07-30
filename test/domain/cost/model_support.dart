@@ -3,10 +3,12 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 
 class CostBuilder {
+  String id = 'dummy';
   String title = 'dummy';
   int amount = -1;
   Point point = Point.one;
   Category category = Category.food;
+  DateTime registeredAt = DateTime(1900, 1, 1, 1);
 
   CostBuilder setTitle(String title) {
     this.title = title;
@@ -29,6 +31,12 @@ class CostBuilder {
   }
 
   Cost build() {
-    return Cost(title: title, amount: amount, point: point, category: category);
+    return Cost(
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        category: category,
+        registeredAt: registeredAt);
   }
 }

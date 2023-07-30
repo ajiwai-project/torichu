@@ -18,7 +18,7 @@ class CostDaoModel extends HiveObject {
   int point;
 
   @HiveField(4)
-  String date;
+  String registeredAt;
 
   @HiveField(5)
   String category;
@@ -28,7 +28,7 @@ class CostDaoModel extends HiveObject {
       required this.title,
       required this.amount,
       required this.point,
-      required this.date,
+      required this.registeredAt,
       required this.category});
 
   factory CostDaoModel.of(
@@ -41,7 +41,7 @@ class CostDaoModel extends HiveObject {
         title: title,
         amount: amount,
         point: point,
-        date: DateTime.now().toIso8601String(),
+        registeredAt: DateTime.now().toIso8601String(),
         category: category);
   }
 
@@ -52,11 +52,12 @@ class CostDaoModel extends HiveObject {
       title == other.title &&
       amount == other.amount &&
       point == other.point &&
-      date == other.date &&
+      registeredAt == other.registeredAt &&
       category == other.category;
 
   @override
-  int get hashCode => Object.hash(id, title, amount, point, date, category);
+  int get hashCode =>
+      Object.hash(id, title, amount, point, registeredAt, category);
 
   @override
   String toString() {
@@ -65,7 +66,7 @@ class CostDaoModel extends HiveObject {
         'title: $title, '
         'amount: $amount, '
         'point: $point, '
-        'date: $date, '
+        'registeredAt: $registeredAt, '
         'category: $category'
         ')';
   }

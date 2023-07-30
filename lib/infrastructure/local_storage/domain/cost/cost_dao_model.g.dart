@@ -21,7 +21,7 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       title: fields[1] as String,
       amount: fields[2] as int,
       point: fields[3] as int,
-      date: fields[4] as String,
+      registeredAt: fields[4] as String,
       category: fields[5] as String,
     );
   }
@@ -39,7 +39,7 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       ..writeByte(3)
       ..write(obj.point)
       ..writeByte(4)
-      ..write(obj.date)
+      ..write(obj.registeredAt)
       ..writeByte(5)
       ..write(obj.category);
   }

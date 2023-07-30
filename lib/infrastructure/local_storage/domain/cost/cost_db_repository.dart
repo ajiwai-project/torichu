@@ -3,6 +3,7 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/unregistered_cost.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,7 +17,7 @@ class CostDBRepository implements CostRepository {
   CostDBRepository(this.box);
 
   @override
-  Future<void> save(Cost cost) async {
+  Future<void> save(UnregisteredCost cost) async {
     var entity = CostDaoModel.of(
         title: cost.title,
         amount: cost.amount,
@@ -34,7 +35,7 @@ class CostDBRepository implements CostRepository {
             amount: e.amount,
             point: Point.of(e.point),
             category: Category.of(e.category),
-            datetime: DateTime.parse(e.date)))
+            registeredAt: DateTime.parse(e.registeredAt)))
         .toList();
 
     return Future.value(Costs(values: costs));

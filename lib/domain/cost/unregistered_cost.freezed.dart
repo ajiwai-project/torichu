@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'cost.dart';
+part of 'unregistered_cost.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,36 +15,30 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Cost {
-  String get id => throw _privateConstructorUsedError;
+mixin _$UnregisteredCost {
   String get title => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
-  DateTime get registeredAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CostCopyWith<Cost> get copyWith => throw _privateConstructorUsedError;
+  $UnregisteredCostCopyWith<UnregisteredCost> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CostCopyWith<$Res> {
-  factory $CostCopyWith(Cost value, $Res Function(Cost) then) =
-      _$CostCopyWithImpl<$Res, Cost>;
+abstract class $UnregisteredCostCopyWith<$Res> {
+  factory $UnregisteredCostCopyWith(
+          UnregisteredCost value, $Res Function(UnregisteredCost) then) =
+      _$UnregisteredCostCopyWithImpl<$Res, UnregisteredCost>;
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      int amount,
-      Point point,
-      Category category,
-      DateTime registeredAt});
+  $Res call({String title, int amount, Point point, Category category});
 }
 
 /// @nodoc
-class _$CostCopyWithImpl<$Res, $Val extends Cost>
-    implements $CostCopyWith<$Res> {
-  _$CostCopyWithImpl(this._value, this._then);
+class _$UnregisteredCostCopyWithImpl<$Res, $Val extends UnregisteredCost>
+    implements $UnregisteredCostCopyWith<$Res> {
+  _$UnregisteredCostCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,18 +48,12 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? amount = null,
     Object? point = null,
     Object? category = null,
-    Object? registeredAt = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -82,50 +70,38 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
-  factory _$$_CostCopyWith(_$_Cost value, $Res Function(_$_Cost) then) =
-      __$$_CostCopyWithImpl<$Res>;
+abstract class _$$_UnregisteredCostCopyWith<$Res>
+    implements $UnregisteredCostCopyWith<$Res> {
+  factory _$$_UnregisteredCostCopyWith(
+          _$_UnregisteredCost value, $Res Function(_$_UnregisteredCost) then) =
+      __$$_UnregisteredCostCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      int amount,
-      Point point,
-      Category category,
-      DateTime registeredAt});
+  $Res call({String title, int amount, Point point, Category category});
 }
 
 /// @nodoc
-class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
-    implements _$$_CostCopyWith<$Res> {
-  __$$_CostCopyWithImpl(_$_Cost _value, $Res Function(_$_Cost) _then)
+class __$$_UnregisteredCostCopyWithImpl<$Res>
+    extends _$UnregisteredCostCopyWithImpl<$Res, _$_UnregisteredCost>
+    implements _$$_UnregisteredCostCopyWith<$Res> {
+  __$$_UnregisteredCostCopyWithImpl(
+      _$_UnregisteredCost _value, $Res Function(_$_UnregisteredCost) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? amount = null,
     Object? point = null,
     Object? category = null,
-    Object? registeredAt = null,
   }) {
-    return _then(_$_Cost(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$_UnregisteredCost(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -142,27 +118,19 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Cost implements _Cost {
-  const _$_Cost(
-      {required this.id,
-      required this.title,
+class _$_UnregisteredCost implements _UnregisteredCost {
+  const _$_UnregisteredCost(
+      {required this.title,
       required this.amount,
       required this.point,
-      required this.category,
-      required this.registeredAt});
+      required this.category});
 
-  @override
-  final String id;
   @override
   final String title;
   @override
@@ -171,51 +139,41 @@ class _$_Cost implements _Cost {
   final Point point;
   @override
   final Category category;
-  @override
-  final DateTime registeredAt;
 
   @override
   String toString() {
-    return 'Cost(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt)';
+    return 'UnregisteredCost(title: $title, amount: $amount, point: $point, category: $category)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Cost &&
-            (identical(other.id, id) || other.id == id) &&
+            other is _$_UnregisteredCost &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.point, point) || other.point == point) &&
             (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.registeredAt, registeredAt) ||
-                other.registeredAt == registeredAt));
+                other.category == category));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, amount, point, category, registeredAt);
+  int get hashCode => Object.hash(runtimeType, title, amount, point, category);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CostCopyWith<_$_Cost> get copyWith =>
-      __$$_CostCopyWithImpl<_$_Cost>(this, _$identity);
+  _$$_UnregisteredCostCopyWith<_$_UnregisteredCost> get copyWith =>
+      __$$_UnregisteredCostCopyWithImpl<_$_UnregisteredCost>(this, _$identity);
 }
 
-abstract class _Cost implements Cost {
-  const factory _Cost(
-      {required final String id,
-      required final String title,
+abstract class _UnregisteredCost implements UnregisteredCost {
+  const factory _UnregisteredCost(
+      {required final String title,
       required final int amount,
       required final Point point,
-      required final Category category,
-      required final DateTime registeredAt}) = _$_Cost;
+      required final Category category}) = _$_UnregisteredCost;
 
-  @override
-  String get id;
   @override
   String get title;
   @override
@@ -225,8 +183,7 @@ abstract class _Cost implements Cost {
   @override
   Category get category;
   @override
-  DateTime get registeredAt;
-  @override
   @JsonKey(ignore: true)
-  _$$_CostCopyWith<_$_Cost> get copyWith => throw _privateConstructorUsedError;
+  _$$_UnregisteredCostCopyWith<_$_UnregisteredCost> get copyWith =>
+      throw _privateConstructorUsedError;
 }
