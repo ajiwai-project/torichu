@@ -10,6 +10,11 @@ class CostBuilder {
   Category category = Category.food;
   DateTime registeredAt = DateTime(1900, 1, 1, 1);
 
+  CostBuilder setId(String id) {
+    this.id = id;
+    return this;
+  }
+
   CostBuilder setTitle(String title) {
     this.title = title;
     return this;
@@ -27,6 +32,11 @@ class CostBuilder {
 
   CostBuilder setCategory(Category category) {
     this.category = category;
+    return this;
+  }
+
+  CostBuilder setRegisteredAt(DateTime registeredAt) {
+    this.registeredAt = registeredAt;
     return this;
   }
 
