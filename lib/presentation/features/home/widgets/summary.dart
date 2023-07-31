@@ -40,49 +40,41 @@ class Summary extends HookWidget {
 
     return DefaultTabController(
         length: 2,
-        child: Column(children: [
-          Container(
-              width: MediaQuery.of(context).size.width / 2,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              height: 40,
-              child: TabBar(
-                  labelStyle: const TextStyle(fontSize: 12),
-                  unselectedLabelColor: Colors.black12,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.grey),
-                  tabs: const [_Tab(label: 'ポイント'), _Tab(label: '支出')],
-                  onTap: handleTab)),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Expanded(
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Expanded(
-                child: tabIndex.value == 0
-                    ? _Chart(data: toPointGraphData())
-                    : _Chart(data: toExpenseGraphData())),
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _SumItem(
-                          label: '支出', value: costs.sumOfAmount, isPrice: true),
-                      _SumItem(label: 'ポイント', value: costs.sumOfPoint),
-                    ]))
-          ]))
+              child: tabIndex.value == 0
+                  ? _Chart(data: toPointGraphData())
+                  : _Chart(data: toExpenseGraphData())),
+          Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(children: [
+                GestureDetector(
+                    onTap: () => handleTab(0),
+                    child: Text(
+                      costs.sumOfPoint.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: tabIndex.value == 0 ? 40 : 24,
+                          color: tabIndex.value == 0
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.onBackground),
+                    )),
+                Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: const Text('/', style: TextStyle(fontSize: 28))),
+                GestureDetector(
+                    onTap: () => handleTab(1),
+                    child: Text(
+                      '￥${NumberFormat("#,###").format(costs.sumOfAmount)}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: tabIndex.value == 1 ? 40 : 24,
+                          color: tabIndex.value == 1
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.onBackground),
+                    ))
+              ]))
         ]));
-  }
-}
-
-class _Tab extends StatelessWidget {
-  final String label;
-
-  const _Tab({Key? key, required this.label}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Tab(child: Align(alignment: Alignment.center, child: Text(label)));
   }
 }
 
@@ -93,30 +85,6 @@ class _Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(16),
-        child: PieChart(PieChartData(sections: data, centerSpaceRadius: 48)));
-  }
-}
-
-class _SumItem extends StatelessWidget {
-  final String label;
-  final int value;
-  final bool isPrice;
-
-  const _SumItem(
-      {Key? key,
-      required this.label,
-      required this.value,
-      this.isPrice = false})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-        title: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: isPrice
-            ? Text('￥${NumberFormat("#,###").format(value)}')
-            : Text('$value'));
+    return PieChart(PieChartData(sections: data, centerSpaceRadius: 48));
   }
 }

@@ -23,9 +23,7 @@ class HomePage extends HookConsumerWidget {
       body: state.when(
           data: (data) => Column(children: [
                 Expanded(child: Summary(costs: data.costs)),
-                SizedBox(
-                    height: 300,
-                    child: CostList(data.costs.values, viewModel.remove))
+                Expanded(child: CostList(data.costs.values, viewModel.remove))
               ]),
           error: (e, msg) => const Text('Error'),
           loading: () => const Scaffold(
