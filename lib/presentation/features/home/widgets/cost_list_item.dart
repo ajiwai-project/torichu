@@ -23,7 +23,8 @@ class CostListItem extends StatelessWidget {
         child: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
             title: Text(cost.title,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
