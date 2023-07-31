@@ -20,10 +20,9 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfAmount;
       return costs.amountGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value,
+              title: '',
               value: e.value / sumOfPoint,
-              color: e.key.color,
-              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
+              color: e.key.color))
           .toList();
     }, [costs]);
 
@@ -31,10 +30,9 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfPoint;
       return costs.pointGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value,
+              title: '',
               value: e.value / sumOfPoint,
-              color: e.key.color,
-              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
+              color: e.key.color))
           .toList();
     }, [costs]);
 
