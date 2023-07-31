@@ -31,11 +31,10 @@ class CostListItem extends StatelessWidget {
                   CategoryIcon(category: cost.category),
                   Text('￥${NumberFormat("#,###").format(cost.amount)}'),
                 ]),
-            trailing: Container(
+            leading: Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(2),
-                height: 50,
-                width: 50,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
