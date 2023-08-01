@@ -11,16 +11,16 @@ class Summary extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tabIndex = useState<int>(0);
+    final showIndex = useState<List<bool>>([true, false]);
     var handleTab = useCallback((int index) {
-      tabIndex.value = index;
+      showIndex.value = [index == 0, index == 1];
     }, []);
 
     var toExpenseGraphData = useCallback(() {
       var sumOfPoint = costs.sumOfAmount;
       return costs.amountGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: '',
+              showTitle: false,
               value: e.value / sumOfPoint,
               color: e.key.color))
           .toList();
@@ -30,59 +30,59 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfPoint;
       return costs.pointGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: '',
+              showTitle: false,
               value: e.value / sumOfPoint,
               color: e.key.color))
           .toList();
     }, [costs]);
 
-    return DefaultTabController(
-        length: 2,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Expanded(
-              child: tabIndex.value == 0
-                  ? _Chart(data: toPointGraphData())
-                  : _Chart(data: toExpenseGraphData())),
-          Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(children: [
-                GestureDetector(
-                    onTap: () => handleTab(0),
-                    child: Text(
-                      costs.sumOfPoint.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: tabIndex.value == 0 ? 40 : 24,
-                          color: tabIndex.value == 0
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.onBackground),
-                    )),
-                Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: const Text('/', style: TextStyle(fontSize: 28))),
-                GestureDetector(
-                    onTap: () => handleTab(1),
-                    child: Text(
-                      '￥${NumberFormat("#,###").format(costs.sumOfAmount)}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: tabIndex.value == 1 ? 40 : 24,
-                          color: tabIndex.value == 1
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.onBackground),
-                    ))
-              ]))
-        ]));
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Expanded(
+          child: showIndex.value[0]
+              ? _Chart(
+                  data: toPointGraphData(),
+                  centerText: costs.sumOfPoint.toString())
+              : _Chart(
+                  data: toExpenseGraphData(),
+                  centerText:
+                      '￥${NumberFormat("#,###").format(costs.sumOfAmount)}')),
+      Container(
+        margin: const EdgeInsets.only(top: 10),
+        child: ToggleButtons(
+          borderRadius: BorderRadius.circular(10),
+          constraints: const BoxConstraints(
+            minHeight: 30.0,
+            minWidth: 100.0,
+          ),
+          children: const <Widget>[Text("Point"), Text("Expense")],
+          isSelected: showIndex.value,
+          onPressed: (index) => {handleTab(index)},
+        ),
+      )
+    ]);
   }
 }
 
 class _Chart extends StatelessWidget {
   final List<PieChartSectionData> data;
+  final String centerText;
 
-  const _Chart({Key? key, required this.data}) : super(key: key);
+  const _Chart({Key? key, required this.data, required this.centerText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PieChart(PieChartData(sections: data, centerSpaceRadius: 48));
+    return Stack(
+      children: [
+        PieChart(PieChartData(sections: data, centerSpaceRadius: 100)),
+        Center(
+          child: Text(centerText,
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.primary)),
+        )
+      ],
+    );
   }
 }
