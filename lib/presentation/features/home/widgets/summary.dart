@@ -54,9 +54,9 @@ class Summary extends HookWidget {
             minHeight: 30.0,
             minWidth: 100.0,
           ),
-          children: const <Widget>[Text("Point"), Text("Expense")],
           isSelected: showIndex.value,
           onPressed: (index) => {handleTab(index)},
+          children: const <Widget>[Text("Point"), Text("Total Amount")],
         ),
       )
     ]);
