@@ -30,7 +30,7 @@ class CostDBRepository implements CostRepository {
   @override
   Future<Costs> getAll() {
     var costs = box.values
-        .map((e) => Cost(
+        .map((e) => Cost.of(
             id: e.id,
             title: e.title,
             amount: e.amount,

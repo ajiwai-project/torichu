@@ -10,7 +10,7 @@ class Cost with _$Cost {
   static const _maxTitleLength = 100;
   static const _maxAmount = 9999999;
 
-  const factory Cost(
+  factory Cost._(
       {required String id,
       required String title,
       required int amount,
@@ -26,7 +26,7 @@ class Cost with _$Cost {
       required Category category,
       required DateTime registeredAt}) {
     _validate(title, amount);
-    return Cost(
+    return Cost._(
         id: id,
         title: title,
         amount: amount,
@@ -41,7 +41,7 @@ class Cost with _$Cost {
       required Point point,
       required Category category}) {
     _validate(title, amount);
-    return Cost(
+    return Cost._(
         id: const Uuid().v4(),
         title: title,
         amount: amount,
