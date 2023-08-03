@@ -18,6 +18,7 @@ class CostDBRepository implements CostRepository {
   @override
   Future<void> save(Cost cost) async {
     var entity = CostDaoModel.of(
+        id: cost.id,
         title: cost.title,
         amount: cost.amount,
         point: cost.point.value,

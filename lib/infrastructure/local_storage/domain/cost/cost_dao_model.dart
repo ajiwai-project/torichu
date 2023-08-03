@@ -1,5 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 part 'cost_dao_model.g.dart';
 
@@ -32,12 +31,13 @@ class CostDaoModel extends HiveObject {
       required this.category});
 
   factory CostDaoModel.of(
-      {required String title,
+      {required String id,
+      required String title,
       required amount,
       required int point,
       required String category}) {
     return CostDaoModel(
-        id: const Uuid().v4(),
+        id: id,
         title: title,
         amount: amount,
         point: point,
