@@ -37,6 +37,15 @@ void main() {
       expect(cost1.id, isNot(cost2.id));
     });
 
+    test('should set created at time to registered at time', () {
+      var cost1 = Cost.initial(
+          title: 'dummy', amount: 0, point: Point.one, category: Category.food);
+      var cost2 = Cost.initial(
+          title: 'dummy', amount: 0, point: Point.one, category: Category.food);
+
+      expect(cost1.registeredAt.isBefore(cost2.registeredAt), true);
+    });
+
     test('should throw when title exceeds 100 characters', () {
       var characters = generateStrings(101);
 
