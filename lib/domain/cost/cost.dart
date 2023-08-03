@@ -27,7 +27,12 @@ class Cost with _$Cost {
       required DateTime registeredAt}) {
     _validate(title, amount);
     return Cost(
-        id: id, title: title, amount: amount, point: point, category: category, registeredAt: registeredAt);
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        category: category,
+        registeredAt: registeredAt);
   }
 
   factory Cost.initial(

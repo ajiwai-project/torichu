@@ -22,7 +22,8 @@ class CostDBRepository implements CostRepository {
         title: cost.title,
         amount: cost.amount,
         point: cost.point.value,
-        category: cost.category.value);
+        category: cost.category.value,
+        registeredAt: cost.registeredAt.toIso8601String());
     await box.put(entity.id, entity);
   }
 
@@ -35,9 +36,7 @@ class CostDBRepository implements CostRepository {
             amount: e.amount,
             point: Point.of(e.point),
             category: Category.of(e.category),
-            // TODO: domainで作成された値をparseする
-            registeredAt: DateTime.parse('')
-            ))
+            registeredAt: DateTime.parse(e.registeredAt)))
         .toList();
 
     return Future.value(Costs(values: costs));

@@ -23,13 +23,12 @@ void main() {
   group('HomeViewModel', () {
     test('should be initialized', () async {
       final cost = Cost.of(
-        id: 'id1',
-        title: 'title',
-        amount: 100,
-        point: Point.one,
-        category: Category.food,
-        registeredAt: DateTime(2023, 8, 4, 10)
-      );
+          id: 'id1',
+          title: 'title',
+          amount: 100,
+          point: Point.one,
+          category: Category.food,
+          registeredAt: DateTime(2023, 8, 4, 10));
       when(costRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost]));
 

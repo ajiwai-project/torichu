@@ -38,13 +38,12 @@ void main() {
 
   testWidgets('Should show cost items', (tester) async {
     final cost = Cost.of(
-      id: 'id1',
-      title: 'title',
-      amount: 100,
-      point: Point.one,
-      category: Category.food,
-      registeredAt: DateTime(1900, 1, 1, 1)
-    );
+        id: 'id1',
+        title: 'title',
+        amount: 100,
+        point: Point.one,
+        category: Category.food,
+        registeredAt: DateTime(1900, 1, 1, 1));
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => Costs(values: [cost]));
     await render(tester);
@@ -68,13 +67,12 @@ void main() {
   testWidgets('支出を左から右方向へスワイプすると支出が削除されること', (tester) async {
     const costId = 'id1';
     final cost = Cost.of(
-      id: costId,
-      title: 'hoge',
-      amount: 100,
-      point: Point.one,
-      category: Category.food,
-      registeredAt: DateTime(1900, 1, 1, 1)
-    );
+        id: costId,
+        title: 'hoge',
+        amount: 100,
+        point: Point.one,
+        category: Category.food,
+        registeredAt: DateTime(1900, 1, 1, 1));
     var callCount = 0;
     when(mockCostRepository.getAll()).thenAnswer((_) async => [
           Costs(values: [cost]),
