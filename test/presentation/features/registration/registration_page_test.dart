@@ -12,11 +12,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../domain/cost/cost_mather.dart';
 import 'registration_page_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
-  late CostRepository mockCostRepository;
+  late MockCostRepository mockCostRepository;
 
   const dummyCost = Cost(
       id: "id1",
@@ -71,7 +72,9 @@ void main() {
         amount: 1000,
         point: Point.one,
         category: Category.food);
-    verify(mockCostRepository.save(costWithoutId)).called(1);
+    verify(mockCostRepository
+            .save(argThat(CostMatcherWithoutId(costWithoutId))))
+        .called(1);
   });
 
   testWidgets('should move to home page when push submit button',

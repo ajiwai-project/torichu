@@ -28,6 +28,15 @@ void main() {
       expect(cost.category, category);
     });
 
+    test('should generate different id', () {
+      var cost1 = Cost.initial(
+          title: 'dummy', amount: 0, point: Point.one, category: Category.food);
+      var cost2 = Cost.initial(
+          title: 'dummy', amount: 0, point: Point.one, category: Category.food);
+
+      expect(cost1.id, isNot(cost2.id));
+    });
+
     test('should throw when title exceeds 100 characters', () {
       var characters = generateStrings(101);
 

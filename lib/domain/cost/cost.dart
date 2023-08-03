@@ -1,6 +1,7 @@
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'cost.freezed.dart';
 
@@ -11,7 +12,7 @@ class Cost with _$Cost {
 
   //FIXME IDのあるなしは型で表現したい
   const factory Cost(
-      {String? id,
+      {required String id,
       required String title,
       required int amount,
       required Point point,
@@ -34,7 +35,12 @@ class Cost with _$Cost {
       required Point point,
       required Category category}) {
     _validate(title, amount);
-    return Cost(title: title, amount: amount, point: point, category: category);
+    return Cost(
+        id: const Uuid().v4(),
+        title: title,
+        amount: amount,
+        point: point,
+        category: category);
   }
 
   //FIXME titleとamountは値オブジェクトにする

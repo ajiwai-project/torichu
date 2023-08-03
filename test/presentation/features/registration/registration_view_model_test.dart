@@ -7,12 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../domain/cost/cost_mather.dart';
 import 'registration_view_model_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
   late RegistrationViewModel sut;
-  late CostRepository costRepository;
+  late MockCostRepository costRepository;
 
   setUp(() {
     costRepository = MockCostRepository();
@@ -28,12 +29,13 @@ void main() {
 
       await sut.register();
 
-      var cost = const Cost(
+      var expectedCost = Cost.initial(
           title: 'title',
+          amount: 1000,
           category: Category.food,
-          point: Point.one,
-          amount: 1000);
-      verify(costRepository.save(cost)).called(1);
+          point: Point.one);
+      expect(verify(await costRepository.save(captureAny)).captured.single,
+          CostMatcherWithoutId(expectedCost));
     });
   });
 }
