@@ -43,6 +43,7 @@ void main() {
       amount: 100,
       point: Point.one,
       category: Category.food,
+      registeredAt: DateTime(1900, 1, 1, 1)
     );
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => Costs(values: [cost]));
@@ -72,6 +73,7 @@ void main() {
       amount: 100,
       point: Point.one,
       category: Category.food,
+      registeredAt: DateTime(1900, 1, 1, 1)
     );
     var callCount = 0;
     when(mockCostRepository.getAll()).thenAnswer((_) async => [

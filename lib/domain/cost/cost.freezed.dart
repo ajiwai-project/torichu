@@ -21,6 +21,7 @@ mixin _$Cost {
   int get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
+  DateTime get registeredAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CostCopyWith<Cost> get copyWith => throw _privateConstructorUsedError;
@@ -32,7 +33,12 @@ abstract class $CostCopyWith<$Res> {
       _$CostCopyWithImpl<$Res, Cost>;
   @useResult
   $Res call(
-      {String id, String title, int amount, Point point, Category category});
+      {String id,
+      String title,
+      int amount,
+      Point point,
+      Category category,
+      DateTime registeredAt});
 }
 
 /// @nodoc
@@ -53,6 +59,7 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
     Object? amount = null,
     Object? point = null,
     Object? category = null,
+    Object? registeredAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,6 +82,10 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
+      registeredAt: null == registeredAt
+          ? _value.registeredAt
+          : registeredAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -86,7 +97,12 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id, String title, int amount, Point point, Category category});
+      {String id,
+      String title,
+      int amount,
+      Point point,
+      Category category,
+      DateTime registeredAt});
 }
 
 /// @nodoc
@@ -103,6 +119,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? amount = null,
     Object? point = null,
     Object? category = null,
+    Object? registeredAt = null,
   }) {
     return _then(_$_Cost(
       id: null == id
@@ -125,6 +142,10 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
+      registeredAt: null == registeredAt
+          ? _value.registeredAt
+          : registeredAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -137,7 +158,8 @@ class _$_Cost implements _Cost {
       required this.title,
       required this.amount,
       required this.point,
-      required this.category});
+      required this.category,
+      required this.registeredAt});
 
   @override
   final String id;
@@ -149,10 +171,12 @@ class _$_Cost implements _Cost {
   final Point point;
   @override
   final Category category;
+  @override
+  final DateTime registeredAt;
 
   @override
   String toString() {
-    return 'Cost(id: $id, title: $title, amount: $amount, point: $point, category: $category)';
+    return 'Cost(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt)';
   }
 
   @override
@@ -165,12 +189,14 @@ class _$_Cost implements _Cost {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.point, point) || other.point == point) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            (identical(other.registeredAt, registeredAt) ||
+                other.registeredAt == registeredAt));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, amount, point, category);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, amount, point, category, registeredAt);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +211,8 @@ abstract class _Cost implements Cost {
       required final String title,
       required final int amount,
       required final Point point,
-      required final Category category}) = _$_Cost;
+      required final Category category,
+      required final DateTime registeredAt}) = _$_Cost;
 
   @override
   String get id;
@@ -197,6 +224,8 @@ abstract class _Cost implements Cost {
   Point get point;
   @override
   Category get category;
+  @override
+  DateTime get registeredAt;
   @override
   @JsonKey(ignore: true)
   _$$_CostCopyWith<_$_Cost> get copyWith => throw _privateConstructorUsedError;

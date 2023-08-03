@@ -19,12 +19,14 @@ import 'registration_page_test.mocks.dart';
 void main() {
   late MockCostRepository mockCostRepository;
 
-  const dummyCost = Cost(
+  final dummyCost = Cost.of(
       id: "id1",
       title: 'すき家の牛丼',
       amount: 1000,
       point: Point.one,
-      category: Category.food);
+      category: Category.food,
+      registeredAt: DateTime(1900, 1, 1, 1));
+
   setUp(() {
     mockCostRepository = MockCostRepository();
   });
@@ -60,7 +62,7 @@ void main() {
   testWidgets('should save cost when push submit button', (tester) async {
     await render(tester);
     when(mockCostRepository.getAll())
-        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
     await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));
@@ -81,7 +83,7 @@ void main() {
       (tester) async {
     await render(tester);
     when(mockCostRepository.getAll())
-        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
     await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));

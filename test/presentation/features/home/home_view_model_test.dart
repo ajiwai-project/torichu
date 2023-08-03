@@ -28,6 +28,7 @@ void main() {
         amount: 100,
         point: Point.one,
         category: Category.food,
+        registeredAt: DateTime(2023, 8, 4, 10)
       );
       when(costRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost]));

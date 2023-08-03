@@ -34,7 +34,10 @@ class CostDBRepository implements CostRepository {
             title: e.title,
             amount: e.amount,
             point: Point.of(e.point),
-            category: Category.of(e.category)))
+            category: Category.of(e.category),
+            // TODO: domainで作成された値をparseする
+            registeredAt: DateTime.parse('')
+            ))
         .toList();
 
     return Future.value(Costs(values: costs));
