@@ -17,7 +17,7 @@ class CostList extends StatelessWidget {
           return CostListItem(
             cost: cost,
             onDismissed: (_) {
-              deleteCost(cost.id!);
+              deleteCost(cost.id);
             },
           );
         });
