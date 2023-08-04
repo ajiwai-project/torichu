@@ -34,8 +34,9 @@ void main() {
           amount: 1000,
           category: Category.food,
           point: Point.one);
-      expect(verify(await costRepository.save(captureAny)).captured.single,
-          matchingWithoutIdAndRegisteredAt(expectedCost));
+      verify(costRepository
+              .save(argThat(matchingWithoutIdAndRegisteredAt(expectedCost))))
+          .called(1);
     });
   });
 }
