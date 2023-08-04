@@ -35,7 +35,7 @@ void main() {
           category: Category.food,
           point: Point.one);
       expect(verify(await costRepository.save(captureAny)).captured.single,
-          CostMatcherWithoutId(expectedCost));
+          matchingWithoutIdAndRegisteredAt(expectedCost));
     });
   });
 }

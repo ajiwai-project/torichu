@@ -75,7 +75,7 @@ void main() {
         point: Point.one,
         category: Category.food);
     verify(mockCostRepository
-            .save(argThat(CostMatcherWithoutId(costWithoutId))))
+            .save(argThat(matchingWithoutIdAndRegisteredAt(costWithoutId))))
         .called(1);
   });
 

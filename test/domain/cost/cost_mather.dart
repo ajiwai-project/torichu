@@ -1,10 +1,10 @@
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class CostMatcherWithoutId extends Matcher {
+class _CostMatcherWithoutIdAndRegisteredAt extends Matcher {
   final Cost expectedCost;
 
-  CostMatcherWithoutId(this.expectedCost);
+  _CostMatcherWithoutIdAndRegisteredAt(this.expectedCost);
 
   @override
   Description describe(Description description) {
@@ -19,4 +19,8 @@ class CostMatcherWithoutId extends Matcher {
         item.category == expectedCost.category &&
         item.point == expectedCost.point;
   }
+}
+
+Matcher matchingWithoutIdAndRegisteredAt(Cost expected) {
+  return _CostMatcherWithoutIdAndRegisteredAt(expected);
 }
