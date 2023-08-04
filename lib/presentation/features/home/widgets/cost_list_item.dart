@@ -11,6 +11,7 @@ class CostListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formattedDate = DateFormat('M月d日').format(cost.registeredAt);
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
@@ -28,6 +29,7 @@ class CostListItem extends StatelessWidget {
             subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Text(formattedDate),
                   CategoryIcon(category: cost.category),
                   Text('￥${NumberFormat("#,###").format(cost.amount)}'),
                 ]),

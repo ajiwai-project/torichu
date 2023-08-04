@@ -1,5 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 part 'cost_dao_model.g.dart';
 
@@ -18,31 +17,34 @@ class CostDaoModel extends HiveObject {
   int point;
 
   @HiveField(4)
-  String date;
+  String category;
 
   @HiveField(5)
-  String category;
+  String registeredAt;
 
   CostDaoModel(
       {required this.id,
       required this.title,
       required this.amount,
       required this.point,
-      required this.date,
-      required this.category});
+      required this.category,
+      required this.registeredAt});
 
   factory CostDaoModel.of(
-      {required String title,
+      {required String id,
+      required String title,
       required amount,
       required int point,
-      required String category}) {
+      required String category,
+      required String registeredAt}) {
     return CostDaoModel(
-        id: const Uuid().v4(),
-        title: title,
-        amount: amount,
-        point: point,
-        date: DateTime.now().toString(),
-        category: category);
+      id: id,
+      title: title,
+      amount: amount,
+      point: point,
+      category: category,
+      registeredAt: registeredAt,
+    );
   }
 
   @override
@@ -52,11 +54,12 @@ class CostDaoModel extends HiveObject {
       title == other.title &&
       amount == other.amount &&
       point == other.point &&
-      date == other.date &&
+      registeredAt == other.registeredAt &&
       category == other.category;
 
   @override
-  int get hashCode => Object.hash(id, title, amount, point, date, category);
+  int get hashCode =>
+      Object.hash(id, title, amount, point, registeredAt, category);
 
   @override
   String toString() {
@@ -65,7 +68,7 @@ class CostDaoModel extends HiveObject {
         'title: $title, '
         'amount: $amount, '
         'point: $point, '
-        'date: $date, '
+        'date: $registeredAt, '
         'category: $category'
         ')';
   }

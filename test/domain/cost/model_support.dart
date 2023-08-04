@@ -29,6 +29,7 @@ class CostBuilder {
   }
 
   Cost build() {
-    return Cost(title: title, amount: amount, point: point, category: category);
+    return Cost.initial(
+        title: title, amount: amount, point: point, category: category);
   }
 }

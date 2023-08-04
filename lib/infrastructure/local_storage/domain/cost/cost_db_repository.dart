@@ -18,22 +18,25 @@ class CostDBRepository implements CostRepository {
   @override
   Future<void> save(Cost cost) async {
     var entity = CostDaoModel.of(
+        id: cost.id,
         title: cost.title,
         amount: cost.amount,
         point: cost.point.value,
-        category: cost.category.value);
+        category: cost.category.value,
+        registeredAt: cost.registeredAt.toIso8601String());
     await box.put(entity.id, entity);
   }
 
   @override
   Future<Costs> getAll() {
     var costs = box.values
-        .map((e) => Cost(
+        .map((e) => Cost.of(
             id: e.id,
             title: e.title,
             amount: e.amount,
             point: Point.of(e.point),
-            category: Category.of(e.category)))
+            category: Category.of(e.category),
+            registeredAt: DateTime.parse(e.registeredAt)))
         .toList();
 
     return Future.value(Costs(values: costs));

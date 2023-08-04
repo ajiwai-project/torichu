@@ -12,18 +12,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../domain/cost/cost_mather.dart';
 import 'registration_page_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
-  late CostRepository mockCostRepository;
+  late MockCostRepository mockCostRepository;
 
-  const dummyCost = Cost(
+  final dummyCost = Cost.of(
       id: "id1",
       title: 'すき家の牛丼',
       amount: 1000,
       point: Point.one,
-      category: Category.food);
+      category: Category.food,
+      registeredAt: DateTime(1900, 1, 1, 1));
+
   setUp(() {
     mockCostRepository = MockCostRepository();
   });
@@ -59,7 +62,7 @@ void main() {
   testWidgets('should save cost when push submit button', (tester) async {
     await render(tester);
     when(mockCostRepository.getAll())
-        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
     await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));
@@ -71,14 +74,16 @@ void main() {
         amount: 1000,
         point: Point.one,
         category: Category.food);
-    verify(mockCostRepository.save(costWithoutId)).called(1);
+    verify(mockCostRepository
+            .save(argThat(matchingWithoutIdAndRegisteredAt(costWithoutId))))
+        .called(1);
   });
 
   testWidgets('should move to home page when push submit button',
       (tester) async {
     await render(tester);
     when(mockCostRepository.getAll())
-        .thenAnswer((_) async => const Costs(values: [dummyCost]));
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
     await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));
