@@ -44,4 +44,13 @@ extension CostsExtention on Costs {
   }
 
   Cost get(int index) => values[index];
+
+  Costs sortByRegisteredAt({bool desc = true}) {
+    return Costs(
+        values: values
+            .sorted((a, b) => desc
+                ? b.registeredAt.compareTo(a.registeredAt)
+                : a.registeredAt.compareTo(b.registeredAt))
+            .toList());
+  }
 }
