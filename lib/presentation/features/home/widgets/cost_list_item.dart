@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/presentation/features/home/widgets/category_icon.dart';
@@ -11,7 +13,8 @@ class CostListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var formattedDate = DateFormat('M月d日').format(cost.registeredAt);
+    final formattedDate = DateFormat('MMMEd').format(cost.registeredAt);
+    final screenWidth = MediaQuery.of(context).size.width;
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
@@ -22,30 +25,35 @@ class CostListItem extends StatelessWidget {
             color: Colors.redAccent,
             child: const Icon(Icons.delete, color: Colors.white)),
         child: ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-            title: Text(cost.title,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          title: Text(cost.title,
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          subtitle: Row(children: [
+            SizedBox(
+                width: screenWidth * 0.3,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      CategoryIcon(category: cost.category),
+                      Text(formattedDate)
+                    ])),
+            Text('￥${NumberFormat("#,###").format(cost.amount)}',
+                style: const TextStyle(fontSize: 16)),
+          ]),
+          leading: Container(
+              alignment: Alignment.center,
+              height: screenWidth * 0.12,
+              width: screenWidth * 0.12,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.primary, width: 3)),
+              child: Text(
+                cost.point.value.toString(),
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(formattedDate),
-                  CategoryIcon(category: cost.category),
-                  Text('￥${NumberFormat("#,###").format(cost.amount)}'),
-                ]),
-            leading: Container(
-                alignment: Alignment.center,
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 3)),
-                child: Text(
-                  cost.point.value.toString(),
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20),
-                ))));
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )),
+        ));
   }
 }
