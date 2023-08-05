@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 
 void main() async {
-  await Hive.initFlutter();
+  await Hive.initFlutter("Spender");
 
   Hive.registerAdapter(CostDaoModelAdapter());
   await Hive.openBox<CostDaoModel>('costBox');
