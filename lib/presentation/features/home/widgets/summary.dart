@@ -11,19 +11,18 @@ class Summary extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tabIndex = useState<int>(0);
+    final showIndex = useState<List<bool>>([true, false]);
     var handleTab = useCallback((int index) {
-      tabIndex.value = index;
+      showIndex.value = [index == 0, index == 1];
     }, []);
 
     var toExpenseGraphData = useCallback(() {
       var sumOfPoint = costs.sumOfAmount;
       return costs.amountGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value,
+              showTitle: false,
               value: e.value / sumOfPoint,
-              color: e.key.color,
-              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
+              color: e.key.color))
           .toList();
     }, [costs]);
 
@@ -31,92 +30,59 @@ class Summary extends HookWidget {
       var sumOfPoint = costs.sumOfPoint;
       return costs.pointGroupByCategory.entries
           .map((e) => PieChartSectionData(
-              title: e.key.value,
+              showTitle: false,
               value: e.value / sumOfPoint,
-              color: e.key.color,
-              titleStyle: const TextStyle(color: Colors.white, fontSize: 12)))
+              color: e.key.color))
           .toList();
     }, [costs]);
 
-    return DefaultTabController(
-        length: 2,
-        child: Column(children: [
-          Container(
-              width: MediaQuery.of(context).size.width / 2,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              height: 40,
-              child: TabBar(
-                  labelStyle: const TextStyle(fontSize: 12),
-                  unselectedLabelColor: Colors.black12,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.grey),
-                  tabs: const [_Tab(label: 'ポイント'), _Tab(label: '支出')],
-                  onTap: handleTab)),
-          Expanded(
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Expanded(
-                child: tabIndex.value == 0
-                    ? _Chart(data: toPointGraphData())
-                    : _Chart(data: toExpenseGraphData())),
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _SumItem(
-                          label: '支出', value: costs.sumOfAmount, isPrice: true),
-                      _SumItem(label: 'ポイント', value: costs.sumOfPoint),
-                    ]))
-          ]))
-        ]));
-  }
-}
-
-class _Tab extends StatelessWidget {
-  final String label;
-
-  const _Tab({Key? key, required this.label}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Tab(child: Align(alignment: Alignment.center, child: Text(label)));
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Expanded(
+          child: showIndex.value[0]
+              ? _Chart(
+                  data: toPointGraphData(),
+                  centerText: costs.sumOfPoint.toString())
+              : _Chart(
+                  data: toExpenseGraphData(),
+                  centerText:
+                      '￥${NumberFormat("#,###").format(costs.sumOfAmount)}')),
+      Container(
+        margin: const EdgeInsets.only(top: 10),
+        child: ToggleButtons(
+          borderRadius: BorderRadius.circular(10),
+          constraints: const BoxConstraints(
+            minHeight: 30.0,
+            minWidth: 100.0,
+          ),
+          isSelected: showIndex.value,
+          onPressed: (index) => {handleTab(index)},
+          children: const <Widget>[Text("Point"), Text("Total Amount")],
+        ),
+      )
+    ]);
   }
 }
 
 class _Chart extends StatelessWidget {
   final List<PieChartSectionData> data;
+  final String centerText;
 
-  const _Chart({Key? key, required this.data}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(16),
-        child: PieChart(PieChartData(sections: data, centerSpaceRadius: 48)));
-  }
-}
-
-class _SumItem extends StatelessWidget {
-  final String label;
-  final int value;
-  final bool isPrice;
-
-  const _SumItem(
-      {Key? key,
-      required this.label,
-      required this.value,
-      this.isPrice = false})
+  const _Chart({Key? key, required this.data, required this.centerText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        title: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: isPrice
-            ? Text('￥${NumberFormat("#,###").format(value)}')
-            : Text('$value'));
+    return Stack(
+      children: [
+        PieChart(PieChartData(sections: data, centerSpaceRadius: 100)),
+        Center(
+          child: Text(centerText,
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.primary)),
+        )
+      ],
+    );
   }
 }

@@ -8,6 +8,9 @@ class CategoryIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(category.value);
+    return Row(children: [
+      Icon(Icons.circle, color: category.color, size: 16),
+      Text(category.value)
+    ]);
   }
 }

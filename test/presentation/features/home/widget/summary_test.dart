@@ -27,6 +27,8 @@ void main() {
       var cost2 = CostBuilder().setAmount(8800).setTitle('美容室').build();
       var costs = Costs(values: [cost1, cost2]);
       await render(tester, costs);
+    await tester.tap(find.text('Total Amount'));
+    await tester.pumpAndSettle();
 
       // Sum of expenses is 380 + 8800
       expect(find.text('￥9,180'), findsOneWidget);
