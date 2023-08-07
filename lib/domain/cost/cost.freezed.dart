@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Cost {
   String get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  Title get title => throw _privateConstructorUsedError;
+  Amount get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
@@ -34,11 +34,14 @@ abstract class $CostCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String title,
-      int amount,
+      Title title,
+      Amount amount,
       Point point,
       Category category,
       DateTime registeredAt});
+
+  $TitleCopyWith<$Res> get title;
+  $AmountCopyWith<$Res> get amount;
 }
 
 /// @nodoc
@@ -69,11 +72,11 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Title,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Amount,
       point: null == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
@@ -88,6 +91,22 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
               as DateTime,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TitleCopyWith<$Res> get title {
+    return $TitleCopyWith<$Res>(_value.title, (value) {
+      return _then(_value.copyWith(title: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AmountCopyWith<$Res> get amount {
+    return $AmountCopyWith<$Res>(_value.amount, (value) {
+      return _then(_value.copyWith(amount: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -98,11 +117,16 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String title,
-      int amount,
+      Title title,
+      Amount amount,
       Point point,
       Category category,
       DateTime registeredAt});
+
+  @override
+  $TitleCopyWith<$Res> get title;
+  @override
+  $AmountCopyWith<$Res> get amount;
 }
 
 /// @nodoc
@@ -129,11 +153,11 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Title,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Amount,
       point: null == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
@@ -153,7 +177,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
 /// @nodoc
 
 class _$_Cost implements _Cost {
-  const _$_Cost(
+  _$_Cost(
       {required this.id,
       required this.title,
       required this.amount,
@@ -164,9 +188,9 @@ class _$_Cost implements _Cost {
   @override
   final String id;
   @override
-  final String title;
+  final Title title;
   @override
-  final int amount;
+  final Amount amount;
   @override
   final Point point;
   @override
@@ -176,7 +200,7 @@ class _$_Cost implements _Cost {
 
   @override
   String toString() {
-    return 'Cost(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt)';
+    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt)';
   }
 
   @override
@@ -206,10 +230,10 @@ class _$_Cost implements _Cost {
 }
 
 abstract class _Cost implements Cost {
-  const factory _Cost(
+  factory _Cost(
       {required final String id,
-      required final String title,
-      required final int amount,
+      required final Title title,
+      required final Amount amount,
       required final Point point,
       required final Category category,
       required final DateTime registeredAt}) = _$_Cost;
@@ -217,9 +241,9 @@ abstract class _Cost implements Cost {
   @override
   String get id;
   @override
-  String get title;
+  Title get title;
   @override
-  int get amount;
+  Amount get amount;
   @override
   Point get point;
   @override

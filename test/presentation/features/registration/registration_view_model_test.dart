@@ -8,6 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../domain/cost/cost_mather.dart';
+import '../../../domain/cost/model_support.dart';
 import 'registration_view_model_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
@@ -29,11 +30,12 @@ void main() {
 
       await sut.register();
 
-      var expectedCost = Cost.initial(
-          title: 'title',
-          amount: 1000,
-          category: Category.food,
-          point: Point.one);
+      final expectedCost = CostBuilder()
+          .setTitle('title')
+          .setAmount(1000)
+          .setCategory(Category.food)
+          .setPoint(Point.one)
+          .build();
       verify(costRepository
               .save(argThat(matchingWithoutIdAndRegisteredAt(expectedCost))))
           .called(1);

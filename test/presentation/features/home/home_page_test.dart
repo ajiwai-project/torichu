@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../domain/cost/model_support.dart';
 import 'home_page_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
@@ -37,13 +38,7 @@ void main() {
   }
 
   testWidgets('Should show cost items', (tester) async {
-    final cost = Cost.of(
-        id: 'id1',
-        title: 'title',
-        amount: 100,
-        point: Point.one,
-        category: Category.food,
-        registeredAt: DateTime(1900, 1, 1, 1));
+    final cost = CostBuilder().build();
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => Costs(values: [cost]));
     await render(tester);
@@ -65,14 +60,7 @@ void main() {
   });
 
   testWidgets('支出を左から右方向へスワイプすると支出が削除されること', (tester) async {
-    const costId = 'id1';
-    final cost = Cost.of(
-        id: costId,
-        title: 'hoge',
-        amount: 100,
-        point: Point.one,
-        category: Category.food,
-        registeredAt: DateTime(1900, 1, 1, 1));
+    final cost = CostBuilder().build();
     var callCount = 0;
     when(mockCostRepository.getAll()).thenAnswer((_) async => [
           Costs(values: [cost]),

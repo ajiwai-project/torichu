@@ -23,13 +23,7 @@ void main() {
 
   group('Load', () {
     test('should store costs form cost repository', () async {
-      final cost = Cost.of(
-          id: 'id1',
-          title: 'title',
-          amount: 100,
-          point: Point.one,
-          category: Category.food,
-          registeredAt: DateTime(2023, 8, 4, 10));
+      final cost = CostBuilder().build();
       when(costRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost]));
 
