@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
