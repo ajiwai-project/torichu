@@ -1,8 +1,5 @@
-import 'package:flutter_template/domain/cost/category.dart';
-import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/presentation/features/home/home_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -23,13 +20,7 @@ void main() {
 
   group('Load', () {
     test('should store costs form cost repository', () async {
-      final cost = Cost.of(
-          id: 'id1',
-          title: 'title',
-          amount: 100,
-          point: Point.one,
-          category: Category.food,
-          registeredAt: DateTime(2023, 8, 4, 10));
+      final cost = CostBuilder().build();
       when(costRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost]));
 

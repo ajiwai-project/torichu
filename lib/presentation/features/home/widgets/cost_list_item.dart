@@ -24,7 +24,7 @@ class CostListItem extends StatelessWidget {
             child: const Icon(Icons.delete, color: Colors.white)),
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-          title: Text(cost.title,
+          title: Text(cost.title.value,
               style:
                   const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           subtitle: Row(children: [
@@ -36,7 +36,7 @@ class CostListItem extends StatelessWidget {
                       CategoryIcon(category: cost.category),
                       Text(formattedDate)
                     ])),
-            Text('￥${NumberFormat("#,###").format(cost.amount)}',
+            Text('￥${NumberFormat("#,###").format(cost.amount.value)}',
                 style: const TextStyle(fontSize: 16)),
           ]),
           leading: Container(

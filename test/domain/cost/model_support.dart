@@ -1,11 +1,13 @@
+import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/title.dart';
 
 class CostBuilder {
   String id = 'dummy';
   String title = 'dummy';
-  int amount = -1;
+  int amount = 0;
   Point point = Point.one;
   Category category = Category.food;
   DateTime registeredAt = DateTime(1900);
@@ -43,8 +45,8 @@ class CostBuilder {
   Cost build() {
     return Cost.of(
         id: id,
-        title: title,
-        amount: amount,
+        title: Title.of(title),
+        amount: Amount.of(amount),
         point: point,
         category: category,
         registeredAt: registeredAt);

@@ -16,7 +16,8 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     try {
       final costs = await _costRepository.getAll();
 
-      state = AsyncValue.data(HomeState(costs: costs.sortByRegisteredAt(desc: true)));
+      state = AsyncValue.data(
+          HomeState(costs: costs.sortByRegisteredAt(desc: true)));
     } on Exception catch (err, stack) {
       state = AsyncValue.error(err, stack);
     }
