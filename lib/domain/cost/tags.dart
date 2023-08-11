@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/tag/tag.dart';
+import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tags.freezed.dart';
