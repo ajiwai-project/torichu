@@ -12,4 +12,8 @@ class Tag with _$Tag {
   factory Tag.initial(String value) {
     return Tag._(id: const Uuid().v4(), value: value);
   }
+
+  factory Tag.of(String id, String value) {
+    return Tag._(id: id, value: value);
+  }
 }

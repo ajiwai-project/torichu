@@ -35,6 +35,8 @@ abstract class $RegistartionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String title, int price, Point? point, Category? category, Tags tags});
+
+  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -54,7 +56,7 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -73,11 +75,19 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      tags: freezed == tags
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as Tags,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TagsCopyWith<$Res> get tags {
+    return $TagsCopyWith<$Res>(_value.tags, (value) {
+      return _then(_value.copyWith(tags: value) as $Val);
+    });
   }
 }
 
@@ -91,6 +101,9 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
   @useResult
   $Res call(
       {String title, int price, Point? point, Category? category, Tags tags});
+
+  @override
+  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -108,7 +121,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_$_RegistrationState(
       title: null == title
@@ -127,7 +140,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      tags: freezed == tags
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as Tags,
@@ -173,12 +186,12 @@ class _$_RegistrationState implements _RegistrationState {
             (identical(other.point, point) || other.point == point) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            const DeepCollectionEquality().equals(other.tags, tags));
+            (identical(other.tags, tags) || other.tags == tags));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, price, point, category,
-      const DeepCollectionEquality().hash(tags));
+  int get hashCode =>
+      Object.hash(runtimeType, title, price, point, category, tags);
 
   @JsonKey(ignore: true)
   @override

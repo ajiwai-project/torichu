@@ -8,7 +8,7 @@ class TagDaoModel extends HiveObject {
   final String id;
 
   @HiveField(1)
-  final String value;
+  String value;
 
   TagDaoModel({required this.id, required this.value});
 
