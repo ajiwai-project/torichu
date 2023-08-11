@@ -12,3 +12,10 @@ class Tags with _$Tags {
     return Tags._(value: value);
   }
 }
+
+
+extension TagsExtention on Tags {
+  Tags add(Tag tag) {
+    return Tags._(value: [...value, tag]);
+  }
+}
