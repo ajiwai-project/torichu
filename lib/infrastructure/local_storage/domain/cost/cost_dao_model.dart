@@ -22,13 +22,17 @@ class CostDaoModel extends HiveObject {
   @HiveField(5)
   String registeredAt;
 
+  @HiveField(6)
+  List<String> tagIds;
+
   CostDaoModel(
       {required this.id,
       required this.title,
       required this.amount,
       required this.point,
       required this.category,
-      required this.registeredAt});
+      required this.registeredAt,
+      required this.tagIds});
 
   factory CostDaoModel.of(
       {required String id,
@@ -36,15 +40,16 @@ class CostDaoModel extends HiveObject {
       required amount,
       required int point,
       required String category,
-      required String registeredAt}) {
+      required String registeredAt,
+      required List<String> tagIds}) {
     return CostDaoModel(
-      id: id,
-      title: title,
-      amount: amount,
-      point: point,
-      category: category,
-      registeredAt: registeredAt,
-    );
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        category: category,
+        registeredAt: registeredAt,
+        tagIds: tagIds);
   }
 
   @override
@@ -55,21 +60,23 @@ class CostDaoModel extends HiveObject {
       amount == other.amount &&
       point == other.point &&
       registeredAt == other.registeredAt &&
-      category == other.category;
+      category == other.category &&
+      tagIds == other.tagIds;
 
   @override
   int get hashCode =>
-      Object.hash(id, title, amount, point, registeredAt, category);
+      Object.hash(id, title, amount, point, registeredAt, category, tagIds);
 
   @override
   String toString() {
-    return 'TaskEntity('
+    return 'TaskDaoModel('
         'id: $id, '
         'title: $title, '
         'amount: $amount, '
         'point: $point, '
         'date: $registeredAt, '
-        'category: $category'
+        'category: $category, '
+        'tagIds: $tagIds'
         ')';
   }
 }

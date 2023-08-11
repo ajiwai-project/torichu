@@ -26,13 +26,15 @@ class CostDBRepository implements CostRepository {
         amount: cost.amount.value,
         point: cost.point.value,
         category: cost.category.value,
-        registeredAt: cost.registeredAt.toIso8601String());
+        registeredAt: cost.registeredAt.toIso8601String(),
+        tagIds: cost.tags.value.map((e) => e.id).toList());
     await box.put(entity.id, entity);
   }
 
   @override
   Future<Costs> getAll() {
-    var costs = box.values
+    var values = box.values;
+    var costs = values
         .map((e) => Cost.of(
             id: e.id,
             title: Title.of(e.title),
@@ -40,7 +42,6 @@ class CostDBRepository implements CostRepository {
             point: Point.of(e.point),
             category: Category.of(e.category),
             registeredAt: DateTime.parse(e.registeredAt),
-            // TODO
             tags: Tags.of([])))
         .toList();
 
