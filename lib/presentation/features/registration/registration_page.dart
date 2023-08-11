@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,6 +15,12 @@ class RegistrationPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(registrationViewModelProvider);
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
+
+    var tagTextController = useTextEditingController();
+    var handleEnterTag = useCallback((value) {
+      viewModel.addTag(Tag.of(value));
+      tagTextController.clear();
+    }, []);
 
     return Scaffold(
         appBar: AppBar(
@@ -71,7 +79,22 @@ class RegistrationPage extends HookConsumerWidget {
                         viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
-                  )
+                  ),
+                  TextField(
+                      key: const Key('tags-field'),
+                      controller: tagTextController,
+                      decoration: const InputDecoration(
+                          hintText: 'タグを入力', labelText: 'タグ'),
+                      onSubmitted: handleEnterTag),
+                  Container(
+                      margin: const EdgeInsets.only(top: 16),
+                      width: double.infinity,
+                      child: Wrap(
+                        spacing: 4.0,
+                        children: state.tags.value
+                            .map((e) => Chip(label: Text(e.value)))
+                            .toList(),
+                      ))
                 ]),
                 SizedBox(
                     width: double.infinity,

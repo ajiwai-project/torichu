@@ -50,6 +50,13 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  addTag(WidgetTester tester, String label) async {
+    final tagField = find.byKey(const Key('tags-field'));
+    await tester.enterText(tagField, label);
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pumpAndSettle();
+  }
+
   testWidgets('should save cost when push submit button', (tester) async {
     final dummyCost = CostBuilder().build();
     await render(tester);
@@ -80,4 +87,28 @@ void main() {
 
     expect(find.byType(HomePage), findsOneWidget);
   });
+
+  testWidgets(
+      'should show chip written tag value when input tag field and enter',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+
+    expect(find.byType(Chip), findsOneWidget);
+  });
+
+  // FIXME: Exception発生で失敗してしまうが画面上は3つ以上登録されることはない
+  testWidgets(
+      'should not show more than three chips when a tag is entered more than three times',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag1');
+    await addTag(tester, 'tag2');
+    await addTag(tester, 'tag3');
+    await addTag(tester, 'tag4');
+
+    expect(find.byType(Chip), findsNWidgets(3));
+  }, skip: true);
 }

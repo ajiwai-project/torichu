@@ -11,8 +11,11 @@ class Tags with _$Tags {
   factory Tags.of(List<Tag> value) {
     return Tags._(value: value);
   }
-}
 
+  factory Tags.empty() {
+    return Tags._(value: []);
+  }
+}
 
 extension TagsExtention on Tags {
   Tags add(Tag tag) {
