@@ -9,7 +9,7 @@ class Tag with _$Tag {
   @Assert('value.length <= 30')
   factory Tag._({required String id, required String value}) = _Tag;
 
-  factory Tag.of(String value) {
+  factory Tag.initial(String value) {
     return Tag._(id: const Uuid().v4(), value: value);
   }
 }

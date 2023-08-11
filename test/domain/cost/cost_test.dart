@@ -19,7 +19,7 @@ void main() {
       var point = Point.one;
       var category = Category.food;
       var registeredAt = DateTime(2023);
-      var tags = my.Tags.of([Tag.of('tag')]);
+      var tags = my.Tags.of([Tag.initial('tag')]);
 
       var cost = Cost.of(
           id: id,
@@ -48,7 +48,7 @@ void main() {
       var amount = Amount.of(10);
       var point = Point.two;
       var category = Category.hobbies;
-      var tags = my.Tags.of([Tag.of('tag')]);
+      var tags = my.Tags.of([Tag.initial('tag')]);
 
       var cost = Cost.initial(
           title: title,
