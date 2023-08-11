@@ -2,6 +2,7 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 
 class CostBuilder {
@@ -11,6 +12,7 @@ class CostBuilder {
   Point point = Point.one;
   Category category = Category.food;
   DateTime registeredAt = DateTime(1900);
+  Tags tags = Tags.of([]);
 
   CostBuilder setId(String id) {
     this.id = id;
@@ -49,6 +51,7 @@ class CostBuilder {
         amount: Amount.of(amount),
         point: point,
         category: category,
-        registeredAt: registeredAt);
+        registeredAt: registeredAt,
+        tags: tags);
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,7 +39,9 @@ class CostDBRepository implements CostRepository {
             amount: Amount.of(e.amount),
             point: Point.of(e.point),
             category: Category.of(e.category),
-            registeredAt: DateTime.parse(e.registeredAt)))
+            registeredAt: DateTime.parse(e.registeredAt),
+            // TODO
+            tags: Tags.of([])))
         .toList();
 
     return Future.value(Costs(values: costs));
