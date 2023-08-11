@@ -51,7 +51,11 @@ void main() {
       var tags = my.Tags.of([Tag.of('tag')]);
 
       var cost = Cost.initial(
-          title: title, amount: amount, point: point, category: category, tags: tags);
+          title: title,
+          amount: amount,
+          point: point,
+          category: category,
+          tags: tags);
 
       expect(cost.title, title);
       expect(cost.amount, amount);

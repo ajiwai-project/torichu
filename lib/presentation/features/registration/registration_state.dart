@@ -1,5 +1,6 @@
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'registration_state.freezed.dart';
@@ -10,5 +11,6 @@ class RegistartionState with _$RegistartionState {
       {@Default('') String title,
       @Default(0) int price,
       Point? point,
-      Category? category}) = _RegistrationState;
+      Category? category,
+      required Tags tags}) = _RegistrationState;
 }
