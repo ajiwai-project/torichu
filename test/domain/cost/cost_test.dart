@@ -2,8 +2,8 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/domain/cost/tags.dart' as my;
+import 'package:flutter_template/domain/tag/tag.dart';
+import 'package:flutter_template/domain/tag/tags.dart' as my;
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -19,7 +19,7 @@ void main() {
       var point = Point.one;
       var category = Category.food;
       var registeredAt = DateTime(2023);
-      var tags = my.Tags.of([Tag.of('tag')]);
+      var tags = my.Tags.of([Tag.initial('tag')]);
 
       var cost = Cost.of(
           id: id,
@@ -48,7 +48,7 @@ void main() {
       var amount = Amount.of(10);
       var point = Point.two;
       var category = Category.hobbies;
-      var tags = my.Tags.of([Tag.of('tag')]);
+      var tags = my.Tags.of([Tag.initial('tag')]);
 
       var cost = Cost.initial(
           title: title,

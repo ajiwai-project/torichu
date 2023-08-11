@@ -1,8 +1,8 @@
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/domain/cost/tags.dart' as my;
+import 'package:flutter_template/domain/tag/tag.dart';
+import 'package:flutter_template/domain/tag/tags.dart' as my;
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -28,7 +28,7 @@ void main() {
       sut.setPrice(1000);
       sut.setCategory(Category.food);
       sut.setPoint(Point.one);
-      var tag = Tag.of('tag');
+      var tag = Tag.initial('tag');
       sut.addTag(tag);
 
       await sut.register();
@@ -49,8 +49,8 @@ void main() {
 
   group('RemoveTag', () {
     test('should remove tag', () {
-      var tag1 = Tag.of('tag');
-      var tag2 = Tag.of('tag');
+      var tag1 = Tag.initial('tag');
+      var tag2 = Tag.initial('tag');
       sut.addTag(tag1);
       sut.addTag(tag2);
 
