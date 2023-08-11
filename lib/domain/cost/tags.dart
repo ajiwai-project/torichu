@@ -21,4 +21,8 @@ extension TagsExtention on Tags {
   Tags add(Tag tag) {
     return Tags._(value: [...value, tag]);
   }
+
+  Tags remove(Tag tag) {
+    return Tags._(value: value.where((e) => e.id != tag.id).toList());
+  }
 }

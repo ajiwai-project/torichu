@@ -52,4 +52,8 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
   void addTag(Tag tag) {
     state = state.copyWith(tags: state.tags.add(tag));
   }
+
+  void removeTag(Tag tag) {
+    state = state.copyWith(tags: state.tags.remove(tag));
+  }
 }

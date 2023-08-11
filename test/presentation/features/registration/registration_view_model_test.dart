@@ -2,6 +2,7 @@ import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
+import 'package:flutter_template/domain/cost/tags.dart' as my;
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -43,6 +44,19 @@ void main() {
       verify(costRepository
               .save(argThat(matchingWithoutIdAndRegisteredAt(expectedCost))))
           .called(1);
+    });
+  });
+
+  group('RemoveTag', () {
+    test('should remove tag', () {
+      var tag1 = Tag.of('tag');
+      var tag2 = Tag.of('tag');
+      sut.addTag(tag1);
+      sut.addTag(tag2);
+
+      sut.removeTag(tag1);
+
+      expect(sut.debugState.tags, my.Tags.of([tag2]));
     });
   });
 }

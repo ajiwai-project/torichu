@@ -29,4 +29,16 @@ void main() {
       expect(newTags, my.Tags.of([tag1, tag2]));
     });
   });
+
+  group('Remove', () {
+    test('should remove tag', () {
+      final tag1 = Tag.of('tag1');
+      final tag2 = Tag.of('tag2');
+      final tags = my.Tags.of([tag1, tag2]);
+
+      final newTags = tags.remove(tag1);
+
+      expect(newTags, my.Tags.of([tag2]));
+    });
+  });
 }
