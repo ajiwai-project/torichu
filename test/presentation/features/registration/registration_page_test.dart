@@ -98,6 +98,22 @@ void main() {
     expect(find.byType(Chip), findsOneWidget);
   });
 
+  testWidgets('should remove chip clicked', (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+    expect(find.byType(Chip), findsOneWidget);
+
+    final deleteIconOfTag = find.descendant(
+      of: find.byType(Chip),
+      matching: find.byIcon(Icons.cancel),
+    );
+    await tester.tap(deleteIconOfTag);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Chip), findsNothing);
+  });
+
   // FIXME: Exception発生で失敗してしまうが画面上は3つ以上登録されることはない
   testWidgets(
       'should not show more than three chips when a tag is entered more than three times',

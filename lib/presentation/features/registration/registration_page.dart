@@ -17,10 +17,14 @@ class RegistrationPage extends HookConsumerWidget {
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
 
     var tagTextController = useTextEditingController();
+
     var handleEnterTag = useCallback((value) {
       viewModel.addTag(Tag.of(value));
       tagTextController.clear();
-    }, []);
+    }, [viewModel, tagTextController]);
+    var handleDeleteTag = useCallback((Tag tag) {
+      viewModel.removeTag(tag);
+    }, [viewModel]);
 
     return Scaffold(
         appBar: AppBar(
@@ -92,7 +96,9 @@ class RegistrationPage extends HookConsumerWidget {
                       child: Wrap(
                         spacing: 4.0,
                         children: state.tags.value
-                            .map((e) => Chip(label: Text(e.value)))
+                            .map((e) => Chip(
+                                label: Text(e.value),
+                                onDeleted: () => handleDeleteTag(e)))
                             .toList(),
                       ))
                 ]),
