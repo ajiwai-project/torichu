@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/color_schemes.g.dart';
+import 'package:flutter_template/infrastructure/local_storage/domain/tag/tag_dao_model.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,6 +12,7 @@ void main() async {
 
   Hive.registerAdapter(CostDaoModelAdapter());
   await Hive.openBox<CostDaoModel>('costBox');
+  await Hive.openBox<TagDaoModel>('tagBox');
 
   runApp(ProviderScope(
       child: MaterialApp(

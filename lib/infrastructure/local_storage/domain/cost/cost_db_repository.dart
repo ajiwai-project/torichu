@@ -4,7 +4,7 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tags.dart';
+import 'package:flutter_template/domain/tag/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -27,14 +27,13 @@ class CostDBRepository implements CostRepository {
         point: cost.point.value,
         category: cost.category.value,
         registeredAt: cost.registeredAt.toIso8601String(),
-        tagIds: cost.tags.value.map((e) => e.id).toList());
+        tagIds: []);
     await box.put(entity.id, entity);
   }
 
   @override
   Future<Costs> getAll() {
-    var values = box.values;
-    var costs = values
+    var costs = box.values
         .map((e) => Cost.of(
             id: e.id,
             title: Title.of(e.title),

@@ -1,8 +1,8 @@
 import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
+import 'package:flutter_template/domain/tag/tags.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 

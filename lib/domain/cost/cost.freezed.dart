@@ -44,7 +44,6 @@ abstract class $CostCopyWith<$Res> {
 
   $TitleCopyWith<$Res> get title;
   $AmountCopyWith<$Res> get amount;
-  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -66,7 +65,7 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
     Object? point = null,
     Object? category = null,
     Object? registeredAt = null,
-    Object? tags = null,
+    Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,7 +92,7 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      tags: null == tags
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as Tags,
@@ -113,14 +112,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
   $AmountCopyWith<$Res> get amount {
     return $AmountCopyWith<$Res>(_value.amount, (value) {
       return _then(_value.copyWith(amount: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TagsCopyWith<$Res> get tags {
-    return $TagsCopyWith<$Res>(_value.tags, (value) {
-      return _then(_value.copyWith(tags: value) as $Val);
     });
   }
 }
@@ -144,8 +135,6 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
   $TitleCopyWith<$Res> get title;
   @override
   $AmountCopyWith<$Res> get amount;
-  @override
-  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -163,7 +152,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? point = null,
     Object? category = null,
     Object? registeredAt = null,
-    Object? tags = null,
+    Object? tags = freezed,
   }) {
     return _then(_$_Cost(
       id: null == id
@@ -190,7 +179,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      tags: null == tags
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as Tags,
@@ -243,12 +232,12 @@ class _$_Cost implements _Cost {
                 other.category == category) &&
             (identical(other.registeredAt, registeredAt) ||
                 other.registeredAt == registeredAt) &&
-            (identical(other.tags, tags) || other.tags == tags));
+            const DeepCollectionEquality().equals(other.tags, tags));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, amount, point, category, registeredAt, tags);
+  int get hashCode => Object.hash(runtimeType, id, title, amount, point,
+      category, registeredAt, const DeepCollectionEquality().hash(tags));
 
   @JsonKey(ignore: true)
   @override
