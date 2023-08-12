@@ -47,7 +47,6 @@ class CostDBRepository implements CostRepository {
             tags:
                 Tags.of(cost.tags.map((e) => Tag.of(e.id, e.value)).toList())))
         .toList();
-
     return Future.value(Costs(values: costs));
   }
 
