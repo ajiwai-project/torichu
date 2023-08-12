@@ -23,6 +23,6 @@ extension TagsExtention on Tags {
   }
 
   Tags remove(Tag tag) {
-    return Tags._(value: value.where((e) => e.id != tag.id).toList());
+    return Tags._(value: value.where((e) => e.value != tag.value).toList());
   }
 }

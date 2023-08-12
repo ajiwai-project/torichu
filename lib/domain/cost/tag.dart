@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 part 'tag.freezed.dart';
 
@@ -7,13 +6,9 @@ part 'tag.freezed.dart';
 class Tag with _$Tag {
   @Assert('value.isNotEmpty')
   @Assert('value.length <= 30')
-  factory Tag._({required String id, required String value}) = _Tag;
+  factory Tag._({required String value}) = _Tag;
 
-  factory Tag.initial(String value) {
-    return Tag._(id: const Uuid().v4(), value: value);
-  }
-
-  factory Tag.of(String id, String value) {
-    return Tag._(id: id, value: value);
+  factory Tag.of(String value) {
+    return Tag._(value: value);
   }
 }

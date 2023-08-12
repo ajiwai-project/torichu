@@ -29,8 +29,7 @@ class CostDBRepository implements CostRepository {
         point: cost.point.value,
         category: cost.category.value,
         registeredAt: cost.registeredAt.toIso8601String(),
-        tags:
-            cost.tags.value.map((e) => TagDaoModel.of(e.id, e.value)).toList());
+        tags: cost.tags.value.map((e) => TagDaoModel.of(e.value)).toList());
     await costBox.put(costEntity.id, costEntity);
   }
 
@@ -44,8 +43,7 @@ class CostDBRepository implements CostRepository {
             point: Point.of(cost.point),
             category: Category.of(cost.category),
             registeredAt: DateTime.parse(cost.registeredAt),
-            tags:
-                Tags.of(cost.tags.map((e) => Tag.of(e.id, e.value)).toList())))
+            tags: Tags.of(cost.tags.map((e) => Tag.of(e.value)).toList())))
         .toList();
     return Future.value(Costs(values: costs));
   }

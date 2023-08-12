@@ -19,7 +19,7 @@ class RegistrationPage extends HookConsumerWidget {
     var tagTextController = useTextEditingController();
 
     var handleEnterTag = useCallback((value) {
-      viewModel.addTag(Tag.initial(value));
+      viewModel.addTag(Tag.of(value));
       tagTextController.clear();
     }, [viewModel, tagTextController]);
     var handleDeleteTag = useCallback((Tag tag) {

@@ -17,18 +17,15 @@ class TagDaoModelAdapter extends TypeAdapter<TagDaoModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TagDaoModel(
-      id: fields[0] as String,
-      value: fields[1] as String,
+      value: fields[0] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, TagDaoModel obj) {
     writer
-      ..writeByte(2)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
+      ..writeByte(0)
       ..write(obj.value);
   }
 

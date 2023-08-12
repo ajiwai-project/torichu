@@ -28,7 +28,7 @@ void main() {
       sut.setPrice(1000);
       sut.setCategory(Category.food);
       sut.setPoint(Point.one);
-      var tag = Tag.initial('tag');
+      var tag = Tag.of('tag');
       sut.addTag(tag);
 
       await sut.register();
@@ -49,8 +49,8 @@ void main() {
 
   group('RemoveTag', () {
     test('should remove tag', () {
-      var tag1 = Tag.initial('tag');
-      var tag2 = Tag.initial('tag');
+      var tag1 = Tag.of('tag1');
+      var tag2 = Tag.of('tag2');
       sut.addTag(tag1);
       sut.addTag(tag2);
 
