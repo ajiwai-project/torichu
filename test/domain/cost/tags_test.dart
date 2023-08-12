@@ -12,9 +12,17 @@ void main() {
 
     test('should throw an exception when the number of tags is more than three',
         () {
-      final tag = Tag.of('tag');
-      expect(() => my.Tags.of([tag, tag, tag, tag]),
+      final tag1 = Tag.of('tag1');
+      final tag2 = Tag.of('tag2');
+      final tag3 = Tag.of('tag3');
+      final tag4 = Tag.of('tag4');
+      expect(() => my.Tags.of([tag1, tag2, tag3, tag4]),
           throwsA(isA<AssertionError>()));
+    });
+
+    test('should throw an exception when same values are specified', () {
+      final tag = Tag.of('tag');
+      expect(() => my.Tags.of([tag, tag]), throwsA(isA<AssertionError>()));
     });
   });
 

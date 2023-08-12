@@ -9,6 +9,10 @@ class Tags with _$Tags {
   factory Tags._({required List<Tag> value}) = _Tags;
 
   factory Tags.of(List<Tag> value) {
+    if (value.length != value.toSet().length) {
+      throw AssertionError();
+    }
+     
     return Tags._(value: value);
   }
 
