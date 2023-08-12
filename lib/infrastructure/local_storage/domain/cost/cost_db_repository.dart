@@ -12,23 +12,16 @@ import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_da
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final costRepositoryProvider = Provider<CostRepository>(
-    (ref) => CostDBRepository(Hive.box('costBox'), Hive.box('tagBox')));
+final costRepositoryProvider =
+    Provider<CostRepository>((ref) => CostDBRepository(Hive.box('costBox')));
 
 class CostDBRepository implements CostRepository {
   Box<CostDaoModel> costBox;
-  Box<TagDaoModel> tagBox;
 
-  CostDBRepository(this.costBox, this.tagBox);
+  CostDBRepository(this.costBox);
 
   @override
   Future<void> save(Cost cost) async {
-    Map<String, TagDaoModel> tagEntities = {};
-    for (var tag in cost.tags.value) {
-      tagEntities[tag.id] = TagDaoModel.of(tag.id, tag.value);
-    }
-    await tagBox.putAll(tagEntities);
-
     var costEntity = CostDaoModel.of(
         id: cost.id,
         title: cost.title.value,
@@ -36,7 +29,8 @@ class CostDBRepository implements CostRepository {
         point: cost.point.value,
         category: cost.category.value,
         registeredAt: cost.registeredAt.toIso8601String(),
-        tagIds: cost.tags.value.map((e) => e.id).toList());
+        tags:
+            cost.tags.value.map((e) => TagDaoModel.of(e.id, e.value)).toList());
     await costBox.put(costEntity.id, costEntity);
   }
 
@@ -50,10 +44,8 @@ class CostDBRepository implements CostRepository {
             point: Point.of(cost.point),
             category: Category.of(cost.category),
             registeredAt: DateTime.parse(cost.registeredAt),
-            tags: Tags.of(tagBox.values
-                .where((tag) => cost.tagIds.contains(tag.id))
-                .map((tag) => Tag.of(tag.id, tag.value))
-                .toList())))
+            tags:
+                Tags.of(cost.tags.map((e) => Tag.of(e.id, e.value)).toList())))
         .toList();
 
     return Future.value(Costs(values: costs));
@@ -61,9 +53,6 @@ class CostDBRepository implements CostRepository {
 
   @override
   Future<void> remove(String id) async {
-    var tagIds = costBox.values.where((e) => e.id == id).first.tagIds;
-    await tagBox.deleteAll(tagIds);
-
     await costBox.delete(id);
   }
 }

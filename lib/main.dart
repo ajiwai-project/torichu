@@ -12,7 +12,6 @@ void main() async {
   Hive.registerAdapter(CostDaoModelAdapter());
   Hive.registerAdapter(TagDaoModelAdapter());
   await Hive.openBox<CostDaoModel>('costBox');
-  await Hive.openBox<TagDaoModel>('tagBox');
 
   runApp(ProviderScope(
       child: MaterialApp(
