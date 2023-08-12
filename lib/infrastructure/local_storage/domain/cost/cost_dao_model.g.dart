@@ -23,15 +23,14 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       point: fields[3] as int,
       category: fields[4] as String,
       registeredAt: fields[5] as String,
-      tagIds: (fields[6] as List).cast<String>(),
-      tags: (fields[7] as List).cast<TagDaoModel>(),
+      tags: (fields[6] as List).cast<TagDaoModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, CostDaoModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -45,8 +44,6 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       ..writeByte(5)
       ..write(obj.registeredAt)
       ..writeByte(6)
-      ..write(obj.tagIds)
-      ..writeByte(7)
       ..write(obj.tags);
   }
 
