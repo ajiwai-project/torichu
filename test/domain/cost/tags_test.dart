@@ -36,6 +36,13 @@ void main() {
 
       expect(newTags, my.Tags.of([tag1, tag2]));
     });
+
+    test('should throw an exception when same value is added', () {
+      final tag = Tag.of('tag');
+      final tags = my.Tags.of([tag]);
+
+      expect(() => tags.add(tag), throwsA(isA<Exception>()));
+    });
   });
 
   group('Remove', () {

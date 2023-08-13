@@ -114,7 +114,6 @@ void main() {
     expect(find.byType(Chip), findsNothing);
   });
 
-  // FIXME: Exception発生で失敗してしまうが画面上は3つ以上登録されることはない
   testWidgets(
       'should not show more than three chips when a tag is entered more than three times',
       (tester) async {
@@ -126,5 +125,15 @@ void main() {
     await addTag(tester, 'tag4');
 
     expect(find.byType(Chip), findsNWidgets(3));
-  }, skip: true);
+  });
+
+  testWidgets('should not add chip when same value of tag is specified',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+    await addTag(tester, 'tag');
+
+    expect(find.byType(Chip), findsOneWidget);
+  });
 }

@@ -12,7 +12,7 @@ class Tags with _$Tags {
     if (value.length != value.toSet().length) {
       throw AssertionError();
     }
-     
+
     return Tags._(value: value);
   }
 
@@ -23,6 +23,9 @@ class Tags with _$Tags {
 
 extension TagsExtention on Tags {
   Tags add(Tag tag) {
+    if (value.contains(tag)) {
+      throw Exception('Same value contains');
+    }
     return Tags._(value: [...value, tag]);
   }
 
