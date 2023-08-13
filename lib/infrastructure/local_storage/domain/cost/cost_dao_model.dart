@@ -1,3 +1,4 @@
+import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'cost_dao_model.g.dart';
@@ -22,13 +23,17 @@ class CostDaoModel extends HiveObject {
   @HiveField(5)
   String registeredAt;
 
+  @HiveField(6)
+  List<TagDaoModel> tags;
+
   CostDaoModel(
       {required this.id,
       required this.title,
       required this.amount,
       required this.point,
       required this.category,
-      required this.registeredAt});
+      required this.registeredAt,
+      required this.tags});
 
   factory CostDaoModel.of(
       {required String id,
@@ -36,15 +41,16 @@ class CostDaoModel extends HiveObject {
       required amount,
       required int point,
       required String category,
-      required String registeredAt}) {
+      required String registeredAt,
+      required List<TagDaoModel> tags}) {
     return CostDaoModel(
-      id: id,
-      title: title,
-      amount: amount,
-      point: point,
-      category: category,
-      registeredAt: registeredAt,
-    );
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        category: category,
+        registeredAt: registeredAt,
+        tags: tags);
   }
 
   @override
@@ -55,21 +61,23 @@ class CostDaoModel extends HiveObject {
       amount == other.amount &&
       point == other.point &&
       registeredAt == other.registeredAt &&
-      category == other.category;
+      category == other.category &&
+      tags == other.tags;
 
   @override
   int get hashCode =>
-      Object.hash(id, title, amount, point, registeredAt, category);
+      Object.hash(id, title, amount, point, registeredAt, category, tags);
 
   @override
   String toString() {
-    return 'TaskEntity('
+    return 'CostDaoModel('
         'id: $id, '
         'title: $title, '
         'amount: $amount, '
         'point: $point, '
         'date: $registeredAt, '
-        'category: $category'
+        'category: $category, '
+        'tags: $tags'
         ')';
   }
 }
