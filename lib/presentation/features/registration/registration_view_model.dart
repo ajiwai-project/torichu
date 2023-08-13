@@ -53,7 +53,7 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
     try {
       state = state.copyWith(tags: state.tags.add(tag));
     } catch (e) {
-      print(e);
+      // TODO: 画面側になんらかの表示を出すようにする
     }
   }
 
