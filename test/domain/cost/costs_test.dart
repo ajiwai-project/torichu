@@ -91,4 +91,19 @@ void main() {
       expect(actual, expected);
     });
   });
+
+  group('IsEmpty', () {
+    test('should be true when values is empty', () {
+      var costs = const Costs(values: []);
+
+      expect(costs.isEmpty, true);
+    });
+
+    test('should be false when values is not empty', () {
+      var cost = CostBuilder().build();
+      var costs = Costs(values: [cost]);
+
+      expect(costs.isEmpty, false);
+    });
+  });
 }

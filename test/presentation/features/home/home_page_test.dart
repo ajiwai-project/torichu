@@ -4,6 +4,7 @@ import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/home/widgets/cost_list_item.dart';
+import 'package:flutter_template/presentation/features/home/widgets/summary.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -70,5 +71,16 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(CostListItem), findsNothing);
+  });
+
+  testWidgets('should not show summy when number of costs is zero',
+      (tester) async {
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => const Costs(values: []));
+
+    await render(tester);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Summary), findsNothing);
   });
 }

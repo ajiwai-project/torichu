@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:flutter_template/domain/cost/cost.dart' as _i5;
-import 'package:flutter_template/domain/cost/cost_repository.dart' as _i3;
+import 'package:flutter_template/domain/cost/cost.dart' as _i6;
+import 'package:flutter_template/domain/cost/cost_repository.dart' as _i4;
 import 'package:flutter_template/domain/cost/costs.dart' as _i2;
+import 'package:flutter_template/domain/saying/saying.dart' as _i3;
+import 'package:flutter_template/domain/saying/saying_repository.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -31,44 +33,78 @@ class _FakeCosts_0 extends _i1.SmartFake implements _i2.Costs {
         );
 }
 
+class _FakeSaying_1 extends _i1.SmartFake implements _i3.Saying {
+  _FakeSaying_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [CostRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCostRepository extends _i1.Mock implements _i3.CostRepository {
+class MockCostRepository extends _i1.Mock implements _i4.CostRepository {
   MockCostRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Costs> getAll() => (super.noSuchMethod(
+  _i5.Future<_i2.Costs> getAll() => (super.noSuchMethod(
         Invocation.method(
           #getAll,
           [],
         ),
-        returnValue: _i4.Future<_i2.Costs>.value(_FakeCosts_0(
+        returnValue: _i5.Future<_i2.Costs>.value(_FakeCosts_0(
           this,
           Invocation.method(
             #getAll,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Costs>);
+      ) as _i5.Future<_i2.Costs>);
   @override
-  _i4.Future<void> save(_i5.Cost? cost) => (super.noSuchMethod(
+  _i5.Future<void> save(_i6.Cost? cost) => (super.noSuchMethod(
         Invocation.method(
           #save,
           [cost],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  _i4.Future<void> remove(String? id) => (super.noSuchMethod(
+  _i5.Future<void> remove(String? id) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [id],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [SayingRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSayingRepository extends _i1.Mock implements _i7.SayingRepository {
+  MockSayingRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.Saying> choice() => (super.noSuchMethod(
+        Invocation.method(
+          #choice,
+          [],
+        ),
+        returnValue: _i5.Future<_i3.Saying>.value(_FakeSaying_1(
+          this,
+          Invocation.method(
+            #choice,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i3.Saying>);
 }
