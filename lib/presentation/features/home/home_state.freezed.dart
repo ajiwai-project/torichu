@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   Costs get costs => throw _privateConstructorUsedError;
+  Saying get saying => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,9 +29,10 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({Costs costs});
+  $Res call({Costs costs, Saying saying});
 
   $CostsCopyWith<$Res> get costs;
+  $SayingCopyWith<$Res> get saying;
 }
 
 /// @nodoc
@@ -47,12 +49,17 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? costs = null,
+    Object? saying = null,
   }) {
     return _then(_value.copyWith(
       costs: null == costs
           ? _value.costs
           : costs // ignore: cast_nullable_to_non_nullable
               as Costs,
+      saying: null == saying
+          ? _value.saying
+          : saying // ignore: cast_nullable_to_non_nullable
+              as Saying,
     ) as $Val);
   }
 
@@ -61,6 +68,14 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $CostsCopyWith<$Res> get costs {
     return $CostsCopyWith<$Res>(_value.costs, (value) {
       return _then(_value.copyWith(costs: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SayingCopyWith<$Res> get saying {
+    return $SayingCopyWith<$Res>(_value.saying, (value) {
+      return _then(_value.copyWith(saying: value) as $Val);
     });
   }
 }
@@ -72,10 +87,12 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Costs costs});
+  $Res call({Costs costs, Saying saying});
 
   @override
   $CostsCopyWith<$Res> get costs;
+  @override
+  $SayingCopyWith<$Res> get saying;
 }
 
 /// @nodoc
@@ -90,12 +107,17 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? costs = null,
+    Object? saying = null,
   }) {
     return _then(_$_HomeState(
       costs: null == costs
           ? _value.costs
           : costs // ignore: cast_nullable_to_non_nullable
               as Costs,
+      saying: null == saying
+          ? _value.saying
+          : saying // ignore: cast_nullable_to_non_nullable
+              as Saying,
     ));
   }
 }
@@ -103,15 +125,20 @@ class __$$_HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({this.costs = const Costs(values: [])});
+  const _$_HomeState(
+      {this.costs = const Costs(values: []),
+      this.saying = const Saying(value: '', author: '')});
 
   @override
   @JsonKey()
   final Costs costs;
+  @override
+  @JsonKey()
+  final Saying saying;
 
   @override
   String toString() {
-    return 'HomeState(costs: $costs)';
+    return 'HomeState(costs: $costs, saying: $saying)';
   }
 
   @override
@@ -119,11 +146,12 @@ class _$_HomeState implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
-            (identical(other.costs, costs) || other.costs == costs));
+            (identical(other.costs, costs) || other.costs == costs) &&
+            (identical(other.saying, saying) || other.saying == saying));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, costs);
+  int get hashCode => Object.hash(runtimeType, costs, saying);
 
   @JsonKey(ignore: true)
   @override
@@ -133,10 +161,13 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final Costs costs}) = _$_HomeState;
+  const factory _HomeState({final Costs costs, final Saying saying}) =
+      _$_HomeState;
 
   @override
   Costs get costs;
+  @override
+  Saying get saying;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>

@@ -54,4 +54,6 @@ extension CostsExtention on Costs {
                 : a.registeredAt.compareTo(b.registeredAt))
             .toList());
   }
+
+  bool get isEmpty => values.isEmpty;
 }
