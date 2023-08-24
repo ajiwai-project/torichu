@@ -1,8 +1,6 @@
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'cost_dao_model.g.dart';
-
 @HiveType(typeId: 0)
 class CostDaoModel extends HiveObject {
   @HiveField(0)
