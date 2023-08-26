@@ -1,10 +1,6 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
-part of 'cost_dao_model.dart';
-
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
+import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
+import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
+import 'package:hive/hive.dart';
 
 class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
   @override
@@ -23,7 +19,7 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       point: fields[3] as int,
       category: fields[4] as String,
       registeredAt: fields[5] as String,
-      tags: (fields[6] as List).cast<TagDaoModel>(),
+      tags: fields[6] != null ? (fields[6] as List).cast<TagDaoModel>() : [],
     );
   }
 
