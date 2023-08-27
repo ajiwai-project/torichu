@@ -33,7 +33,7 @@ class CostListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                    width: screenWidth * 0.3,
+                    width: screenWidth * 0.5,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
