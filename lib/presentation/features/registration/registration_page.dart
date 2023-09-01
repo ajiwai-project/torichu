@@ -7,6 +7,7 @@ import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class RegistrationPage extends HookConsumerWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class RegistrationPage extends HookConsumerWidget {
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
 
     var tagTextController = useTextEditingController();
+    final dateTextController = useTextEditingController(
+        text: DateFormat('yyyy/MM/dd').format(DateTime.now()));
 
     var handleEnterTag = useCallback((value) {
       viewModel.addTag(Tag.of(value));
@@ -25,6 +28,18 @@ class RegistrationPage extends HookConsumerWidget {
     var handleDeleteTag = useCallback((Tag tag) {
       viewModel.removeTag(tag);
     }, [viewModel]);
+
+    final handleSelectRegisteredAt = useCallback(() async {
+      final registeredAt = await showDatePicker(
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2023, 8, 17),
+          lastDate: DateTime.now());
+      if (registeredAt != null) {
+        dateTextController.text = DateFormat('yyyy/MM/dd').format(registeredAt);
+        viewModel.setRegisteredAt(registeredAt);
+      }
+    }, [viewModel, context, dateTextController]);
 
     return Scaffold(
         appBar: AppBar(
@@ -83,6 +98,13 @@ class RegistrationPage extends HookConsumerWidget {
                         viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
+                  ),
+                  TextField(
+                    key: const Key('registered-at-field'),
+                    controller: dateTextController,
+                    decoration: const InputDecoration(
+                        hintText: '日付を入力', labelText: '日付'),
+                    onTap: handleSelectRegisteredAt,
                   ),
                   TextField(
                       key: const Key('tags-field'),
