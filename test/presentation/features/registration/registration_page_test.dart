@@ -57,7 +57,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('should save cost when push submit button', (tester) async {
+  testWidgets('should save cost without registeration date when push submit button', (tester) async {
     final dummyCost = CostBuilder().build();
     await render(tester);
     when(mockCostRepository.getAll())
