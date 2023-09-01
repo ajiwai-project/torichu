@@ -20,6 +20,7 @@ mixin _$RegistartionState {
   int get price => throw _privateConstructorUsedError;
   Point? get point => throw _privateConstructorUsedError;
   Category? get category => throw _privateConstructorUsedError;
+  DateTime? get registeredAt => throw _privateConstructorUsedError;
   Tags get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,7 +35,12 @@ abstract class $RegistartionStateCopyWith<$Res> {
       _$RegistartionStateCopyWithImpl<$Res, RegistartionState>;
   @useResult
   $Res call(
-      {String title, int price, Point? point, Category? category, Tags tags});
+      {String title,
+      int price,
+      Point? point,
+      Category? category,
+      DateTime? registeredAt,
+      Tags tags});
 
   $TagsCopyWith<$Res> get tags;
 }
@@ -56,6 +62,7 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
+    Object? registeredAt = freezed,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
@@ -75,6 +82,10 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
+      registeredAt: freezed == registeredAt
+          ? _value.registeredAt
+          : registeredAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -100,7 +111,12 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title, int price, Point? point, Category? category, Tags tags});
+      {String title,
+      int price,
+      Point? point,
+      Category? category,
+      DateTime? registeredAt,
+      Tags tags});
 
   @override
   $TagsCopyWith<$Res> get tags;
@@ -121,6 +137,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
+    Object? registeredAt = freezed,
     Object? tags = null,
   }) {
     return _then(_$_RegistrationState(
@@ -140,6 +157,10 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
+      registeredAt: freezed == registeredAt
+          ? _value.registeredAt
+          : registeredAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -156,6 +177,7 @@ class _$_RegistrationState implements _RegistrationState {
       this.price = 0,
       this.point,
       this.category,
+      this.registeredAt,
       required this.tags});
 
   @override
@@ -169,11 +191,13 @@ class _$_RegistrationState implements _RegistrationState {
   @override
   final Category? category;
   @override
+  final DateTime? registeredAt;
+  @override
   final Tags tags;
 
   @override
   String toString() {
-    return 'RegistartionState(title: $title, price: $price, point: $point, category: $category, tags: $tags)';
+    return 'RegistartionState(title: $title, price: $price, point: $point, category: $category, registeredAt: $registeredAt, tags: $tags)';
   }
 
   @override
@@ -186,12 +210,14 @@ class _$_RegistrationState implements _RegistrationState {
             (identical(other.point, point) || other.point == point) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.registeredAt, registeredAt) ||
+                other.registeredAt == registeredAt) &&
             (identical(other.tags, tags) || other.tags == tags));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, price, point, category, tags);
+  int get hashCode => Object.hash(
+      runtimeType, title, price, point, category, registeredAt, tags);
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +233,7 @@ abstract class _RegistrationState implements RegistartionState {
       final int price,
       final Point? point,
       final Category? category,
+      final DateTime? registeredAt,
       required final Tags tags}) = _$_RegistrationState;
 
   @override
@@ -217,6 +244,8 @@ abstract class _RegistrationState implements RegistartionState {
   Point? get point;
   @override
   Category? get category;
+  @override
+  DateTime? get registeredAt;
   @override
   Tags get tags;
   @override

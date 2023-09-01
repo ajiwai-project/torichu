@@ -12,5 +12,6 @@ class RegistartionState with _$RegistartionState {
       @Default(0) int price,
       Point? point,
       Category? category,
+      DateTime? registeredAt,
       required Tags tags}) = _RegistrationState;
 }
