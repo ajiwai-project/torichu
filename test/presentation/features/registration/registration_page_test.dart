@@ -79,7 +79,6 @@ void main() {
   testWidgets(
       'should save cost with registeration date when push submit button',
       (tester) async {
-    final testDate = DateTime(2023, 8, 30);
     withClock(Clock.fixed(DateTime(2023, 8, 31)), () async {
       final dummyCost =
           CostBuilder().setRegisteredAt(DateTime(2023, 8, 30)).build();
