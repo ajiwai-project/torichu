@@ -68,14 +68,14 @@ class SayingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    alignment: Alignment.center,
-    padding: const EdgeInsets.all(20.0),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(value.value, style: const TextStyle(fontSize: 20)),
-        Text('- ${value.author}')
-      ],
-    ));
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(value.value, style: const TextStyle(fontSize: 20)),
+            Text('- ${value.author}')
+          ],
+        ));
   }
 }
