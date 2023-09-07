@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.18.1
   fl_chart: ^0.63.0
   collection: ^1.17.1
+  clock: ^1.1.1
 
 dev_dependencies:
   flutter_test:

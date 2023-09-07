@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,7 +20,7 @@ class RegistrationPage extends HookConsumerWidget {
 
     var tagTextController = useTextEditingController();
     final dateTextController = useTextEditingController(
-        text: DateFormat('yyyy/MM/dd').format(DateTime.now()));
+        text: DateFormat('yyyy/MM/dd').format(clock.now()));
 
     var handleEnterTag = useCallback((value) {
       viewModel.addTag(Tag.of(value));
@@ -32,9 +33,9 @@ class RegistrationPage extends HookConsumerWidget {
     final handleSelectRegisteredAt = useCallback(() async {
       final registeredAt = await showDatePicker(
           context: context,
-          initialDate: DateTime.now(),
+          initialDate: clock.now(),
           firstDate: DateTime(2023, 8, 17),
-          lastDate: DateTime.now());
+          lastDate: clock.now());
       if (registeredAt != null) {
         dateTextController.text = DateFormat('yyyy/MM/dd').format(registeredAt);
         viewModel.setRegisteredAt(registeredAt);
