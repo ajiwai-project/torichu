@@ -50,7 +50,7 @@ class Cost with _$Cost {
         amount: amount,
         point: point,
         category: category,
-        registeredAt: registeredAt != null ? registeredAt : DateTime.now(),
+        registeredAt: registeredAt ?? DateTime.now(),
         tags: tags);
   }
 }
