@@ -2,6 +2,7 @@ import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
@@ -34,7 +35,7 @@ class RegistrationPage extends HookConsumerWidget {
       final registeredAt = await showDatePicker(
           context: context,
           initialDate: clock.now(),
-          firstDate: DateTime(2023, 8, 17),
+          firstDate: DateTime.parse(ReleaseDate.stringValue),
           lastDate: clock.now());
       if (registeredAt != null) {
         dateTextController.text = DateFormat('yyyy/MM/dd').format(registeredAt);
