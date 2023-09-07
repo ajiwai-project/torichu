@@ -50,6 +50,13 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  addTag(WidgetTester tester, String label) async {
+    final tagField = find.byKey(const Key('tags-field'));
+    await tester.enterText(tagField, label);
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pumpAndSettle();
+  }
+
   testWidgets('should save cost when push submit button', (tester) async {
     final dummyCost = CostBuilder().build();
     await render(tester);
@@ -79,5 +86,54 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(HomePage), findsOneWidget);
+  });
+
+  testWidgets(
+      'should show chip written tag value when input tag field and enter',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+
+    expect(find.byType(Chip), findsOneWidget);
+  });
+
+  testWidgets('should remove chip clicked', (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+    expect(find.byType(Chip), findsOneWidget);
+
+    final deleteIconOfTag = find.descendant(
+      of: find.byType(Chip),
+      matching: find.byIcon(Icons.cancel),
+    );
+    await tester.tap(deleteIconOfTag);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Chip), findsNothing);
+  });
+
+  testWidgets(
+      'should not show more than three chips when a tag is entered more than three times',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag1');
+    await addTag(tester, 'tag2');
+    await addTag(tester, 'tag3');
+    await addTag(tester, 'tag4');
+
+    expect(find.byType(Chip), findsNWidgets(3));
+  });
+
+  testWidgets('should not add chip when same value of tag is specified',
+      (tester) async {
+    await render(tester);
+
+    await addTag(tester, 'tag');
+    await addTag(tester, 'tag');
+
+    expect(find.byType(Chip), findsOneWidget);
   });
 }

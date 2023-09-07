@@ -1,5 +1,7 @@
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
+import 'package:flutter_template/domain/saying/saying.dart';
+import 'package:flutter_template/domain/saying/saying_repository.dart';
 import 'package:flutter_template/presentation/features/home/home_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -8,14 +10,19 @@ import 'package:mockito/mockito.dart';
 import '../../../domain/cost/model_support.dart';
 import 'home_view_model_test.mocks.dart';
 
-@GenerateMocks([CostRepository])
+@GenerateMocks([CostRepository, SayingRepository])
 void main() {
   late HomeViewModel sut;
   late CostRepository costRepository;
 
   setUp(() {
     costRepository = MockCostRepository();
-    sut = HomeViewModel(costRepository);
+
+    var sayingRepository = MockSayingRepository();
+    when(sayingRepository.choice())
+        .thenAnswer((_) async => const Saying(value: '', author: ''));
+
+    sut = HomeViewModel(costRepository, sayingRepository);
   });
 
   group('Load', () {
