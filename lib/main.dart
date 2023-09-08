@@ -3,7 +3,7 @@ import 'package:flutter_template/color_schemes.g.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_type_adapter.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
-import 'package:flutter_template/presentation/features/home/home_page.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

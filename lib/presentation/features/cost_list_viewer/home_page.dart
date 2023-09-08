@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/saying/saying.dart';
-import 'package:flutter_template/presentation/features/home/widgets/cost_list.dart';
-import 'package:flutter_template/presentation/features/home/home_view_model.dart';
-import 'package:flutter_template/presentation/features/home/widgets/summary.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/home_view_model.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/summary.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/saying/saying.dart';
 import 'package:flutter_template/domain/saying/saying_repository.dart';
-import 'package:flutter_template/presentation/features/home/home_view_model.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/home_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
