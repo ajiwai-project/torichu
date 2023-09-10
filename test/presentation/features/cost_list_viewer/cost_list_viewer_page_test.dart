@@ -30,7 +30,7 @@ void main() {
           costRepositoryProvider.overrideWith((_) => mockCostRepository),
         ],
         child: const MaterialApp(
-          home: HomePage(),
+          home: CostListViewerPage(),
         ),
       ),
     );

@@ -12,7 +12,7 @@ import 'cost_list_viewer_view_model_test.mocks.dart';
 
 @GenerateMocks([CostRepository, SayingRepository])
 void main() {
-  late HomeViewModel sut;
+  late CostListViewerViewModel sut;
   late CostRepository costRepository;
 
   setUp(() {
@@ -22,7 +22,7 @@ void main() {
     when(sayingRepository.choice())
         .thenAnswer((_) async => const Saying(value: '', author: ''));
 
-    sut = HomeViewModel(costRepository, sayingRepository);
+    sut = CostListViewerViewModel(costRepository, sayingRepository);
   });
 
   group('Load', () {

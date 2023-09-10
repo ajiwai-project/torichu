@@ -8,8 +8,8 @@ import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends HookConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+class CostListViewerPage extends HookConsumerWidget {
+  const CostListViewerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

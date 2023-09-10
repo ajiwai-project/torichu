@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'cost_list_viewer_state.freezed.dart';
 
 @freezed
-class HomeState with _$HomeState {
-  const factory HomeState(
+class CostListViewerState with _$CostListViewerState {
+  const factory CostListViewerState(
       {@Default(Costs(values: [])) Costs costs,
-      @Default(Saying(value: '', author: '')) Saying saying}) = _HomeState;
+      @Default(Saying(value: '', author: '')) Saying saying}) = _CostListViewerState;
 }

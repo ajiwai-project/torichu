@@ -85,7 +85,7 @@ void main() {
     await tester.tap(submitButton);
     await tester.pumpAndSettle();
 
-    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(CostListViewerPage), findsOneWidget);
   });
 
   testWidgets(

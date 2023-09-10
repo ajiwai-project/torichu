@@ -122,7 +122,7 @@ class RegistrationPage extends HookConsumerWidget {
 
   _navigateToHome(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const HomePage();
+      return const CostListViewerPage();
     }));
   }
 }
