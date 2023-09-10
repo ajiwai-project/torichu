@@ -2,7 +2,7 @@ import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/saying/saying_repository.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/saying/saying_memory_repository.dart';
-import 'package:flutter_template/presentation/features/cost_list_viewer/home_state.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_state.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

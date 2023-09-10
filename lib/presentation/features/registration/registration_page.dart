@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/presentation/features/cost_list_viewer/home_page.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
