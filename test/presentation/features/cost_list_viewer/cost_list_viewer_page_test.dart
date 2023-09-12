@@ -3,9 +3,9 @@ import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
-import 'package:flutter_template/presentation/features/home/home_page.dart';
-import 'package:flutter_template/presentation/features/home/widgets/cost_list_item.dart';
-import 'package:flutter_template/presentation/features/home/widgets/summary.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list_item.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/summary.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,7 +13,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../domain/cost/model_support.dart';
-import 'home_page_test.mocks.dart';
+import 'cost_list_viewer_page_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
@@ -30,7 +30,7 @@ void main() {
           costRepositoryProvider.overrideWith((_) => mockCostRepository),
         ],
         child: const MaterialApp(
-          home: HomePage(),
+          home: CostListViewerPage(),
         ),
       ),
     );
