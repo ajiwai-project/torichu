@@ -17,10 +17,10 @@ void main() {
 
   testWidgets('should move page when tap tab', (tester) async {
     await render(tester);
-    await tester.tap(find.byKey(const Key('costs_tab')));
+    await tester.tap(find.text('Costs'));
     await tester.pumpAndSettle();
     expect(find.byType(CostListViewerPage), findsOneWidget);
-    await tester.tap(find.byKey(const Key('registration_tab')));
+    await tester.tap(find.test('Registeration'));
     await tester.pumpAndSettle();
     expect(find.byType(RegisterationPage), findsOneWidget);
   });
