@@ -5,7 +5,6 @@ import 'package:flutter_template/domain/saying/saying.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_view_model.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/summary.dart';
-import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CostListViewerPage extends HookConsumerWidget {
@@ -31,16 +30,6 @@ class CostListViewerPage extends HookConsumerWidget {
               body: SafeArea(
                   child: Center(
                       child: CircularProgressIndicator(color: Colors.red))))),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegistrationPage()))
-              .then((value) => viewModel.load());
-        },
-      ),
     );
   }
 }

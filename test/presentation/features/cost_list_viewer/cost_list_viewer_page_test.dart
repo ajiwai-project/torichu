@@ -46,18 +46,6 @@ void main() {
     expect(find.byType(CostListItem), findsOneWidget);
   });
 
-  testWidgets('should move to registration page when floading button is pushed',
-      (tester) async {
-    when(mockCostRepository.getAll())
-        .thenAnswer((_) async => const Costs(values: []));
-    await render(tester);
-
-    await tester.tap(find.byType(FloatingActionButton));
-    await tester.pumpAndSettle();
-
-    expect(find.byType(RegistrationPage), findsOneWidget);
-  });
-
   testWidgets('支出を左から右方向へスワイプすると支出が削除されること', (tester) async {
     final cost = CostBuilder().build();
     var callCount = 0;
