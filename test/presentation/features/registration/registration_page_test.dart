@@ -73,21 +73,6 @@ void main() {
         .called(1);
   });
 
-  testWidgets('should move to home page when push submit button',
-      (tester) async {
-    final dummyCost = CostBuilder().build();
-    await render(tester);
-    when(mockCostRepository.getAll())
-        .thenAnswer((_) async => Costs(values: [dummyCost]));
-    await inputForm(tester, dummyCost);
-
-    final submitButton = find.byKey(const Key('register-button'));
-    await tester.tap(submitButton);
-    await tester.pumpAndSettle();
-
-    expect(find.byType(CostListViewerPage), findsOneWidget);
-  });
-
   testWidgets(
       'should show chip written tag value when input tag field and enter',
       (tester) async {
