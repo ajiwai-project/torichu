@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
-import 'package:flutter_template/presentation/widgets/tabbar/tabbar.dart';
+import 'package:flutter_template/presentation/features/routing/app_with_bottom_navigationbar.dart';
 
 void main() {
   render(tester) async {
     await tester.pumpWidget(ProviderScope(overrides: [
       costRepositoryProvider.overrideWith((ref) => mockCostRepository)
-    ], child: const MaterialApp(home: BottomTabPage())));
+    ], child: const MaterialApp(home: AppWithBottomNavigationbar())));
   }
 
   testWidgets('should registeration page when opening app', (tester) async {

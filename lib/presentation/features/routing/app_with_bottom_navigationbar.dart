@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 
-class BottomTabPage extends StatefulWidget {
+class AppWithBottomNavigationbar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _BottomTabPageState();
+    return _AppWithBottomNavigationbarState();
   }
 }
 
-class _BottomTabPageState extends State<BottomTabPage> {
+class _AppWithBottomNavigationbarState extends State<AppWithBottomNavigationbar> {
   static const _screens = [
     RegistrationPage(),
     CostListViewerPage(),
