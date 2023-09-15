@@ -7,6 +7,7 @@ part 'cost_list_viewer_state.freezed.dart';
 @freezed
 class CostListViewerState with _$CostListViewerState {
   const factory CostListViewerState(
-      {@Default(Costs(values: [])) Costs costs,
-      @Default(Saying(value: '', author: '')) Saying saying}) = _CostListViewerState;
+          {@Default(Costs(values: [])) Costs costs,
+          @Default(Saying(value: '', author: '')) Saying saying}) =
+      _CostListViewerState;
 }

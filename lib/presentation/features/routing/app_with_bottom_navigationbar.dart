@@ -9,7 +9,8 @@ class AppWithBottomNavigationbar extends StatefulWidget {
   }
 }
 
-class _AppWithBottomNavigationbarState extends State<AppWithBottomNavigationbar> {
+class _AppWithBottomNavigationbarState
+    extends State<AppWithBottomNavigationbar> {
   static const _screens = [
     RegistrationPage(),
     CostListViewerPage(),
