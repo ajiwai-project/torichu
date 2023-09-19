@@ -42,7 +42,7 @@ class Cost with _$Cost {
       required Amount amount,
       required Point point,
       required Category category,
-      DateTime? registeredAt,
+      required DateTime registeredAt,
       required Tags tags}) {
     return Cost._(
         id: const Uuid().v4(),
@@ -50,7 +50,7 @@ class Cost with _$Cost {
         amount: amount,
         point: point,
         category: category,
-        registeredAt: registeredAt ?? DateTime.now(),
+        registeredAt: registeredAt,
         tags: tags);
   }
 }

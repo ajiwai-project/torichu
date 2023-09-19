@@ -20,7 +20,7 @@ mixin _$RegistartionState {
   int get price => throw _privateConstructorUsedError;
   Point? get point => throw _privateConstructorUsedError;
   Category? get category => throw _privateConstructorUsedError;
-  DateTime? get registeredAt => throw _privateConstructorUsedError;
+  DateTime get registeredAt => throw _privateConstructorUsedError;
   Tags get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $RegistartionStateCopyWith<$Res> {
       int price,
       Point? point,
       Category? category,
-      DateTime? registeredAt,
+      DateTime registeredAt,
       Tags tags});
 
   $TagsCopyWith<$Res> get tags;
@@ -62,7 +62,7 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
-    Object? registeredAt = freezed,
+    Object? registeredAt = null,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
@@ -82,10 +82,10 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      registeredAt: freezed == registeredAt
+      registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
       int price,
       Point? point,
       Category? category,
-      DateTime? registeredAt,
+      DateTime registeredAt,
       Tags tags});
 
   @override
@@ -137,7 +137,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? price = null,
     Object? point = freezed,
     Object? category = freezed,
-    Object? registeredAt = freezed,
+    Object? registeredAt = null,
     Object? tags = null,
   }) {
     return _then(_$_RegistrationState(
@@ -157,10 +157,10 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      registeredAt: freezed == registeredAt
+      registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -177,7 +177,7 @@ class _$_RegistrationState implements _RegistrationState {
       this.price = 0,
       this.point,
       this.category,
-      this.registeredAt,
+      required this.registeredAt,
       required this.tags});
 
   @override
@@ -191,7 +191,7 @@ class _$_RegistrationState implements _RegistrationState {
   @override
   final Category? category;
   @override
-  final DateTime? registeredAt;
+  final DateTime registeredAt;
   @override
   final Tags tags;
 
@@ -233,7 +233,7 @@ abstract class _RegistrationState implements RegistartionState {
       final int price,
       final Point? point,
       final Category? category,
-      final DateTime? registeredAt,
+      required final DateTime registeredAt,
       required final Tags tags}) = _$_RegistrationState;
 
   @override
@@ -245,7 +245,7 @@ abstract class _RegistrationState implements RegistartionState {
   @override
   Category? get category;
   @override
-  DateTime? get registeredAt;
+  DateTime get registeredAt;
   @override
   Tags get tags;
   @override

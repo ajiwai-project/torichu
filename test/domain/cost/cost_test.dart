@@ -73,34 +73,17 @@ void main() {
           amount: dummyAmount,
           point: Point.one,
           category: Category.food,
+          registeredAt: DateTime(2023),
           tags: emptyTags);
       var cost2 = Cost.initial(
           title: dummyTitle,
           amount: dummyAmount,
           point: Point.one,
           category: Category.food,
+          registeredAt: DateTime(2023),
           tags: emptyTags);
 
       expect(cost1.id, isNot(cost2.id));
-    });
-
-    test(
-        'when without registeredAt, should set created at time to created at time',
-        () {
-      var cost1 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          category: Category.food,
-          tags: emptyTags);
-      var cost2 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          category: Category.food,
-          tags: emptyTags);
-
-      expect(cost1.registeredAt.isBefore(cost2.registeredAt), true);
     });
   });
 }

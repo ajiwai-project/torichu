@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
@@ -18,7 +19,7 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
   final CostRepository _costRepository;
 
   RegistrationViewModel(this._costRepository)
-      : super(RegistartionState(tags: Tags.empty()));
+      : super(RegistartionState(registeredAt: clock.now(), tags: Tags.empty()));
 
   Future<void> register() async {
     if (state.point == null || state.category == null) {

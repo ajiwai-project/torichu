@@ -21,7 +21,7 @@ class RegistrationPage extends HookConsumerWidget {
 
     var tagTextController = useTextEditingController();
     final dateTextController = useTextEditingController(
-        text: DateFormat('yyyy/MM/dd').format(clock.now()));
+        text: DateFormat('yyyy/MM/dd').format(state.registeredAt));
 
     var handleEnterTag = useCallback((value) {
       viewModel.addTag(Tag.of(value));
@@ -34,14 +34,14 @@ class RegistrationPage extends HookConsumerWidget {
     final handleSelectRegisteredAt = useCallback(() async {
       final registeredAt = await showDatePicker(
           context: context,
-          initialDate: clock.now(),
+          initialDate: state.registeredAt, 
           firstDate: DateTime.parse(ReleaseDate.stringValue),
           lastDate: clock.now());
       if (registeredAt != null) {
         dateTextController.text = DateFormat('yyyy/MM/dd').format(registeredAt);
         viewModel.setRegisteredAt(registeredAt);
       }
-    }, [viewModel, context, dateTextController]);
+    }, [viewModel, context, dateTextController, state.registeredAt]);
 
     return Scaffold(
         appBar: AppBar(
