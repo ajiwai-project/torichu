@@ -48,6 +48,7 @@ void main() {
       var amount = Amount.of(10);
       var point = Point.two;
       var category = Category.hobbies;
+      final registeredAt = DateTime(2023, 8, 1);
       var tags = my.Tags.of([Tag.of('tag')]);
 
       var cost = Cost.initial(
@@ -55,12 +56,14 @@ void main() {
           amount: amount,
           point: point,
           category: category,
+          registeredAt: registeredAt,
           tags: tags);
 
       expect(cost.title, title);
       expect(cost.amount, amount);
       expect(cost.point, point);
       expect(cost.category, category);
+      expect(cost.registeredAt, registeredAt);
       expect(cost.tags, tags);
     });
 
@@ -70,32 +73,17 @@ void main() {
           amount: dummyAmount,
           point: Point.one,
           category: Category.food,
+          registeredAt: DateTime(2023),
           tags: emptyTags);
       var cost2 = Cost.initial(
           title: dummyTitle,
           amount: dummyAmount,
           point: Point.one,
           category: Category.food,
+          registeredAt: DateTime(2023),
           tags: emptyTags);
 
       expect(cost1.id, isNot(cost2.id));
-    });
-
-    test('should set created at time to created at time', () {
-      var cost1 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          category: Category.food,
-          tags: emptyTags);
-      var cost2 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          category: Category.food,
-          tags: emptyTags);
-
-      expect(cost1.registeredAt.isBefore(cost2.registeredAt), true);
     });
   });
 }
