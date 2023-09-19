@@ -10,7 +10,8 @@ enum Category {
   utility('水道・光熱費', Colors.cyan),
   housing('住宅', Colors.green),
   insurance('保険', Colors.pinkAccent),
-  network('通信費', Colors.purple);
+  network('通信費', Colors.purple),
+  transportation('交通費', Colors.blue);
 
   final String _value;
   final Color _color;
