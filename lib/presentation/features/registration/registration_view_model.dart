@@ -22,7 +22,7 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
 
   Future<void> register() async {
     if (state.point == null || state.category == null) {
-      return;
+      return Future.error('point or category is null');
     }
 
     await _costRepository.save(Cost.initial(

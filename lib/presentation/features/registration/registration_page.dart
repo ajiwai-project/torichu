@@ -24,6 +24,23 @@ class RegistrationPage extends HookConsumerWidget {
     var handleDeleteTag = useCallback((Tag tag) {
       viewModel.removeTag(tag);
     }, [viewModel]);
+    final handleOnRegister = useCallback(() {
+      viewModel.register().then((_) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('登録しました',
+              style:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ));
+      }).catchError((e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('登録できませんでした',
+              style:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ));
+      });
+    }, [viewModel, context]);
 
     return Scaffold(
         body: Padding(
@@ -100,7 +117,7 @@ class RegistrationPage extends HookConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton.icon(
                         key: const Key('register-button'),
-                        onPressed: () => viewModel.register(),
+                        onPressed: handleOnRegister,
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(16),
                           foregroundColor:
