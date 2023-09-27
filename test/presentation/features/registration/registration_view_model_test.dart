@@ -28,6 +28,29 @@ void main() {
       sut.setPrice(1000);
       sut.setCategory(Category.food);
       sut.setPoint(Point.one);
+      sut.setRegisteredAt(DateTime(2023, 8, 1));
+      var tag = Tag.of('tag');
+      sut.addTag(tag);
+
+      await sut.register();
+
+      final expectedCost = CostBuilder()
+          .setTitle('title')
+          .setAmount(1000)
+          .setCategory(Category.food)
+          .setPoint(Point.one)
+          .setRegisteredAt(DateTime(2023, 8, 1))
+          .addTag(tag)
+          .build();
+
+      verify(costRepository.save(argThat(matchingWithoutId(expectedCost))))
+          .called(1);
+    });
+    test('should save cost without registerAt', () async {
+      sut.setTitle('title');
+      sut.setPrice(1000);
+      sut.setCategory(Category.food);
+      sut.setPoint(Point.one);
       var tag = Tag.of('tag');
       sut.addTag(tag);
 
