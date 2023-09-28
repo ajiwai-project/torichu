@@ -3,6 +3,8 @@ import 'package:flutter_template/presentation/features/cost_list_viewer/cost_lis
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 
 class AppWithBottomNavigationbar extends StatefulWidget {
+  const AppWithBottomNavigationbar({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _AppWithBottomNavigationbarState();
@@ -23,7 +25,7 @@ class _AppWithBottomNavigationbarState
     return Scaffold(
       body: _screens.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Registration',
