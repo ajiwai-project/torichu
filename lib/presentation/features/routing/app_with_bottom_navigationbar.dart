@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
+import 'package:flutter_template/presentation/features/routing/bottom_navigation_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AppWithBottomNavigationbar extends StatefulWidget {
+class AppWithBottomNavigationbar extends HookConsumerWidget {
   const AppWithBottomNavigationbar({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return _AppWithBottomNavigationbarState();
-  }
-}
-
-class _AppWithBottomNavigationbarState
-    extends State<AppWithBottomNavigationbar> {
   static const _screens = [
     RegistrationPage(),
     CostListViewerPage(),
   ];
 
-  int _currentIndex = 0;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(bottomNavigationViewModelProvider);
+    final viewModel = ref.watch(bottomNavigationViewModelProvider.notifier);
     return Scaffold(
-      body: _screens.elementAt(_currentIndex),
+      body: _screens.elementAt(state.index),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -35,13 +29,11 @@ class _AppWithBottomNavigationbarState
             label: 'Costs',
           ),
         ],
-        currentIndex: _currentIndex,
+        currentIndex: state.index,
         fixedColor: Theme.of(context).colorScheme.onBackground,
-        onTap: _onItemTapped,
+        onTap: viewModel.changeIndex,
         type: BottomNavigationBarType.fixed,
       ),
     );
   }
-
-  void _onItemTapped(int index) => setState(() => _currentIndex = index);
 }
