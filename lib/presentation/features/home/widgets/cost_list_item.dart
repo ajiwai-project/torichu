@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/tags.dart';
@@ -17,7 +18,9 @@ class CostListItem extends StatelessWidget {
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
-        direction: DismissDirection.startToEnd,
+        direction: Platform.isIOS
+            ? DismissDirection.endToStart
+            : DismissDirection.startToEnd,
         background: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.centerLeft,
