@@ -15,10 +15,11 @@ class CostListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final formattedDate = DateFormat('MMMEd').format(cost.registeredAt);
     final screenWidth = MediaQuery.of(context).size.width;
+    final platform = Theme.of(context).platform;
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
-        direction: Platform.isIOS
+        direction: platform == TargetPlatform.iOS
             ? DismissDirection.endToStart
             : DismissDirection.startToEnd,
         background: Container(
