@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
@@ -56,7 +57,9 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('should save cost when push submit button', (tester) async {
+  testWidgets(
+      'should save cost without registeration date when push submit button',
+      (tester) async {
     final dummyCost = CostBuilder().build();
     await render(tester);
     when(mockCostRepository.getAll())
@@ -70,6 +73,31 @@ void main() {
     verify(mockCostRepository
             .save(argThat(matchingWithoutIdAndRegisteredAt(dummyCost))))
         .called(1);
+  });
+
+  testWidgets(
+      'should save cost with registeration date when push submit button',
+      (tester) async {
+    withClock(Clock.fixed(DateTime(2023, 8, 31)), () async {
+      final dummyCost =
+          CostBuilder().setRegisteredAt(DateTime(2023, 8, 30)).build();
+      await render(tester);
+      when(mockCostRepository.getAll())
+          .thenAnswer((_) async => Costs(values: [dummyCost]));
+      await inputForm(tester, dummyCost);
+      await tester.tap(find.byKey(const Key('registered-at-field')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('30'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('OK'));
+      await tester.pumpAndSettle();
+      final submitButton = find.byKey(const Key('register-button'));
+      await tester.tap(submitButton);
+      await tester.pumpAndSettle();
+
+      verify(mockCostRepository.save(argThat(matchingWithoutId(dummyCost))))
+          .called(1);
+    });
   });
 
   testWidgets(
