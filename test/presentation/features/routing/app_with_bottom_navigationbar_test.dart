@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../cost_list_viewer/cost_list_viewer_page_test.mocks.dart';
+import 'app_with_bottom_navigationbar_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
 void main() {
