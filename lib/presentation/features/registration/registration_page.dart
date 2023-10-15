@@ -1,11 +1,14 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class RegistrationPage extends HookConsumerWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -16,6 +19,8 @@ class RegistrationPage extends HookConsumerWidget {
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
 
     var tagTextController = useTextEditingController();
+    final dateTextController = useTextEditingController(
+        text: DateFormat('yyyy/MM/dd').format(state.registeredAt));
 
     var handleEnterTag = useCallback((value) {
       viewModel.addTag(Tag.of(value));
@@ -24,6 +29,18 @@ class RegistrationPage extends HookConsumerWidget {
     var handleDeleteTag = useCallback((Tag tag) {
       viewModel.removeTag(tag);
     }, [viewModel]);
+
+    final handleSelectRegisteredAt = useCallback(() async {
+      final registeredAt = await showDatePicker(
+          context: context,
+          initialDate: state.registeredAt, 
+          firstDate: DateTime.parse(ReleaseDate.stringValue),
+          lastDate: clock.now());
+      if (registeredAt != null) {
+        dateTextController.text = DateFormat('yyyy/MM/dd').format(registeredAt);
+        viewModel.setRegisteredAt(registeredAt);
+      }
+    }, [viewModel, context, dateTextController, state.registeredAt]);
 
     return Scaffold(
         body: Padding(
@@ -77,6 +94,13 @@ class RegistrationPage extends HookConsumerWidget {
                         viewModel.setCategory(value!),
                     decoration: const InputDecoration(
                         hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
+                  ),
+                  TextField(
+                    key: const Key('registered-at-field'),
+                    controller: dateTextController,
+                    decoration: const InputDecoration(
+                        hintText: '日付を入力', labelText: '日付'),
+                    onTap: handleSelectRegisteredAt,
                   ),
                   TextField(
                       key: const Key('tags-field'),

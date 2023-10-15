@@ -6,7 +6,7 @@ final bottomNavigationViewModelProvider =
         (ref) => BottomNavigationViewModel());
 
 class BottomNavigationViewModel extends StateNotifier<BottomNavigationState> {
-  BottomNavigationViewModel() : super(BottomNavigationState());
+  BottomNavigationViewModel() : super(const BottomNavigationState());
 
   void changeIndex(int index) {
     state = state.copyWith(index: index);

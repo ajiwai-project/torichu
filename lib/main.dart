@@ -27,5 +27,5 @@ void main() async {
                   bodyLarge: TextStyle(color: darkColorScheme.onBackground),
                   bodyMedium: TextStyle(color: darkColorScheme.onBackground),
                   bodySmall: TextStyle(color: darkColorScheme.onBackground))),
-          home: AppWithBottomNavigationbar())));
+          home: const AppWithBottomNavigationbar())));
 }
