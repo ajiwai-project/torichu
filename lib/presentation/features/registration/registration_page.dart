@@ -6,7 +6,6 @@ import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/presentation/features/home/home_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -44,11 +43,6 @@ class RegistrationPage extends HookConsumerWidget {
     }, [viewModel, context, dateTextController, state.registeredAt]);
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading:
-              BackButton(color: Theme.of(context).colorScheme.onBackground),
-        ),
         body: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -130,9 +124,7 @@ class RegistrationPage extends HookConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton.icon(
                         key: const Key('register-button'),
-                        onPressed: () => viewModel
-                            .register()
-                            .then((_) => _navigateToHome(context)),
+                        onPressed: () => viewModel.register(),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(16),
                           foregroundColor:
@@ -142,11 +134,5 @@ class RegistrationPage extends HookConsumerWidget {
                         label: const Text('Add to list')))
               ],
             )));
-  }
-
-  _navigateToHome(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const HomePage();
-    }));
   }
 }

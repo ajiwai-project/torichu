@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/tags.dart';
-import 'package:flutter_template/presentation/features/home/widgets/category_icon.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/category_icon.dart';
 import 'package:intl/intl.dart';
 
 class CostListItem extends StatelessWidget {
@@ -14,10 +14,13 @@ class CostListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final formattedDate = DateFormat('MMMEd').format(cost.registeredAt);
     final screenWidth = MediaQuery.of(context).size.width;
+    final platform = Theme.of(context).platform;
     return Dismissible(
         key: UniqueKey(),
         onDismissed: onDismissed,
-        direction: DismissDirection.startToEnd,
+        direction: platform == TargetPlatform.iOS
+            ? DismissDirection.endToStart
+            : DismissDirection.startToEnd,
         background: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.centerLeft,
