@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/presentation/features/home/widgets/summary.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/summary.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../domain/cost/model_support.dart';
