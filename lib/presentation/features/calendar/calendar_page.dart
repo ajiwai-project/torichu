@@ -1,7 +1,8 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_view_model.dart';
-import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -25,17 +26,7 @@ class CalendarPage extends HookConsumerWidget {
             error: (e, msg) => const Text('Error'),
             loading: () => const SafeArea(
                 child: Center(
-                    child: CircularProgressIndicator(color: Colors.red)))),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RegistrationPage()))
-                .then((value) => viewModel.load());
-          },
-        ));
+                    child: CircularProgressIndicator(color: Colors.red)))));
   }
 }
 
@@ -46,13 +37,13 @@ class CalendarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dateFormat = DateFormat('yyyyMMdd');
     return Center(
         child: TableCalendar(
-            firstDay: DateTime(2023, 1, 1),
-            lastDay: DateTime(2023, 12, 31),
-            focusedDay: DateTime.now(),
+            firstDay: DateTime.parse(ReleaseDate.stringValue),
+            lastDay: clock.now(),
+            focusedDay: clock.now(),
             daysOfWeekHeight: 32,
-            locale: 'ja_JP',
             calendarBuilders:
                 CalendarBuilders(defaultBuilder: (context, day, focusedDay) {
               final text = day.day.toString();
@@ -65,6 +56,7 @@ class CalendarWidget extends StatelessWidget {
             }, markerBuilder: (context, day, events) {
               final point = pointByDateTime[day];
               return Container(
+                  key: Key('${dateFormat.format(day)}-point'),
                   alignment: Alignment.center,
                   child: Text(point?.toString() ?? '',
                       style: const TextStyle(fontSize: 20)));

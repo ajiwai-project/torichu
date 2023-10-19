@@ -44,6 +44,22 @@ extension CostsExtention on Costs {
     return pointMap;
   }
 
+  Map<DateTime, int> get pointGroupByDate {
+    Map<DateTime, int> pointByDateTime = {};
+
+    groupBy<Cost, DateTime>(
+        values,
+        (value) => DateTime.utc(
+            value.registeredAt.year,
+            value.registeredAt.month,
+            value.registeredAt.day)).entries.forEach((entry) {
+      pointByDateTime[entry.key] =
+          entry.value.map((e) => e.point.value).fold(0, (a, b) => a + b);
+    });
+
+    return pointByDateTime;
+  }
+
   Cost get(int index) => values[index];
 
   Costs sortByRegisteredAt({bool desc = true}) {
