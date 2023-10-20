@@ -37,6 +37,9 @@ class CalendarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: costを下側に表示する
+    // TODO: 日付をタップでcostの表示を切り替えられる
+
     final dateFormat = DateFormat('yyyyMMdd');
     return Center(
         child: TableCalendar(
@@ -44,26 +47,40 @@ class CalendarWidget extends StatelessWidget {
             lastDay: clock.now(),
             focusedDay: clock.now(),
             daysOfWeekHeight: 32,
-            calendarBuilders:
-                CalendarBuilders(defaultBuilder: (context, day, focusedDay) {
-              final text = day.day.toString();
-              return Container(
-                  padding: const EdgeInsets.all(2),
-                  alignment: Alignment.topLeft,
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: Colors.white12)),
-                  child: Text(text));
-            }, markerBuilder: (context, day, events) {
-              final point = pointByDateTime[day];
-              return Container(
-                  key: Key('${dateFormat.format(day)}-point'),
-                  alignment: Alignment.center,
-                  child: Text(point?.toString() ?? '',
-                      style: const TextStyle(fontSize: 20)));
-            }, dowBuilder: (context, day) {
-              final daysOfWeek = DateFormat.E().format(day);
-              return Container(
-                  alignment: Alignment.center, child: Text(daysOfWeek));
-            })));
+            calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, day, focusedDay) => DayWidget(day),
+                todayBuilder: (context, day, focusedDay) => DayWidget(day),
+                outsideBuilder: (context, day, focusedDay) => DayWidget(day),
+                disabledBuilder: (context, day, focusedDay) => DayWidget(day),
+                markerBuilder: (context, day, events) {
+                  final point = pointByDateTime[day];
+                  return Container(
+                      key: Key('${dateFormat.format(day)}-point'),
+                      alignment: Alignment.center,
+                      child: Text(point?.toString() ?? '',
+                          style: const TextStyle(fontSize: 20)));
+                },
+                dowBuilder: (context, day) {
+                  final daysOfWeek = DateFormat.E().format(day);
+                  return Container(
+                      alignment: Alignment.center, child: Text(daysOfWeek));
+                })));
+  }
+}
+
+class DayWidget extends StatelessWidget {
+  final DateTime day;
+
+  const DayWidget(this.day, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final text = day.day.toString();
+    return Container(
+        padding: const EdgeInsets.all(2),
+        alignment: Alignment.topLeft,
+        decoration: BoxDecoration(
+            border: Border.all(width: 0.5, color: Colors.white12)),
+        child: Text(text));
   }
 }
