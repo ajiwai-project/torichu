@@ -58,4 +58,17 @@ void main() {
       });
     });
   });
+
+  group('SetFocusedDay', () {
+    test('should set focused day to specified day', () async {
+      var specifiedDay = DateTime(2023, 10, 23);
+      when(mockCostRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: []));
+
+      await sut.load();
+      sut.setFocusedDay(specifiedDay);
+
+      expect(sut.debugState.value!.focusedDay, specifiedDay);
+    });
+  });
 }

@@ -24,8 +24,8 @@ class CalendarPage extends HookConsumerWidget {
 
     return Scaffold(
         body: state.when(
-            data: (data) => CalendarWidget(
-                data.costsByDateTime, data.focusedDay, viewModel.remove),
+            data: (data) => CalendarWidget(data.costsByDateTime,
+                data.focusedDay, viewModel.remove, viewModel.setFocusedDay),
             error: (e, msg) => const Text('Error'),
             loading: () => const SafeArea(
                 child: Center(
@@ -37,14 +37,14 @@ class CalendarWidget extends StatelessWidget {
   final Map<DateTime, Costs> costsByDateTime;
   final DateTime focusedDay;
   final Function onListItemDismissed;
+  final Function onDaySelected;
 
-  const CalendarWidget(
-      this.costsByDateTime, this.focusedDay, this.onListItemDismissed,
+  const CalendarWidget(this.costsByDateTime, this.focusedDay,
+      this.onListItemDismissed, this.onDaySelected,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 日付をタップでcostの表示を切り替えられる
     // TODO: 選択されている日付がわかること
     // TODO: 今日がわかること
 
@@ -55,7 +55,7 @@ class CalendarWidget extends StatelessWidget {
         TableCalendar(
             firstDay: DateTime.parse(ReleaseDate.stringValue),
             lastDay: clock.now(),
-            focusedDay: clock.now(),
+            focusedDay: focusedDay,
             daysOfWeekHeight: 32,
             calendarBuilders: CalendarBuilders(
                 defaultBuilder: (context, day, focusedDay) => DayWidget(day),
@@ -74,7 +74,10 @@ class CalendarWidget extends StatelessWidget {
                   final daysOfWeek = DateFormat.E().format(day);
                   return Container(
                       alignment: Alignment.center, child: Text(daysOfWeek));
-                })),
+                }),
+            onDaySelected: (selectedDay, focusedDay) {
+              onDaySelected(selectedDay);
+            }),
         Expanded(
             child: CostList(
                 costsByDateTime[focusedDay]?.values ?? [], onListItemDismissed))

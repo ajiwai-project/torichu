@@ -34,4 +34,8 @@ class CalendarViewModel extends StateNotifier<AsyncValue<CalendarState>> {
       state = AsyncValue.error(err, stack);
     }
   }
+
+  void setFocusedDay(DateTime focusedDay) {
+    state = state.whenData((value) => value.copyWith(focusedDay: focusedDay));
+  }
 }
