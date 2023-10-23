@@ -75,9 +75,7 @@ class CalendarWidget extends StatelessWidget {
                   return Container(
                       alignment: Alignment.center, child: Text(daysOfWeek));
                 }),
-            onDaySelected: (selectedDay, focusedDay) {
-              onDaySelected(selectedDay);
-            }),
+            onDaySelected: (selectedDay, focusedDay) => onDaySelected(selectedDay)),
         Expanded(
             child: CostList(
                 costsByDateTime[focusedDay]?.values ?? [], onListItemDismissed))
