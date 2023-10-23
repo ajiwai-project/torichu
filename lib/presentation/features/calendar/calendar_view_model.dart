@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
@@ -16,8 +17,19 @@ class CalendarViewModel extends StateNotifier<AsyncValue<CalendarState>> {
   Future<void> load() async {
     try {
       final costs = await _costRepository.getAll();
-      state = AsyncValue.data(
-          CalendarState(pointByDateTime: costs.pointGroupByDate));
+      final now = clock.now();
+      state = AsyncValue.data(CalendarState(
+          costsByDateTime: costs.costsGroupByDate,
+          focusedDay: DateTime.utc(now.year, now.month, now.day)));
+    } on Exception catch (err, stack) {
+      state = AsyncValue.error(err, stack);
+    }
+  }
+
+  Future<void> remove(String id) async {
+    try {
+      await _costRepository.remove(id);
+      await load();
     } on Exception catch (err, stack) {
       state = AsyncValue.error(err, stack);
     }
