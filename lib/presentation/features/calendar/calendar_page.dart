@@ -2,7 +2,9 @@ import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants.dart';
+import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_view_model.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -22,7 +24,8 @@ class CalendarPage extends HookConsumerWidget {
 
     return Scaffold(
         body: state.when(
-            data: (data) => CalendarWidget(data.pointByDateTime),
+            data: (data) => CalendarWidget(
+                data.costsByDateTime, data.focusedDay, viewModel.remove),
             error: (e, msg) => const Text('Error'),
             loading: () => const SafeArea(
                 child: Center(
@@ -31,18 +34,25 @@ class CalendarPage extends HookConsumerWidget {
 }
 
 class CalendarWidget extends StatelessWidget {
-  final Map<DateTime, int> pointByDateTime;
+  final Map<DateTime, Costs> costsByDateTime;
+  final DateTime focusedDay;
+  final Function onListItemDismissed;
 
-  const CalendarWidget(this.pointByDateTime, {super.key});
+  const CalendarWidget(
+      this.costsByDateTime, this.focusedDay, this.onListItemDismissed,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: costを下側に表示する
     // TODO: 日付をタップでcostの表示を切り替えられる
+    // TODO: 選択されている日付がわかること
+    // TODO: 今日がわかること
 
     final dateFormat = DateFormat('yyyyMMdd');
     return Center(
-        child: TableCalendar(
+        child: Column(
+      children: [
+        TableCalendar(
             firstDay: DateTime.parse(ReleaseDate.stringValue),
             lastDay: clock.now(),
             focusedDay: clock.now(),
@@ -53,18 +63,23 @@ class CalendarWidget extends StatelessWidget {
                 outsideBuilder: (context, day, focusedDay) => DayWidget(day),
                 disabledBuilder: (context, day, focusedDay) => DayWidget(day),
                 markerBuilder: (context, day, events) {
-                  final point = pointByDateTime[day];
+                  final costs = costsByDateTime[day];
                   return Container(
                       key: Key('${dateFormat.format(day)}-point'),
                       alignment: Alignment.center,
-                      child: Text(point?.toString() ?? '',
+                      child: Text(costs?.sumOfPoint.toString() ?? '',
                           style: const TextStyle(fontSize: 20)));
                 },
                 dowBuilder: (context, day) {
                   final daysOfWeek = DateFormat.E().format(day);
                   return Container(
                       alignment: Alignment.center, child: Text(daysOfWeek));
-                })));
+                })),
+        Expanded(
+            child: CostList(
+                costsByDateTime[focusedDay]?.values ?? [], onListItemDismissed))
+      ],
+    ));
   }
 }
 

@@ -1,10 +1,12 @@
 import 'package:clock/clock.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
+import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -84,5 +86,77 @@ void main() {
         });
       });
     }
+  });
+
+  testWidgets(
+      'Costs of today should be shown on the bottom of calendar at first',
+      (tester) async {
+    final today = DateTime(2023, 10, 10);
+    withClock(Clock.fixed(today), () async {
+      final cost1 = CostBuilder()
+          .setPoint(Point.one)
+          .setTitle('title 1')
+          .setRegisteredAt(today)
+          .build();
+      final cost2 = CostBuilder()
+          .setPoint(Point.one)
+          .setTitle('title 2')
+          .setRegisteredAt(today)
+          .build();
+      when(mockCostRepository.getAll())
+          .thenAnswer((_) async => Costs(values: [cost1, cost2]));
+
+      await render(tester);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CostListItem), findsNWidgets(2));
+    });
+  });
+
+  testWidgets('支出を左から右方向にスワイプすると支出が削除されること android', (tester) async {
+    final today = DateTime(2023, 10, 10);
+    withClock(Clock.fixed(today), () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+
+      final cost = CostBuilder().setId('cost').setRegisteredAt(today).build();
+      var callCount = 0;
+      when(mockCostRepository.getAll()).thenAnswer((_) async => [
+            Costs(values: [cost]),
+            const Costs(values: [])
+          ][callCount++]);
+      await render(tester);
+      await tester.pumpAndSettle();
+
+      await tester.drag(find.byType(Dismissible), const Offset(500, 0));
+      await tester.pumpAndSettle();
+
+      verify(mockCostRepository.remove('cost')).called(1);
+      expect(find.byType(CostListItem), findsNothing);
+      debugDefaultTargetPlatformOverride = null;
+    });
+  });
+
+  testWidgets('支出を右から左方向へスワイプすると支出が削除されること ios', (tester) async {
+    final today = DateTime(2023, 10, 10);
+
+    withClock(Clock.fixed(today), () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
+      final cost = CostBuilder().setId('cost').setRegisteredAt(today).build();
+      var callCount = 0;
+      when(mockCostRepository.getAll()).thenAnswer((_) async => [
+            Costs(values: [cost]),
+            const Costs(values: [])
+          ][callCount++]);
+      await render(tester);
+      await tester.pumpAndSettle();
+
+      await tester.drag(find.byType(Dismissible), const Offset(-500, 0));
+      await tester.pumpAndSettle();
+
+      verify(mockCostRepository.remove('cost')).called(1);
+      expect(find.byType(CostListItem), findsNothing);
+      debugDefaultTargetPlatformOverride = null;
+    });
   });
 }
