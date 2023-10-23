@@ -1,6 +1,4 @@
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'model_support.dart';
