@@ -1,4 +1,3 @@
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
