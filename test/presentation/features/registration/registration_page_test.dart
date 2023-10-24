@@ -41,13 +41,6 @@ void main() {
     final pointItem = find.text(cost.point.value.toString());
     await tester.tap(pointItem);
     await tester.pumpAndSettle();
-
-    final categoryField = find.byKey(const Key('category-field'));
-    await tester.tap(categoryField);
-    await tester.pumpAndSettle();
-    final categoryItem = find.text(cost.category.value.toString());
-    await tester.tap(categoryItem);
-    await tester.pumpAndSettle();
   }
 
   addTag(WidgetTester tester, String label) async {

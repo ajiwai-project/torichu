@@ -26,7 +26,6 @@ void main() {
     test('should save cost', () async {
       sut.setTitle('title');
       sut.setPrice(1000);
-      sut.setCategory(Category.food);
       sut.setPoint(Point.one);
       sut.setRegisteredAt(DateTime(2023, 8, 1));
       var tag = Tag.of('tag');
@@ -37,7 +36,6 @@ void main() {
       final expectedCost = CostBuilder()
           .setTitle('title')
           .setAmount(1000)
-          .setCategory(Category.food)
           .setPoint(Point.one)
           .setRegisteredAt(DateTime(2023, 8, 1))
           .addTag(tag)
@@ -49,7 +47,6 @@ void main() {
     test('should save cost without registerAt', () async {
       sut.setTitle('title');
       sut.setPrice(1000);
-      sut.setCategory(Category.food);
       sut.setPoint(Point.one);
       var tag = Tag.of('tag');
       sut.addTag(tag);
@@ -59,7 +56,6 @@ void main() {
       final expectedCost = CostBuilder()
           .setTitle('title')
           .setAmount(1000)
-          .setCategory(Category.food)
           .setPoint(Point.one)
           .addTag(tag)
           .build();

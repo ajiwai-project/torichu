@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants.dart';
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
@@ -77,23 +76,6 @@ class RegistrationPage extends HookConsumerWidget {
                     onChanged: (Point? value) => viewModel.setPoint(value!),
                     decoration: const InputDecoration(
                         hintText: 'ポイントを入力', labelText: 'ポイント'),
-                  ),
-                  DropdownButtonFormField<Category>(
-                    key: const Key('category-field'),
-                    value: state.category,
-                    items: Category.values.map((value) {
-                      return DropdownMenuItem<Category>(
-                          value: value,
-                          child: Text(value.value,
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground)));
-                    }).toList(),
-                    onChanged: (Category? value) =>
-                        viewModel.setCategory(value!),
-                    decoration: const InputDecoration(
-                        hintText: 'カテゴリを入力', labelText: 'カテゴリ'),
                   ),
                   TextField(
                     key: const Key('registered-at-field'),

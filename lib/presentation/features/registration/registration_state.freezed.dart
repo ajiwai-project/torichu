@@ -19,7 +19,6 @@ mixin _$RegistartionState {
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   Point? get point => throw _privateConstructorUsedError;
-  Category? get category => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
   Tags get tags => throw _privateConstructorUsedError;
 
@@ -38,7 +37,6 @@ abstract class $RegistartionStateCopyWith<$Res> {
       {String title,
       int price,
       Point? point,
-      Category? category,
       DateTime registeredAt,
       Tags tags});
 
@@ -61,7 +59,6 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
     Object? title = null,
     Object? price = null,
     Object? point = freezed,
-    Object? category = freezed,
     Object? registeredAt = null,
     Object? tags = null,
   }) {
@@ -78,10 +75,6 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
@@ -114,7 +107,6 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
       {String title,
       int price,
       Point? point,
-      Category? category,
       DateTime registeredAt,
       Tags tags});
 
@@ -136,7 +128,6 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? title = null,
     Object? price = null,
     Object? point = freezed,
-    Object? category = freezed,
     Object? registeredAt = null,
     Object? tags = null,
   }) {
@@ -153,10 +144,6 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
@@ -176,7 +163,6 @@ class _$_RegistrationState implements _RegistrationState {
       {this.title = '',
       this.price = 0,
       this.point,
-      this.category,
       required this.registeredAt,
       required this.tags});
 
@@ -189,15 +175,13 @@ class _$_RegistrationState implements _RegistrationState {
   @override
   final Point? point;
   @override
-  final Category? category;
-  @override
   final DateTime registeredAt;
   @override
   final Tags tags;
 
   @override
   String toString() {
-    return 'RegistartionState(title: $title, price: $price, point: $point, category: $category, registeredAt: $registeredAt, tags: $tags)';
+    return 'RegistartionState(title: $title, price: $price, point: $point, registeredAt: $registeredAt, tags: $tags)';
   }
 
   @override
@@ -208,16 +192,14 @@ class _$_RegistrationState implements _RegistrationState {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.point, point) || other.point == point) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
             (identical(other.registeredAt, registeredAt) ||
                 other.registeredAt == registeredAt) &&
             (identical(other.tags, tags) || other.tags == tags));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, title, price, point, category, registeredAt, tags);
+  int get hashCode =>
+      Object.hash(runtimeType, title, price, point, registeredAt, tags);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +214,6 @@ abstract class _RegistrationState implements RegistartionState {
       {final String title,
       final int price,
       final Point? point,
-      final Category? category,
       required final DateTime registeredAt,
       required final Tags tags}) = _$_RegistrationState;
 
@@ -242,8 +223,6 @@ abstract class _RegistrationState implements RegistartionState {
   int get price;
   @override
   Point? get point;
-  @override
-  Category? get category;
   @override
   DateTime get registeredAt;
   @override
