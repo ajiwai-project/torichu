@@ -1,5 +1,4 @@
 import 'package:flutter_template/domain/cost/amount.dart';
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
@@ -27,7 +26,6 @@ class CostDBRepository implements CostRepository {
         title: cost.title.value,
         amount: cost.amount.value,
         point: cost.point.value,
-        category: cost.category.value,
         registeredAt: cost.registeredAt.toIso8601String(),
         tags: cost.tags.value.map((e) => TagDaoModel.of(e.value)).toList());
     await costBox.put(costEntity.id, costEntity);
@@ -41,7 +39,6 @@ class CostDBRepository implements CostRepository {
             title: Title.of(cost.title),
             amount: Amount.of(cost.amount),
             point: Point.of(cost.point),
-            category: Category.of(cost.category),
             registeredAt: DateTime.parse(cost.registeredAt),
             tags: Tags.of(cost.tags.map((e) => Tag.of(e.value)).toList())))
         .toList();
