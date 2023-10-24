@@ -17,7 +17,6 @@ void main() {
       var title = Title.of('title');
       var amount = Amount.of(10);
       var point = Point.one;
-      var category = Category.food;
       var registeredAt = DateTime(2023);
       var tags = my.Tags.of([Tag.of('tag')]);
 
@@ -26,7 +25,6 @@ void main() {
           title: title,
           amount: amount,
           point: point,
-          category: category,
           registeredAt: registeredAt,
           tags: tags);
 
@@ -34,7 +32,6 @@ void main() {
       expect(cost.title, title);
       expect(cost.amount, amount);
       expect(cost.point, point);
-      expect(cost.category, category);
       expect(cost.registeredAt, registeredAt);
       expect(cost.tags, tags);
     });
@@ -47,7 +44,6 @@ void main() {
       var title = Title.of('title');
       var amount = Amount.of(10);
       var point = Point.two;
-      var category = Category.hobbies;
       final registeredAt = DateTime(2023, 8, 1);
       var tags = my.Tags.of([Tag.of('tag')]);
 
@@ -55,14 +51,12 @@ void main() {
           title: title,
           amount: amount,
           point: point,
-          category: category,
           registeredAt: registeredAt,
           tags: tags);
 
       expect(cost.title, title);
       expect(cost.amount, amount);
       expect(cost.point, point);
-      expect(cost.category, category);
       expect(cost.registeredAt, registeredAt);
       expect(cost.tags, tags);
     });
@@ -72,14 +66,12 @@ void main() {
           title: dummyTitle,
           amount: dummyAmount,
           point: Point.one,
-          category: Category.food,
           registeredAt: DateTime(2023),
           tags: emptyTags);
       var cost2 = Cost.initial(
           title: dummyTitle,
           amount: dummyAmount,
           point: Point.one,
-          category: Category.food,
           registeredAt: DateTime(2023),
           tags: emptyTags);
 

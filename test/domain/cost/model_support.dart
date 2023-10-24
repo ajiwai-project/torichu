@@ -11,7 +11,6 @@ class CostBuilder {
   String title = 'dummy';
   int amount = 0;
   Point point = Point.one;
-  Category category = Category.food;
   DateTime registeredAt = DateTime(1900);
   Tags tags = Tags.of([]);
 
@@ -35,11 +34,6 @@ class CostBuilder {
     return this;
   }
 
-  CostBuilder setCategory(Category category) {
-    this.category = category;
-    return this;
-  }
-
   CostBuilder setRegisteredAt(DateTime registeredAt) {
     this.registeredAt = registeredAt;
     return this;
@@ -56,7 +50,6 @@ class CostBuilder {
         title: Title.of(title),
         amount: Amount.of(amount),
         point: point,
-        category: category,
         registeredAt: registeredAt,
         tags: tags);
   }

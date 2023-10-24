@@ -1,5 +1,4 @@
 import 'package:flutter_template/domain/cost/amount.dart';
-import 'package:flutter_template/domain/cost/category.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/domain/cost/tags.dart';
@@ -15,7 +14,6 @@ class Cost with _$Cost {
       required Title title,
       required Amount amount,
       required Point point,
-      required Category category,
       required DateTime registeredAt,
       required Tags tags}) = _Cost;
 
@@ -24,7 +22,6 @@ class Cost with _$Cost {
       required Title title,
       required Amount amount,
       required Point point,
-      required Category category,
       required DateTime registeredAt,
       required Tags tags}) {
     return Cost._(
@@ -32,7 +29,6 @@ class Cost with _$Cost {
         title: title,
         amount: amount,
         point: point,
-        category: category,
         registeredAt: registeredAt,
         tags: tags);
   }
@@ -41,7 +37,6 @@ class Cost with _$Cost {
       {required Title title,
       required Amount amount,
       required Point point,
-      required Category category,
       required DateTime registeredAt,
       required Tags tags}) {
     return Cost._(
@@ -49,7 +44,6 @@ class Cost with _$Cost {
         title: title,
         amount: amount,
         point: point,
-        category: category,
         registeredAt: registeredAt,
         tags: tags);
   }

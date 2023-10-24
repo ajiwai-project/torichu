@@ -20,7 +20,6 @@ mixin _$Cost {
   Title get title => throw _privateConstructorUsedError;
   Amount get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
-  Category get category => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
   Tags get tags => throw _privateConstructorUsedError;
 
@@ -38,7 +37,6 @@ abstract class $CostCopyWith<$Res> {
       Title title,
       Amount amount,
       Point point,
-      Category category,
       DateTime registeredAt,
       Tags tags});
 
@@ -64,7 +62,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
     Object? title = null,
     Object? amount = null,
     Object? point = null,
-    Object? category = null,
     Object? registeredAt = null,
     Object? tags = null,
   }) {
@@ -85,10 +82,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
@@ -136,7 +129,6 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
       Title title,
       Amount amount,
       Point point,
-      Category category,
       DateTime registeredAt,
       Tags tags});
 
@@ -161,7 +153,6 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? title = null,
     Object? amount = null,
     Object? point = null,
-    Object? category = null,
     Object? registeredAt = null,
     Object? tags = null,
   }) {
@@ -182,10 +173,6 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
@@ -206,7 +193,6 @@ class _$_Cost implements _Cost {
       required this.title,
       required this.amount,
       required this.point,
-      required this.category,
       required this.registeredAt,
       required this.tags});
 
@@ -219,15 +205,13 @@ class _$_Cost implements _Cost {
   @override
   final Point point;
   @override
-  final Category category;
-  @override
   final DateTime registeredAt;
   @override
   final Tags tags;
 
   @override
   String toString() {
-    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt, tags: $tags)';
+    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, registeredAt: $registeredAt, tags: $tags)';
   }
 
   @override
@@ -239,16 +223,14 @@ class _$_Cost implements _Cost {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.point, point) || other.point == point) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
             (identical(other.registeredAt, registeredAt) ||
                 other.registeredAt == registeredAt) &&
             (identical(other.tags, tags) || other.tags == tags));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, amount, point, category, registeredAt, tags);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, amount, point, registeredAt, tags);
 
   @JsonKey(ignore: true)
   @override
@@ -263,7 +245,6 @@ abstract class _Cost implements Cost {
       required final Title title,
       required final Amount amount,
       required final Point point,
-      required final Category category,
       required final DateTime registeredAt,
       required final Tags tags}) = _$_Cost;
 
@@ -275,8 +256,6 @@ abstract class _Cost implements Cost {
   Amount get amount;
   @override
   Point get point;
-  @override
-  Category get category;
   @override
   DateTime get registeredAt;
   @override
