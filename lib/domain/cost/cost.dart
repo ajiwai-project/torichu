@@ -2,6 +2,7 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:clock/clock.dart';
 import 'package:uuid/uuid.dart';
 
 part 'cost.freezed.dart';
@@ -32,18 +33,17 @@ class Cost with _$Cost {
     );
   }
 
-  factory Cost.initial({
-    required Title title,
-    required Amount amount,
-    required Point point,
-    required DateTime registeredAt,
-  }) {
+  factory Cost.initial(
+      {required Title title,
+      required Amount amount,
+      required Point point,
+      DateTime? registeredAt}) {
     return Cost._(
       id: const Uuid().v4(),
       title: title,
       amount: amount,
       point: point,
-      registeredAt: registeredAt,
+      registeredAt: registeredAt ?? clock.now(),
     );
   }
 }

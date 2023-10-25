@@ -19,7 +19,6 @@ mixin _$RegistartionState {
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   Point? get point => throw _privateConstructorUsedError;
-  DateTime get registeredAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegistartionStateCopyWith<RegistartionState> get copyWith =>
@@ -32,7 +31,7 @@ abstract class $RegistartionStateCopyWith<$Res> {
           RegistartionState value, $Res Function(RegistartionState) then) =
       _$RegistartionStateCopyWithImpl<$Res, RegistartionState>;
   @useResult
-  $Res call({String title, int price, Point? point, DateTime registeredAt});
+  $Res call({String title, int price, Point? point});
 }
 
 /// @nodoc
@@ -51,7 +50,6 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
     Object? title = null,
     Object? price = null,
     Object? point = freezed,
-    Object? registeredAt = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -66,10 +64,6 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point?,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ) as $Val);
   }
 }
@@ -82,7 +76,7 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
       __$$_RegistrationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, int price, Point? point, DateTime registeredAt});
+  $Res call({String title, int price, Point? point});
 }
 
 /// @nodoc
@@ -99,7 +93,6 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? title = null,
     Object? price = null,
     Object? point = freezed,
-    Object? registeredAt = null,
   }) {
     return _then(_$_RegistrationState(
       title: null == title
@@ -114,10 +107,6 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point?,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
@@ -125,11 +114,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegistrationState implements _RegistrationState {
-  const _$_RegistrationState(
-      {this.title = '',
-      this.price = 0,
-      this.point,
-      required this.registeredAt});
+  const _$_RegistrationState({this.title = '', this.price = 0, this.point});
 
   @override
   @JsonKey()
@@ -139,12 +124,10 @@ class _$_RegistrationState implements _RegistrationState {
   final int price;
   @override
   final Point? point;
-  @override
-  final DateTime registeredAt;
 
   @override
   String toString() {
-    return 'RegistartionState(title: $title, price: $price, point: $point, registeredAt: $registeredAt)';
+    return 'RegistartionState(title: $title, price: $price, point: $point)';
   }
 
   @override
@@ -154,14 +137,11 @@ class _$_RegistrationState implements _RegistrationState {
             other is _$_RegistrationState &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.point, point) || other.point == point) &&
-            (identical(other.registeredAt, registeredAt) ||
-                other.registeredAt == registeredAt));
+            (identical(other.point, point) || other.point == point));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, price, point, registeredAt);
+  int get hashCode => Object.hash(runtimeType, title, price, point);
 
   @JsonKey(ignore: true)
   @override
@@ -175,8 +155,7 @@ abstract class _RegistrationState implements RegistartionState {
   const factory _RegistrationState(
       {final String title,
       final int price,
-      final Point? point,
-      required final DateTime registeredAt}) = _$_RegistrationState;
+      final Point? point}) = _$_RegistrationState;
 
   @override
   String get title;
@@ -184,8 +163,6 @@ abstract class _RegistrationState implements RegistartionState {
   int get price;
   @override
   Point? get point;
-  @override
-  DateTime get registeredAt;
   @override
   @JsonKey(ignore: true)
   _$$_RegistrationStateCopyWith<_$_RegistrationState> get copyWith =>

@@ -9,6 +9,5 @@ class RegistartionState with _$RegistartionState {
     @Default('') String title,
     @Default(0) int price,
     Point? point,
-    required DateTime registeredAt,
   }) = _RegistrationState;
 }

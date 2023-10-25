@@ -3,6 +3,7 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:clock/clock.dart';
 
 void main() {
   final dummyTitle = Title.of('dummy');
@@ -67,6 +68,17 @@ void main() {
       );
 
       expect(cost1.id, isNot(cost2.id));
+    });
+    test('should generate a cost at now', () {
+      withClock(Clock.fixed(DateTime(2023, 8, 1)), () {
+        final cost = Cost.initial(
+          title: dummyTitle,
+          amount: dummyAmount,
+          point: Point.one,
+        );
+
+        expect(cost.registeredAt, DateTime(2023, 8, 1));
+      });
     });
   });
 }
