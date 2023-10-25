@@ -1,8 +1,6 @@
 import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 
 class CostBuilder {
