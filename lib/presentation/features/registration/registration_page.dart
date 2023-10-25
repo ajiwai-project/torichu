@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tag.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -17,17 +16,8 @@ class RegistrationPage extends HookConsumerWidget {
     final state = ref.watch(registrationViewModelProvider);
     final viewModel = ref.watch(registrationViewModelProvider.notifier);
 
-    var tagTextController = useTextEditingController();
     final dateTextController = useTextEditingController(
         text: DateFormat('yyyy/MM/dd').format(state.registeredAt));
-
-    var handleEnterTag = useCallback((value) {
-      viewModel.addTag(Tag.of(value));
-      tagTextController.clear();
-    }, [viewModel, tagTextController]);
-    var handleDeleteTag = useCallback((Tag tag) {
-      viewModel.removeTag(tag);
-    }, [viewModel]);
 
     final handleSelectRegisteredAt = useCallback(() async {
       final registeredAt = await showDatePicker(
@@ -84,23 +74,6 @@ class RegistrationPage extends HookConsumerWidget {
                         hintText: '日付を入力', labelText: '日付'),
                     onTap: handleSelectRegisteredAt,
                   ),
-                  TextField(
-                      key: const Key('tags-field'),
-                      controller: tagTextController,
-                      decoration: const InputDecoration(
-                          hintText: 'タグを入力', labelText: 'タグ'),
-                      onSubmitted: handleEnterTag),
-                  Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      width: double.infinity,
-                      child: Wrap(
-                        spacing: 4.0,
-                        children: state.tags.value
-                            .map((e) => Chip(
-                                label: Text(e.value),
-                                onDeleted: () => handleDeleteTag(e)))
-                            .toList(),
-                      ))
                 ]),
                 SizedBox(
                     width: double.infinity,
