@@ -1,5 +1,6 @@
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+part 'cost_dao_model.g.dart';
 
 @HiveType(typeId: 0)
 class CostDaoModel extends HiveObject {
@@ -18,16 +19,13 @@ class CostDaoModel extends HiveObject {
   @HiveField(5)
   String registeredAt;
 
-  @HiveField(6)
-  List<TagDaoModel> tags;
-
   CostDaoModel(
       {required this.id,
       required this.title,
       required this.amount,
       required this.point,
       required this.registeredAt,
-      required this.tags});
+      });
 
   factory CostDaoModel.of(
       {required String id,
@@ -35,14 +33,14 @@ class CostDaoModel extends HiveObject {
       required amount,
       required int point,
       required String registeredAt,
-      required List<TagDaoModel> tags}) {
+      }) {
     return CostDaoModel(
         id: id,
         title: title,
         amount: amount,
         point: point,
         registeredAt: registeredAt,
-        tags: tags);
+        );
   }
 
   @override
@@ -52,12 +50,11 @@ class CostDaoModel extends HiveObject {
       title == other.title &&
       amount == other.amount &&
       point == other.point &&
-      registeredAt == other.registeredAt &&
-      tags == other.tags;
+      registeredAt == other.registeredAt;
 
   @override
   int get hashCode =>
-      Object.hash(id, title, amount, point, registeredAt,  tags);
+      Object.hash(id, title, amount, point, registeredAt);
 
   @override
   String toString() {
@@ -67,7 +64,6 @@ class CostDaoModel extends HiveObject {
         'amount: $amount, '
         'point: $point, '
         'date: $registeredAt, '
-        'tags: $tags'
         ')';
   }
 }

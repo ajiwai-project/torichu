@@ -3,11 +3,8 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/domain/cost/tag.dart';
-import 'package:flutter_template/domain/cost/tags.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,8 +23,7 @@ class CostDBRepository implements CostRepository {
         title: cost.title.value,
         amount: cost.amount.value,
         point: cost.point.value,
-        registeredAt: cost.registeredAt.toIso8601String(),
-        tags: cost.tags.value.map((e) => TagDaoModel.of(e.value)).toList());
+        registeredAt: cost.registeredAt.toIso8601String());
     await costBox.put(costEntity.id, costEntity);
   }
 
@@ -40,8 +36,7 @@ class CostDBRepository implements CostRepository {
             amount: Amount.of(cost.amount),
             point: Point.of(cost.point),
             registeredAt: DateTime.parse(cost.registeredAt),
-            tags: Tags.of(cost.tags.map((e) => Tag.of(e.value)).toList())))
-        .toList();
+      )).toList();
     return Future.value(Costs(values: costs));
   }
 
