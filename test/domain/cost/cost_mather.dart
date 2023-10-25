@@ -16,8 +16,7 @@ class _CostMatcherWithoutIdAndRegisteredAt extends Matcher {
     return item is Cost &&
         item.title == expectedCost.title &&
         item.amount == expectedCost.amount &&
-        item.point == expectedCost.point &&
-        item.tags == expectedCost.tags;
+        item.point == expectedCost.point;
   }
 }
 
@@ -41,8 +40,7 @@ class _CostMatcherWithoutId extends Matcher {
         item.title == expectedCost.title &&
         item.amount == expectedCost.amount &&
         item.point == expectedCost.point &&
-        item.registeredAt == expectedCost.registeredAt &&
-        item.tags == expectedCost.tags;
+        item.registeredAt == expectedCost.registeredAt;
   }
 }
 

@@ -11,7 +11,6 @@ class CostBuilder {
   int amount = 0;
   Point point = Point.one;
   DateTime registeredAt = DateTime(1900);
-  Tags tags = Tags.of([]);
 
   CostBuilder setId(String id) {
     this.id = id;
@@ -38,11 +37,6 @@ class CostBuilder {
     return this;
   }
 
-  CostBuilder addTag(Tag tag) {
-    tags = Tags.of([...tags.value, tag]);
-    return this;
-  }
-
   Cost build() {
     return Cost.of(
         id: id,
@@ -50,6 +44,6 @@ class CostBuilder {
         amount: Amount.of(amount),
         point: point,
         registeredAt: registeredAt,
-        tags: tags);
+        );
   }
 }
