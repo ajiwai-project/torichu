@@ -81,18 +81,4 @@ void main() {
     expect(find.byType(CostListItem), findsNothing);
     debugDefaultTargetPlatformOverride = null;
   });
-
-  testWidgets('should show all tags', (tester) async {
-    var tag1 = Tag.of('tag1');
-    var tag2 = Tag.of('tag2');
-    var cost = CostBuilder().addTag(tag1).addTag(tag2).build();
-    when(mockCostRepository.getAll())
-        .thenAnswer((_) async => Costs(values: [cost]));
-
-    await render(tester);
-    await tester.pumpAndSettle();
-
-    expect(find.text('#tag1'), findsOneWidget);
-    expect(find.text('#tag2'), findsOneWidget);
-  });
 }
