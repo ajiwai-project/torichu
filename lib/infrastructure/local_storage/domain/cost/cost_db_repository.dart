@@ -31,12 +31,13 @@ class CostDBRepository implements CostRepository {
   Future<Costs> getAll() {
     var costs = costBox.values
         .map((cost) => Cost.of(
-            id: cost.id,
-            title: Title.of(cost.title),
-            amount: Amount.of(cost.amount),
-            point: Point.of(cost.point),
-            registeredAt: DateTime.parse(cost.registeredAt),
-      )).toList();
+              id: cost.id,
+              title: Title.of(cost.title),
+              amount: Amount.of(cost.amount),
+              point: Point.of(cost.point),
+              registeredAt: DateTime.parse(cost.registeredAt),
+            ))
+        .toList();
     return Future.value(Costs(values: costs));
   }
 

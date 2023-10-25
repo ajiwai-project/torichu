@@ -24,11 +24,11 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
     }
 
     await _costRepository.save(Cost.initial(
-        title: Title.of(state.title),
-        amount: Amount.of(state.price),
-        point: state.point!,
-        registeredAt: state.registeredAt,
-      ));
+      title: Title.of(state.title),
+      amount: Amount.of(state.price),
+      point: state.point!,
+      registeredAt: state.registeredAt,
+    ));
   }
 
   void setTitle(String value) {

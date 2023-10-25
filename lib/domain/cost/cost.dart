@@ -8,42 +8,42 @@ part 'cost.freezed.dart';
 
 @freezed
 class Cost with _$Cost {
-  factory Cost._(
-      {required String id,
-      required Title title,
-      required Amount amount,
-      required Point point,
-      required DateTime registeredAt,
-    }) = _Cost;
+  factory Cost._({
+    required String id,
+    required Title title,
+    required Amount amount,
+    required Point point,
+    required DateTime registeredAt,
+  }) = _Cost;
 
-  factory Cost.of(
-      {required String id,
-      required Title title,
-      required Amount amount,
-      required Point point,
-      required DateTime registeredAt,
-      }) {
+  factory Cost.of({
+    required String id,
+    required Title title,
+    required Amount amount,
+    required Point point,
+    required DateTime registeredAt,
+  }) {
     return Cost._(
-        id: id,
-        title: title,
-        amount: amount,
-        point: point,
-        registeredAt: registeredAt,
-        );
+      id: id,
+      title: title,
+      amount: amount,
+      point: point,
+      registeredAt: registeredAt,
+    );
   }
 
-  factory Cost.initial(
-      {required Title title,
-      required Amount amount,
-      required Point point,
-      required DateTime registeredAt,
-    }) {
+  factory Cost.initial({
+    required Title title,
+    required Amount amount,
+    required Point point,
+    required DateTime registeredAt,
+  }) {
     return Cost._(
-        id: const Uuid().v4(),
-        title: title,
-        amount: amount,
-        point: point,
-        registeredAt: registeredAt,
-      );
+      id: const Uuid().v4(),
+      title: title,
+      amount: amount,
+      point: point,
+      registeredAt: registeredAt,
+    );
   }
 }

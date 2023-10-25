@@ -5,10 +5,10 @@ part 'registration_state.freezed.dart';
 
 @freezed
 class RegistartionState with _$RegistartionState {
-  const factory RegistartionState(
-      {@Default('') String title,
-      @Default(0) int price,
-      Point? point,
-      required DateTime registeredAt,
-    }) = _RegistrationState;
+  const factory RegistartionState({
+    @Default('') String title,
+    @Default(0) int price,
+    Point? point,
+    required DateTime registeredAt,
+  }) = _RegistrationState;
 }

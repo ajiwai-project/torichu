@@ -19,28 +19,28 @@ class CostDaoModel extends HiveObject {
   @HiveField(5)
   String registeredAt;
 
-  CostDaoModel(
-      {required this.id,
-      required this.title,
-      required this.amount,
-      required this.point,
-      required this.registeredAt,
-      });
+  CostDaoModel({
+    required this.id,
+    required this.title,
+    required this.amount,
+    required this.point,
+    required this.registeredAt,
+  });
 
-  factory CostDaoModel.of(
-      {required String id,
-      required String title,
-      required amount,
-      required int point,
-      required String registeredAt,
-      }) {
+  factory CostDaoModel.of({
+    required String id,
+    required String title,
+    required amount,
+    required int point,
+    required String registeredAt,
+  }) {
     return CostDaoModel(
-        id: id,
-        title: title,
-        amount: amount,
-        point: point,
-        registeredAt: registeredAt,
-        );
+      id: id,
+      title: title,
+      amount: amount,
+      point: point,
+      registeredAt: registeredAt,
+    );
   }
 
   @override
@@ -53,8 +53,7 @@ class CostDaoModel extends HiveObject {
       registeredAt == other.registeredAt;
 
   @override
-  int get hashCode =>
-      Object.hash(id, title, amount, point, registeredAt);
+  int get hashCode => Object.hash(id, title, amount, point, registeredAt);
 
   @override
   String toString() {

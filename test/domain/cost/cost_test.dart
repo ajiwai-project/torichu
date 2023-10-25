@@ -17,12 +17,12 @@ void main() {
       var registeredAt = DateTime(2023);
 
       var cost = Cost.of(
-          id: id,
-          title: title,
-          amount: amount,
-          point: point,
-          registeredAt: registeredAt,
-          );
+        id: id,
+        title: title,
+        amount: amount,
+        point: point,
+        registeredAt: registeredAt,
+      );
 
       expect(cost.id, id);
       expect(cost.title, title);
@@ -40,11 +40,11 @@ void main() {
       final registeredAt = DateTime(2023, 8, 1);
 
       var cost = Cost.initial(
-          title: title,
-          amount: amount,
-          point: point,
-          registeredAt: registeredAt,
-          );
+        title: title,
+        amount: amount,
+        point: point,
+        registeredAt: registeredAt,
+      );
 
       expect(cost.title, title);
       expect(cost.amount, amount);
@@ -54,17 +54,17 @@ void main() {
 
     test('should generate different id', () {
       var cost1 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          registeredAt: DateTime(2023),
-          );
+        title: dummyTitle,
+        amount: dummyAmount,
+        point: Point.one,
+        registeredAt: DateTime(2023),
+      );
       var cost2 = Cost.initial(
-          title: dummyTitle,
-          amount: dummyAmount,
-          point: Point.one,
-          registeredAt: DateTime(2023),
-          );
+        title: dummyTitle,
+        amount: dummyAmount,
+        point: Point.one,
+        registeredAt: DateTime(2023),
+      );
 
       expect(cost1.id, isNot(cost2.id));
     });

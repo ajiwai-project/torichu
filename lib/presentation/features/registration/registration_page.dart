@@ -22,7 +22,7 @@ class RegistrationPage extends HookConsumerWidget {
     final handleSelectRegisteredAt = useCallback(() async {
       final registeredAt = await showDatePicker(
           context: context,
-          initialDate: state.registeredAt, 
+          initialDate: state.registeredAt,
           firstDate: DateTime.parse(ReleaseDate.stringValue),
           lastDate: clock.now());
       if (registeredAt != null) {

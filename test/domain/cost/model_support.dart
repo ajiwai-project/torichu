@@ -37,11 +37,11 @@ class CostBuilder {
 
   Cost build() {
     return Cost.of(
-        id: id,
-        title: Title.of(title),
-        amount: Amount.of(amount),
-        point: point,
-        registeredAt: registeredAt,
-        );
+      id: id,
+      title: Title.of(title),
+      amount: Amount.of(amount),
+      point: point,
+      registeredAt: registeredAt,
+    );
   }
 }
