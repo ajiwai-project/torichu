@@ -113,6 +113,39 @@ void main() {
     });
   });
 
+  testWidgets('Costs of tapped day should be shown', (tester) async {
+    final today = DateTime(2023, 10, 10);
+    withClock(Clock.fixed(today), () async {
+      final todayCost = CostBuilder()
+          .setPoint(Point.one)
+          .setTitle('title 1')
+          .setRegisteredAt(today)
+          .build();
+      final yesterdayCost1 = CostBuilder()
+          .setPoint(Point.one)
+          .setTitle('title 2')
+          .setRegisteredAt(today.add(const Duration(days: -1)))
+          .build();
+      final yesterdayCost2 = CostBuilder()
+          .setPoint(Point.one)
+          .setTitle('title 3')
+          .setRegisteredAt(today.add(const Duration(days: -1)))
+          .build();
+      when(mockCostRepository.getAll()).thenAnswer((_) async =>
+          Costs(values: [todayCost, yesterdayCost1, yesterdayCost2]));
+
+      await render(tester);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CostListItem), findsOneWidget);
+
+      await tester.tap(find.text('9'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CostListItem), findsNWidgets(2));
+    });
+  });
+
   testWidgets('支出を左から右方向にスワイプすると支出が削除されること android', (tester) async {
     final today = DateTime(2023, 10, 10);
     withClock(Clock.fixed(today), () async {

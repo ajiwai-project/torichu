@@ -45,8 +45,6 @@ class CalendarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 選択されている日付がわかること
-    // TODO: 今日がわかること
 
     final dateFormat = DateFormat('yyyyMMdd');
     return Center(
@@ -58,7 +56,8 @@ class CalendarWidget extends StatelessWidget {
             focusedDay: focusedDay,
             daysOfWeekHeight: 32,
             calendarBuilders: CalendarBuilders(
-                defaultBuilder: (context, day, focusedDay) => DayWidget(day),
+                defaultBuilder: (context, day, focusedDay) =>
+                    DayWidget(day, focused: isSameDay(day, focusedDay)),
                 todayBuilder: (context, day, focusedDay) => DayWidget(day),
                 outsideBuilder: (context, day, focusedDay) => DayWidget(day),
                 disabledBuilder: (context, day, focusedDay) => DayWidget(day),
@@ -66,7 +65,7 @@ class CalendarWidget extends StatelessWidget {
                   final costs = costsByDateTime[day];
                   return Container(
                       key: Key('${dateFormat.format(day)}-point'),
-                      alignment: Alignment.center,
+                      alignment: Alignment.bottomCenter,
                       child: Text(costs?.sumOfPoint.toString() ?? '',
                           style: const TextStyle(fontSize: 20)));
                 },
@@ -75,7 +74,8 @@ class CalendarWidget extends StatelessWidget {
                   return Container(
                       alignment: Alignment.center, child: Text(daysOfWeek));
                 }),
-            onDaySelected: (selectedDay, focusedDay) => onDaySelected(selectedDay)),
+            onDaySelected: (selectedDay, focusedDay) =>
+                onDaySelected(selectedDay)),
         Expanded(
             child: CostList(
                 costsByDateTime[focusedDay]?.values ?? [], onListItemDismissed))
@@ -86,17 +86,23 @@ class CalendarWidget extends StatelessWidget {
 
 class DayWidget extends StatelessWidget {
   final DateTime day;
+  final bool focused;
 
-  const DayWidget(this.day, {super.key});
+  const DayWidget(this.day, {this.focused = false, super.key});
 
   @override
   Widget build(BuildContext context) {
     final text = day.day.toString();
     return Container(
         padding: const EdgeInsets.all(2),
-        alignment: Alignment.topLeft,
+        alignment: Alignment.topCenter,
         decoration: BoxDecoration(
             border: Border.all(width: 0.5, color: Colors.white12)),
-        child: Text(text));
+        child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: focused ? Colors.blue : Colors.transparent,
+            ),
+            child: Text(text)));
   }
 }
