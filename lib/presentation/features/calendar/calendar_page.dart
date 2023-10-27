@@ -45,7 +45,6 @@ class CalendarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final dateFormat = DateFormat('yyyyMMdd');
     return Center(
         child: Column(
@@ -58,7 +57,8 @@ class CalendarWidget extends StatelessWidget {
             calendarBuilders: CalendarBuilders(
                 defaultBuilder: (context, day, focusedDay) =>
                     DayWidget(day, focused: isSameDay(day, focusedDay)),
-                todayBuilder: (context, day, focusedDay) => DayWidget(day),
+                todayBuilder: (context, day, focusedDay) =>
+                    DayWidget(day, focused: isSameDay(day, focusedDay)),
                 outsideBuilder: (context, day, focusedDay) => DayWidget(day),
                 disabledBuilder: (context, day, focusedDay) => DayWidget(day),
                 markerBuilder: (context, day, events) {
