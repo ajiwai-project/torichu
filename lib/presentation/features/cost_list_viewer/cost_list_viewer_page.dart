@@ -4,7 +4,6 @@ import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/saying/saying.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/cost_list.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_view_model.dart';
-import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/summary.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CostListViewerPage extends HookConsumerWidget {
@@ -42,10 +41,7 @@ class CostsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Expanded(child: Summary(costs: costs)),
-      Expanded(child: CostList(costs.values, onListItemDismissed))
-    ]);
+    return CostList(costs.values, onListItemDismissed);
   }
 }
 
