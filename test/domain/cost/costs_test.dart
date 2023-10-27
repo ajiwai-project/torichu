@@ -106,4 +106,24 @@ void main() {
       expect(costs.isEmpty, false);
     });
   });
+
+  group('CostsGroupByDate', () {
+    test('should return costs for each day', () {
+      var cost1 =
+          CostBuilder().setRegisteredAt(DateTime(2023, 10, 10, 11)).build();
+      var cost2 =
+          CostBuilder().setRegisteredAt(DateTime(2023, 10, 10, 10)).build();
+      var cost3 =
+          CostBuilder().setRegisteredAt(DateTime(2023, 10, 11, 12)).build();
+      var costs = Costs(values: [cost1, cost2, cost3]);
+
+      var actual = costs.costsGroupByDate;
+
+      var expected = {
+        DateTime.utc(2023, 10, 10): Costs(values: [cost1, cost2]),
+        DateTime.utc(2023, 10, 11): Costs(values: [cost3])
+      };
+      expect(actual, expected);
+    });
+  });
 }

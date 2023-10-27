@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
 import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/presentation/features/routing/bottom_navigation_view_model.dart';
@@ -10,6 +11,7 @@ class AppWithBottomNavigationbar extends HookConsumerWidget {
   static const _screens = [
     RegistrationPage(),
     CostListViewerPage(),
+    CalendarPage()
   ];
 
   @override
@@ -27,6 +29,10 @@ class AppWithBottomNavigationbar extends HookConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Costs',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
+            label: 'Calendar',
           ),
         ],
         currentIndex: state.index,
