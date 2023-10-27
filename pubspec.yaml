@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.18.1
   collection: ^1.17.1
   clock: ^1.1.1
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:

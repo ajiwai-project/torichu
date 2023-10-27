@@ -10,6 +10,27 @@ class Costs with _$Costs {
 }
 
 extension CostsExtention on Costs {
+  int get sumOfAmount =>
+      values.map((e) => e.amount.value).fold(0, (a, b) => a + b);
+  int get sumOfPoint =>
+      values.map((e) => e.point.value).fold(0, (a, b) => a + b);
+
+  int get length => values.length;
+  Map<DateTime, Costs> get costsGroupByDate {
+    Map<DateTime, Costs> costsGroupByDate = {};
+
+    groupBy<Cost, DateTime>(
+        values,
+        (value) => DateTime.utc(
+            value.registeredAt.year,
+            value.registeredAt.month,
+            value.registeredAt.day)).entries.forEach((entry) {
+      costsGroupByDate[entry.key] = Costs(values: entry.value);
+    });
+
+    return costsGroupByDate;
+  }
+
   Cost get(int index) => values[index];
 
   Costs sortByRegisteredAt({bool desc = true}) {
