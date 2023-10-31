@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
-import 'package:flutter_template/domain/cost/tags.dart';
-import 'package:flutter_template/presentation/features/cost_list_viewer/widgets/category_icon.dart';
 import 'package:intl/intl.dart';
 
 class CostListItem extends StatelessWidget {
@@ -40,9 +38,7 @@ class CostListItem extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          CategoryIcon(category: cost.category),
                           Text(formattedDate),
-                          _TagItems(tags: cost.tags)
                         ])),
                 Text('￥${NumberFormat("#,###").format(cost.amount.value)}',
                     style: const TextStyle(fontSize: 16)),
@@ -61,21 +57,5 @@ class CostListItem extends StatelessWidget {
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
         ));
-  }
-}
-
-class _TagItems extends StatelessWidget {
-  final Tags tags;
-
-  const _TagItems({required this.tags, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-        children: tags.value
-            .map((e) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Text('#${e.value}')))
-            .toList());
   }
 }

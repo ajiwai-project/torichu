@@ -20,9 +20,7 @@ mixin _$Cost {
   Title get title => throw _privateConstructorUsedError;
   Amount get amount => throw _privateConstructorUsedError;
   Point get point => throw _privateConstructorUsedError;
-  Category get category => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
-  Tags get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CostCopyWith<Cost> get copyWith => throw _privateConstructorUsedError;
@@ -38,13 +36,10 @@ abstract class $CostCopyWith<$Res> {
       Title title,
       Amount amount,
       Point point,
-      Category category,
-      DateTime registeredAt,
-      Tags tags});
+      DateTime registeredAt});
 
   $TitleCopyWith<$Res> get title;
   $AmountCopyWith<$Res> get amount;
-  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -64,9 +59,7 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
     Object? title = null,
     Object? amount = null,
     Object? point = null,
-    Object? category = null,
     Object? registeredAt = null,
-    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -85,18 +78,10 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as Tags,
     ) as $Val);
   }
 
@@ -115,14 +100,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
       return _then(_value.copyWith(amount: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TagsCopyWith<$Res> get tags {
-    return $TagsCopyWith<$Res>(_value.tags, (value) {
-      return _then(_value.copyWith(tags: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -136,16 +113,12 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
       Title title,
       Amount amount,
       Point point,
-      Category category,
-      DateTime registeredAt,
-      Tags tags});
+      DateTime registeredAt});
 
   @override
   $TitleCopyWith<$Res> get title;
   @override
   $AmountCopyWith<$Res> get amount;
-  @override
-  $TagsCopyWith<$Res> get tags;
 }
 
 /// @nodoc
@@ -161,9 +134,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? title = null,
     Object? amount = null,
     Object? point = null,
-    Object? category = null,
     Object? registeredAt = null,
-    Object? tags = null,
   }) {
     return _then(_$_Cost(
       id: null == id
@@ -182,18 +153,10 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as Point,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       registeredAt: null == registeredAt
           ? _value.registeredAt
           : registeredAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as Tags,
     ));
   }
 }
@@ -206,9 +169,7 @@ class _$_Cost implements _Cost {
       required this.title,
       required this.amount,
       required this.point,
-      required this.category,
-      required this.registeredAt,
-      required this.tags});
+      required this.registeredAt});
 
   @override
   final String id;
@@ -219,15 +180,11 @@ class _$_Cost implements _Cost {
   @override
   final Point point;
   @override
-  final Category category;
-  @override
   final DateTime registeredAt;
-  @override
-  final Tags tags;
 
   @override
   String toString() {
-    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, category: $category, registeredAt: $registeredAt, tags: $tags)';
+    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, registeredAt: $registeredAt)';
   }
 
   @override
@@ -239,16 +196,13 @@ class _$_Cost implements _Cost {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.point, point) || other.point == point) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
             (identical(other.registeredAt, registeredAt) ||
-                other.registeredAt == registeredAt) &&
-            (identical(other.tags, tags) || other.tags == tags));
+                other.registeredAt == registeredAt));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, amount, point, category, registeredAt, tags);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, amount, point, registeredAt);
 
   @JsonKey(ignore: true)
   @override
@@ -263,9 +217,7 @@ abstract class _Cost implements Cost {
       required final Title title,
       required final Amount amount,
       required final Point point,
-      required final Category category,
-      required final DateTime registeredAt,
-      required final Tags tags}) = _$_Cost;
+      required final DateTime registeredAt}) = _$_Cost;
 
   @override
   String get id;
@@ -276,11 +228,7 @@ abstract class _Cost implements Cost {
   @override
   Point get point;
   @override
-  Category get category;
-  @override
   DateTime get registeredAt;
-  @override
-  Tags get tags;
   @override
   @JsonKey(ignore: true)
   _$$_CostCopyWith<_$_Cost> get copyWith => throw _privateConstructorUsedError;

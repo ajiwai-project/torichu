@@ -1,6 +1,10 @@
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/tag_dao_model.dart';
-import 'package:hive/hive.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'cost_dao_model.dart';
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
 
 class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
   @override
@@ -17,16 +21,14 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       title: fields[1] as String,
       amount: fields[2] as int,
       point: fields[3] as int,
-      category: fields[4] as String,
       registeredAt: fields[5] as String,
-      tags: fields[6] != null ? (fields[6] as List).cast<TagDaoModel>() : [],
     );
   }
 
   @override
   void write(BinaryWriter writer, CostDaoModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,12 +37,8 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       ..write(obj.amount)
       ..writeByte(3)
       ..write(obj.point)
-      ..writeByte(4)
-      ..write(obj.category)
       ..writeByte(5)
-      ..write(obj.registeredAt)
-      ..writeByte(6)
-      ..write(obj.tags);
+      ..write(obj.registeredAt);
   }
 
   @override
