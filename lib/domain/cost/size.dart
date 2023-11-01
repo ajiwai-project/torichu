@@ -15,11 +15,10 @@ enum Size {
 }
 
 extension SizeExtension on Size {
-  static final sizeSymbol = {
-    Size.small: 'S',
-    Size.medium: 'M',
-    Size.large: 'L',
-  };
-
-  String get symbol => sizeSymbol[this]!;
+  String upperCase() {
+    return name.toUpperCase();
+  }
+  String symbol() {
+    return upperCase().substring(0, 1);
+  }
 }

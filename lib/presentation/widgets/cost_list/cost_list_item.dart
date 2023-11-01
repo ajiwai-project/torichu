@@ -53,7 +53,7 @@ class CostListItem extends StatelessWidget {
                   border: Border.all(
                       color: Theme.of(context).colorScheme.primary, width: 3)),
               child: Text(
-                cost.size.symbol,
+                cost.size.symbol(),
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
