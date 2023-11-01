@@ -13,3 +13,13 @@ enum Size {
     return Size.values.firstWhere((element) => element._value == value);
   }
 }
+
+extension SizeExtension on Size {
+  static final sizeSymbol = {
+    Size.small: 'S',
+    Size.medium: 'M',
+    Size.large: 'L',
+  };
+
+  String get symbol => sizeSymbol[this]!;
+}

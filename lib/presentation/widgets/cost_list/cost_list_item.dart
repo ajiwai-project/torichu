@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:intl/intl.dart';
 
 class CostListItem extends StatelessWidget {
@@ -52,7 +53,7 @@ class CostListItem extends StatelessWidget {
                   border: Border.all(
                       color: Theme.of(context).colorScheme.primary, width: 3)),
               child: Text(
-                cost.point.value.toString(),
+                cost.size.symbol,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
