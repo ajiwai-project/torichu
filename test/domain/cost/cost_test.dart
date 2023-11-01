@@ -41,18 +41,21 @@ void main() {
       var title = Title.of('title');
       var amount = Amount.of(10);
       var point = Point.two;
+      var size = Size.medium;
       final registeredAt = DateTime(2023, 8, 1);
 
       var cost = Cost.initial(
         title: title,
         amount: amount,
         point: point,
+        size: size,
         registeredAt: registeredAt,
       );
 
       expect(cost.title, title);
       expect(cost.amount, amount);
       expect(cost.point, point);
+      expect(cost.size, size);
       expect(cost.registeredAt, registeredAt);
     });
 
@@ -61,12 +64,14 @@ void main() {
         title: dummyTitle,
         amount: dummyAmount,
         point: Point.one,
+        size: Size.medium,
         registeredAt: DateTime(2023),
       );
       var cost2 = Cost.initial(
         title: dummyTitle,
         amount: dummyAmount,
         point: Point.one,
+        size: Size.medium,
         registeredAt: DateTime(2023),
       );
 
@@ -78,6 +83,7 @@ void main() {
           title: dummyTitle,
           amount: dummyAmount,
           point: Point.one,
+          size: Size.medium,
         );
 
         expect(cost.registeredAt, DateTime(2023, 8, 1));

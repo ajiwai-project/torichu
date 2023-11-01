@@ -41,14 +41,14 @@ class Cost with _$Cost {
       {required Title title,
       required Amount amount,
       required Point point,
-      Size? size,
+      required Size size,
       DateTime? registeredAt}) {
     return Cost._(
       id: const Uuid().v4(),
       title: title,
       amount: amount,
       point: point,
-      size: size ?? Size.medium,
+      size: size,
       registeredAt: registeredAt ?? clock.now(),
     );
   }
