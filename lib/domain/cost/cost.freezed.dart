@@ -19,7 +19,6 @@ mixin _$Cost {
   String get id => throw _privateConstructorUsedError;
   Title get title => throw _privateConstructorUsedError;
   Amount get amount => throw _privateConstructorUsedError;
-  Point get point => throw _privateConstructorUsedError;
   Size get size => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
 
@@ -36,7 +35,6 @@ abstract class $CostCopyWith<$Res> {
       {String id,
       Title title,
       Amount amount,
-      Point point,
       Size size,
       DateTime registeredAt});
 
@@ -60,7 +58,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
     Object? id = null,
     Object? title = null,
     Object? amount = null,
-    Object? point = null,
     Object? size = null,
     Object? registeredAt = null,
   }) {
@@ -77,10 +74,6 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as Amount,
-      point: null == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as Point,
       size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -119,7 +112,6 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
       {String id,
       Title title,
       Amount amount,
-      Point point,
       Size size,
       DateTime registeredAt});
 
@@ -141,7 +133,6 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? id = null,
     Object? title = null,
     Object? amount = null,
-    Object? point = null,
     Object? size = null,
     Object? registeredAt = null,
   }) {
@@ -158,10 +149,6 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as Amount,
-      point: null == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as Point,
       size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -181,7 +168,6 @@ class _$_Cost implements _Cost {
       {required this.id,
       required this.title,
       required this.amount,
-      required this.point,
       required this.size,
       required this.registeredAt});
 
@@ -192,15 +178,13 @@ class _$_Cost implements _Cost {
   @override
   final Amount amount;
   @override
-  final Point point;
-  @override
   final Size size;
   @override
   final DateTime registeredAt;
 
   @override
   String toString() {
-    return 'Cost._(id: $id, title: $title, amount: $amount, point: $point, size: $size, registeredAt: $registeredAt)';
+    return 'Cost._(id: $id, title: $title, amount: $amount, size: $size, registeredAt: $registeredAt)';
   }
 
   @override
@@ -211,7 +195,6 @@ class _$_Cost implements _Cost {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.point, point) || other.point == point) &&
             (identical(other.size, size) || other.size == size) &&
             (identical(other.registeredAt, registeredAt) ||
                 other.registeredAt == registeredAt));
@@ -219,7 +202,7 @@ class _$_Cost implements _Cost {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, amount, point, size, registeredAt);
+      Object.hash(runtimeType, id, title, amount, size, registeredAt);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +216,6 @@ abstract class _Cost implements Cost {
       {required final String id,
       required final Title title,
       required final Amount amount,
-      required final Point point,
       required final Size size,
       required final DateTime registeredAt}) = _$_Cost;
 
@@ -243,8 +225,6 @@ abstract class _Cost implements Cost {
   Title get title;
   @override
   Amount get amount;
-  @override
-  Point get point;
   @override
   Size get size;
   @override
