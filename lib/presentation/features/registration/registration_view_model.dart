@@ -1,7 +1,6 @@
 import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/presentation/features/registration/registration_state.dart';
@@ -19,24 +18,19 @@ class RegistrationViewModel extends StateNotifier<RegistartionState> {
       : super(const RegistartionState());
 
   Future<void> register() async {
-    if (state.point == null || state.size == null) {
+    if (state.size == null) {
       return;
     }
 
     await _costRepository.save(Cost.initial(
       title: Title.of(state.title),
       amount: Amount.of(state.price),
-      point: state.point!,
       size: state.size!,
     ));
   }
 
   void setTitle(String value) {
     state = state.copyWith(title: value);
-  }
-
-  void setPoint(Point value) {
-    state = state.copyWith(point: value);
   }
 
   void setSize(Size value) {

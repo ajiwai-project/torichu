@@ -35,13 +35,6 @@ void main() {
     final priceField = find.byKey(const Key('price-field'));
     await tester.enterText(priceField, cost.amount.value.toString());
 
-    final pointField = find.byKey(const Key('point-field'));
-    await tester.tap(pointField);
-    await tester.pumpAndSettle();
-    final pointItem = find.text(cost.point.value.toString());
-    await tester.tap(pointItem);
-    await tester.pumpAndSettle();
-
     final sizeField = find.byKey(const Key('size-field'));
     await tester.tap(sizeField);
     await tester.pumpAndSettle();

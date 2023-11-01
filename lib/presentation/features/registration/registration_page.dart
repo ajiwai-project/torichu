@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,22 +31,6 @@ class RegistrationPage extends HookConsumerWidget {
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     onChanged: (value) => viewModel.setPrice(int.parse(value)),
-                  ),
-                  DropdownButtonFormField<Point>(
-                    key: const Key('point-field'),
-                    value: state.point,
-                    items: Point.values.map((value) {
-                      return DropdownMenuItem<Point>(
-                          value: value,
-                          child: Text(value.value.toString(),
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground)));
-                    }).toList(),
-                    onChanged: (Point? value) => viewModel.setPoint(value!),
-                    decoration: const InputDecoration(
-                        hintText: 'ポイントを入力', labelText: 'ポイント'),
                   ),
                   DropdownButtonFormField<Size>(
                     key: const Key('size-field'),
