@@ -2,12 +2,14 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 
 class CostBuilder {
   String id = 'dummy';
   String title = 'dummy';
   int amount = 0;
   Point point = Point.one;
+  Size size = Size.medium;
   DateTime registeredAt = DateTime(1900);
 
   CostBuilder setId(String id) {
@@ -41,6 +43,7 @@ class CostBuilder {
       title: Title.of(title),
       amount: Amount.of(amount),
       point: point,
+      size: size,
       registeredAt: registeredAt,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:clock/clock.dart';
 
@@ -15,6 +16,7 @@ void main() {
       var title = Title.of('title');
       var amount = Amount.of(10);
       var point = Point.one;
+      var size = Size.medium;
       var registeredAt = DateTime(2023);
 
       var cost = Cost.of(
@@ -22,6 +24,7 @@ void main() {
         title: title,
         amount: amount,
         point: point,
+        size: size,
         registeredAt: registeredAt,
       );
 
