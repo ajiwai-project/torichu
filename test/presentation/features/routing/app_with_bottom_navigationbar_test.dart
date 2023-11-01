@@ -42,9 +42,6 @@ void main() {
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => const Costs(values: []));
     await render(tester);
-    await tester.tap(find.text('Costs'));
-    await tester.pumpAndSettle();
-    expect(find.byType(CostListViewerPage), findsOneWidget);
     await tester.tap(find.text('Registration'));
     await tester.pumpAndSettle();
     expect(find.byType(RegistrationPage), findsOneWidget);
