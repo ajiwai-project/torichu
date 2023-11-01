@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,6 +40,13 @@ void main() {
     await tester.pumpAndSettle();
     final pointItem = find.text(cost.point.value.toString());
     await tester.tap(pointItem);
+    await tester.pumpAndSettle();
+
+    final sizeField = find.byKey(const Key('size-field'));
+    await tester.tap(sizeField);
+    await tester.pumpAndSettle();
+    final sizeItem = find.text(cost.size.upperCase());
+    await tester.tap(sizeItem);
     await tester.pumpAndSettle();
   }
 
