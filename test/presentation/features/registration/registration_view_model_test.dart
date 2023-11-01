@@ -1,5 +1,6 @@
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/point.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -27,6 +28,7 @@ void main() {
         sut.setTitle('title');
         sut.setPrice(1000);
         sut.setPoint(Point.one);
+        sut.setSize(Size.small);
 
         await sut.register();
 
@@ -34,6 +36,7 @@ void main() {
             .setTitle('title')
             .setAmount(1000)
             .setPoint(Point.one)
+            .setSize(Size.small)
             .setRegisteredAt(dummyDateTime)
             .build();
 

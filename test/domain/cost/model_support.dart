@@ -32,6 +32,11 @@ class CostBuilder {
     return this;
   }
 
+  CostBuilder setSize(Size size) {
+    this.size = size;
+    return this;
+  }
+
   CostBuilder setRegisteredAt(DateTime registeredAt) {
     this.registeredAt = registeredAt;
     return this;
