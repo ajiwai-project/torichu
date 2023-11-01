@@ -64,9 +64,9 @@ class CalendarWidget extends StatelessWidget {
                 markerBuilder: (context, day, events) {
                   final costs = costsByDateTime[day];
                   return Container(
-                      key: Key('${dateFormat.format(day)}-point'),
+                      key: Key('${dateFormat.format(day)}-size'),
                       alignment: Alignment.bottomCenter,
-                      child: Text(costs?.sumOfPoint.toString() ?? '',
+                      child: Text(costs?.sumOfSize.toString() ?? '',
                           style: const TextStyle(fontSize: 20)));
                 },
                 dowBuilder: (context, day) {

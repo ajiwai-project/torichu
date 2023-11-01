@@ -14,6 +14,8 @@ extension CostsExtention on Costs {
       values.map((e) => e.amount.value).fold(0, (a, b) => a + b);
   int get sumOfPoint =>
       values.map((e) => e.point.value).fold(0, (a, b) => a + b);
+  int get sumOfSize =>
+      values.map((e) => e.size.value).fold(0, (a, b) => a + b);
 
   int get length => values.length;
   Map<DateTime, Costs> get costsGroupByDate {
