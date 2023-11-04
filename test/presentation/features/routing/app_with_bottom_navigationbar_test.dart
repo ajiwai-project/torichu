@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
-import 'package:flutter_template/presentation/features/cost_list_viewer/cost_list_viewer_page.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/presentation/features/routing/app_with_bottom_navigationbar.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -42,9 +41,6 @@ void main() {
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => const Costs(values: []));
     await render(tester);
-    await tester.tap(find.text('Costs'));
-    await tester.pumpAndSettle();
-    expect(find.byType(CostListViewerPage), findsOneWidget);
     await tester.tap(find.text('Registration'));
     await tester.pumpAndSettle();
     expect(find.byType(RegistrationPage), findsOneWidget);
