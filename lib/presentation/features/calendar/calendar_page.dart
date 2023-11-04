@@ -54,6 +54,7 @@ class CalendarWidget extends StatelessWidget {
             lastDay: clock.now(),
             focusedDay: focusedDay,
             daysOfWeekHeight: 32,
+            headerStyle: const HeaderStyle(formatButtonVisible: false),
             calendarBuilders: CalendarBuilders(
                 defaultBuilder: (context, day, focusedDay) =>
                     DayWidget(day, focused: isSameDay(day, focusedDay)),
