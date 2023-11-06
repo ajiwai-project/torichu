@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/size.dart';
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
+import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
