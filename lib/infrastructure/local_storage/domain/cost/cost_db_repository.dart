@@ -2,8 +2,8 @@ import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_dao_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,7 +22,7 @@ class CostDBRepository implements CostRepository {
         id: cost.id,
         title: cost.title.value,
         amount: cost.amount.value,
-        point: cost.point.value,
+        size: cost.size.value,
         registeredAt: cost.registeredAt.toIso8601String());
     await costBox.put(costEntity.id, costEntity);
   }
@@ -34,7 +34,7 @@ class CostDBRepository implements CostRepository {
               id: cost.id,
               title: Title.of(cost.title),
               amount: Amount.of(cost.amount),
-              point: Point.of(cost.point),
+              size: Size.of(cost.size),
               registeredAt: DateTime.parse(cost.registeredAt),
             ))
         .toList();

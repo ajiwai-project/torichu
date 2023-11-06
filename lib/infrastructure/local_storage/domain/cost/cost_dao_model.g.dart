@@ -16,11 +16,14 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
+    final int point = fields[3] as int;
     return CostDaoModel(
       id: fields[0] as String,
       title: fields[1] as String,
       amount: fields[2] as int,
-      point: fields[3] as int,
+      size: fields[7] != null ? fields[7] as int : (
+        point < 5 ? 1 : (point < 21 ? 2 : 3) 
+      ),
       registeredAt: fields[5] as String,
     );
   }
@@ -35,8 +38,8 @@ class CostDaoModelAdapter extends TypeAdapter<CostDaoModel> {
       ..write(obj.title)
       ..writeByte(2)
       ..write(obj.amount)
-      ..writeByte(3)
-      ..write(obj.point)
+      ..writeByte(7)
+      ..write(obj.size)
       ..writeByte(5)
       ..write(obj.registeredAt);
   }
