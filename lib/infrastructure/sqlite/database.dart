@@ -28,7 +28,7 @@ class SqliteDao {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute(
-        'CREATE TABLE costs(id TEXT PRIMARY KEY, title TEXT, amount INTEGER, size INTEGER, registeredAt TEXT)');
+        'CREATE TABLE IF NOT EXISTS costs(id TEXT PRIMARY KEY, title TEXT, amount INTEGER, size INTEGER, registeredAt TEXT)');
   }
 
   Future<int> create({
