@@ -18,6 +18,7 @@ extension SizeExtension on Size {
   String upperCase() {
     return name.toUpperCase();
   }
+
   String symbol() {
     return upperCase().substring(0, 1);
   }

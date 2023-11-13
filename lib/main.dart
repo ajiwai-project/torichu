@@ -4,7 +4,6 @@ import 'package:flutter_template/presentation/features/routing/app_with_bottom_n
 import 'package:flutter_template/infrastructure/sqlite/database.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 void main() async {
   setupSqlite();
   runApp(ProviderScope(

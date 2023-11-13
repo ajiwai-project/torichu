@@ -7,10 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class AppWithBottomNavigationbar extends HookConsumerWidget {
   const AppWithBottomNavigationbar({Key? key}) : super(key: key);
 
-  static const _screens = [
-    RegistrationPage(),
-    CalendarPage()
-  ];
+  static const _screens = [RegistrationPage(), CalendarPage()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -93,14 +93,10 @@ void main() {
       (tester) async {
     final today = DateTime(2023, 10, 10);
     withClock(Clock.fixed(today), () async {
-      final cost1 = CostBuilder()
-          .setTitle('title 1')
-          .setRegisteredAt(today)
-          .build();
-      final cost2 = CostBuilder()
-          .setTitle('title 2')
-          .setRegisteredAt(today)
-          .build();
+      final cost1 =
+          CostBuilder().setTitle('title 1').setRegisteredAt(today).build();
+      final cost2 =
+          CostBuilder().setTitle('title 2').setRegisteredAt(today).build();
       when(mockCostRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost1, cost2]));
 
@@ -114,10 +110,8 @@ void main() {
   testWidgets('Costs of tapped day should be shown', (tester) async {
     final today = DateTime(2023, 10, 10);
     withClock(Clock.fixed(today), () async {
-      final todayCost = CostBuilder()
-          .setTitle('title 1')
-          .setRegisteredAt(today)
-          .build();
+      final todayCost =
+          CostBuilder().setTitle('title 1').setRegisteredAt(today).build();
       final yesterdayCost1 = CostBuilder()
           .setTitle('title 2')
           .setRegisteredAt(today.add(const Duration(days: -1)))
