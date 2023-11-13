@@ -15,13 +15,13 @@ class CostDBRepository implements CostRepository {
   @override
   Future<void> save(Cost cost) async {
     final daoModel = CostDaoModel.fromEntity(cost);
-    await SqliteDao.db
+    await SqliteDao.getInstance()
         .create(tableName: CostDaoModel.tableName, json: daoModel.toMap());
   }
 
   @override
   Future<Costs> getAll() async {
-    final costs = await SqliteDao.db
+    final costs = await SqliteDao.getInstance()
         .readAll(tableName: CostDaoModel.tableName)
         .then((rows) => rows
             .map((row) => CostDaoModel.fromMap(row))
@@ -32,6 +32,6 @@ class CostDBRepository implements CostRepository {
 
   @override
   Future<void> remove(String id) async {
-    await SqliteDao.db.delete(tableName: CostDaoModel.tableName, id: id);
+    await SqliteDao.getInstance().delete(tableName: CostDaoModel.tableName, id: id);
   }
 }

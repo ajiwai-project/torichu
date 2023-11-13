@@ -13,7 +13,8 @@ class SqliteDao {
   static const dbName = 'spender.db';
   static const version = 1;
   SqliteDao._();
-  static final SqliteDao db = SqliteDao._();
+  static final SqliteDao _instance = SqliteDao._();
+  factory SqliteDao.getInstance() => _instance;
   static Database? _database;
 
   Future<Database> get database async => _database ??= await initDb();
