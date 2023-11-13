@@ -15,11 +15,11 @@ class SqliteDao {
   SqliteDao._();
   static final SqliteDao _instance = SqliteDao._();
   factory SqliteDao.getInstance() => _instance;
-  static Database? _database;
+  static Database? __database;
 
-  Future<Database> get database async => _database ??= await initDb();
+  Future<Database> get _database async => __database ??= await _initDb();
 
-  Future<Database> initDb() async {
+  Future<Database> _initDb() async {
     return openDatabase(
       join(await getDatabasesPath(), dbName),
       onCreate: _onCreate,
@@ -36,14 +36,14 @@ class SqliteDao {
     required String tableName,
     required Map<String, Object?> json,
   }) async {
-    final db = await database;
+    final db = await _database;
     return db.insert(tableName, json);
   }
 
   Future<List<Map<String, Object?>>> readAll({
     required String tableName,
   }) async {
-    final db = await database;
+    final db = await _database;
     return db.query(tableName);
   }
 
@@ -51,7 +51,7 @@ class SqliteDao {
     required String tableName,
     required String id,
   }) async {
-    final db = await database;
+    final db = await _database;
     return db.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 }
