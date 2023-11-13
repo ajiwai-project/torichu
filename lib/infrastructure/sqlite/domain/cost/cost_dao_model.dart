@@ -3,7 +3,13 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/title.dart';
 import 'package:flutter_template/domain/cost/size.dart';
 
-class CostDaoModel {
+import '../../database.dart';
+
+class CostDao extends SqliteDao<CostDaoModel> {
+  CostDao() : super(CostDaoModel.tableName, CostDaoModel.fromJson);
+}
+
+class CostDaoModel implements SqliteEntity {
   static const tableName = 'costs';
   final String id;
   String title;
@@ -39,17 +45,19 @@ class CostDaoModel {
     );
   }
 
-  factory CostDaoModel.fromMap(Map<String, dynamic> map) {
+  @override
+  factory CostDaoModel.fromJson(Map<String, dynamic> json) {
     return CostDaoModel(
-      id: map['id'],
-      title: map['title'],
-      amount: map['amount'],
-      size: map['size'],
-      registeredAt: DateTime.parse(map['registeredAt']).toLocal(),
+      id: json['id'],
+      title: json['title'],
+      amount: json['amount'],
+      size: json['size'],
+      registeredAt: DateTime.parse(json['registeredAt']).toLocal(),
     );
   }
 
-  Map<String, dynamic> toMap() {
+  @override
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'title': title,
