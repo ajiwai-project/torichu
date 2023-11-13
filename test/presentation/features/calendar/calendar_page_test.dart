@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
-import 'package:flutter_template/domain/cost/point.dart';
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
+import 'package:flutter_template/domain/cost/size.dart';
+import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,13 +30,13 @@ void main() {
     ], child: const MaterialApp(home: CalendarPage())));
   }
 
-  testWidgets('Sum of points should be shown in calendar', (tester) async {
+  testWidgets('Sum of sizes should be shown in calendar', (tester) async {
     withClock(Clock.fixed(DateTime(2023, 10, 30)), () async {
       final dateTime = DateTime(2023, 10, 18);
       final cost1 =
-          CostBuilder().setPoint(Point.one).setRegisteredAt(dateTime).build();
+          CostBuilder().setSize(Size.small).setRegisteredAt(dateTime).build();
       final cost2 =
-          CostBuilder().setPoint(Point.three).setRegisteredAt(dateTime).build();
+          CostBuilder().setSize(Size.large).setRegisteredAt(dateTime).build();
       when(mockCostRepository.getAll())
           .thenAnswer((_) async => Costs(values: [cost1, cost2]));
 
@@ -45,13 +45,13 @@ void main() {
 
       expect(
           find.descendant(
-              of: find.byKey(const Key('20231018-point')),
+              of: find.byKey(const Key('20231018-size')),
               matching: find.text('4')),
           findsOneWidget);
     });
   });
 
-  group('Point should be shown', () {
+  group('Size should be shown', () {
     final dateFormat = DateFormat('yyyyMMdd');
     final testCases = [
       {
@@ -69,7 +69,7 @@ void main() {
         withClock(Clock.fixed(DateTime(2023, 10, 30)), () async {
           final dateTime = testCase['dateTime'] as DateTime;
           final cost = CostBuilder()
-              .setPoint(Point.one)
+              .setSize(Size.small)
               .setRegisteredAt(dateTime)
               .build();
           when(mockCostRepository.getAll())
@@ -80,8 +80,8 @@ void main() {
 
           expect(
               find.descendant(
-                  of: find.byKey(Key('${dateFormat.format(dateTime)}-point')),
-                  matching: find.text('1')),
+                  of: find.byKey(Key('${dateFormat.format(dateTime)}-size')),
+                  matching: find.text("1")),
               findsOneWidget);
         });
       });
@@ -94,12 +94,10 @@ void main() {
     final today = DateTime(2023, 10, 10);
     withClock(Clock.fixed(today), () async {
       final cost1 = CostBuilder()
-          .setPoint(Point.one)
           .setTitle('title 1')
           .setRegisteredAt(today)
           .build();
       final cost2 = CostBuilder()
-          .setPoint(Point.one)
           .setTitle('title 2')
           .setRegisteredAt(today)
           .build();
@@ -117,17 +115,14 @@ void main() {
     final today = DateTime(2023, 10, 10);
     withClock(Clock.fixed(today), () async {
       final todayCost = CostBuilder()
-          .setPoint(Point.one)
           .setTitle('title 1')
           .setRegisteredAt(today)
           .build();
       final yesterdayCost1 = CostBuilder()
-          .setPoint(Point.one)
           .setTitle('title 2')
           .setRegisteredAt(today.add(const Duration(days: -1)))
           .build();
       final yesterdayCost2 = CostBuilder()
-          .setPoint(Point.one)
           .setTitle('title 3')
           .setRegisteredAt(today.add(const Duration(days: -1)))
           .build();

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/presentation/features/registration/registration_page.dart';
-import 'package:flutter_template/infrastructure/local_storage/domain/cost/cost_db_repository.dart';
+import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
@@ -34,11 +35,11 @@ void main() {
     final priceField = find.byKey(const Key('price-field'));
     await tester.enterText(priceField, cost.amount.value.toString());
 
-    final pointField = find.byKey(const Key('point-field'));
-    await tester.tap(pointField);
+    final sizeField = find.byKey(const Key('size-field'));
+    await tester.tap(sizeField);
     await tester.pumpAndSettle();
-    final pointItem = find.text(cost.point.value.toString());
-    await tester.tap(pointItem);
+    final sizeItem = find.text(cost.size.upperCase());
+    await tester.tap(sizeItem);
     await tester.pumpAndSettle();
   }
 

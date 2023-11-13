@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/cost/amount.dart';
 import 'package:flutter_template/domain/cost/cost.dart';
-import 'package:flutter_template/domain/cost/point.dart';
 import 'package:flutter_template/domain/cost/title.dart';
+import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:clock/clock.dart';
 
@@ -14,21 +14,20 @@ void main() {
       var id = 'id';
       var title = Title.of('title');
       var amount = Amount.of(10);
-      var point = Point.one;
+      var size = Size.medium;
       var registeredAt = DateTime(2023);
 
       var cost = Cost.of(
         id: id,
         title: title,
         amount: amount,
-        point: point,
+        size: size,
         registeredAt: registeredAt,
       );
 
       expect(cost.id, id);
       expect(cost.title, title);
       expect(cost.amount, amount);
-      expect(cost.point, point);
       expect(cost.registeredAt, registeredAt);
     });
   });
@@ -37,19 +36,19 @@ void main() {
     test('should create a cost with specified values', () {
       var title = Title.of('title');
       var amount = Amount.of(10);
-      var point = Point.two;
+      var size = Size.medium;
       final registeredAt = DateTime(2023, 8, 1);
 
       var cost = Cost.initial(
         title: title,
         amount: amount,
-        point: point,
+        size: size,
         registeredAt: registeredAt,
       );
 
       expect(cost.title, title);
       expect(cost.amount, amount);
-      expect(cost.point, point);
+      expect(cost.size, size);
       expect(cost.registeredAt, registeredAt);
     });
 
@@ -57,13 +56,13 @@ void main() {
       var cost1 = Cost.initial(
         title: dummyTitle,
         amount: dummyAmount,
-        point: Point.one,
+        size: Size.medium,
         registeredAt: DateTime(2023),
       );
       var cost2 = Cost.initial(
         title: dummyTitle,
         amount: dummyAmount,
-        point: Point.one,
+        size: Size.medium,
         registeredAt: DateTime(2023),
       );
 
@@ -74,7 +73,7 @@ void main() {
         final cost = Cost.initial(
           title: dummyTitle,
           amount: dummyAmount,
-          point: Point.one,
+          size: Size.medium,
         );
 
         expect(cost.registeredAt, DateTime(2023, 8, 1));

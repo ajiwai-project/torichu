@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegistartionState {
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
-  Point? get point => throw _privateConstructorUsedError;
+  Size? get size => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegistartionStateCopyWith<RegistartionState> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $RegistartionStateCopyWith<$Res> {
           RegistartionState value, $Res Function(RegistartionState) then) =
       _$RegistartionStateCopyWithImpl<$Res, RegistartionState>;
   @useResult
-  $Res call({String title, int price, Point? point});
+  $Res call({String title, int price, Size? size});
 }
 
 /// @nodoc
@@ -49,7 +49,7 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
   $Res call({
     Object? title = null,
     Object? price = null,
-    Object? point = freezed,
+    Object? size = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -60,10 +60,10 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      point: freezed == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as Point?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as Size?,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_RegistrationStateCopyWith<$Res>
       __$$_RegistrationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, int price, Point? point});
+  $Res call({String title, int price, Size? size});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? price = null,
-    Object? point = freezed,
+    Object? size = freezed,
   }) {
     return _then(_$_RegistrationState(
       title: null == title
@@ -103,10 +103,10 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      point: freezed == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as Point?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as Size?,
     ));
   }
 }
@@ -114,7 +114,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegistrationState implements _RegistrationState {
-  const _$_RegistrationState({this.title = '', this.price = 0, this.point});
+  const _$_RegistrationState({this.title = '', this.price = 0, this.size});
 
   @override
   @JsonKey()
@@ -123,11 +123,11 @@ class _$_RegistrationState implements _RegistrationState {
   @JsonKey()
   final int price;
   @override
-  final Point? point;
+  final Size? size;
 
   @override
   String toString() {
-    return 'RegistartionState(title: $title, price: $price, point: $point)';
+    return 'RegistartionState(title: $title, price: $price, size: $size)';
   }
 
   @override
@@ -137,11 +137,11 @@ class _$_RegistrationState implements _RegistrationState {
             other is _$_RegistrationState &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.point, point) || other.point == point));
+            (identical(other.size, size) || other.size == size));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, price, point);
+  int get hashCode => Object.hash(runtimeType, title, price, size);
 
   @JsonKey(ignore: true)
   @override
@@ -155,14 +155,14 @@ abstract class _RegistrationState implements RegistartionState {
   const factory _RegistrationState(
       {final String title,
       final int price,
-      final Point? point}) = _$_RegistrationState;
+      final Size? size}) = _$_RegistrationState;
 
   @override
   String get title;
   @override
   int get price;
   @override
-  Point? get point;
+  Size? get size;
   @override
   @JsonKey(ignore: true)
   _$$_RegistrationStateCopyWith<_$_RegistrationState> get copyWith =>
