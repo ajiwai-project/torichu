@@ -22,10 +22,15 @@ void main() {
     mockCostRepository = MockCostRepository();
   });
 
-  render(tester) async {
+
+  renderWithHandler(WidgetTester tester, Function? handleOnSuccess) async {
     await tester.pumpWidget(ProviderScope(overrides: [
       costRepositoryProvider.overrideWith((ref) => mockCostRepository)
-    ], child: const MaterialApp(home: RegistrationForm())));
+    ], child: MaterialApp(home: RegistrationForm(onSuccess: handleOnSuccess))));
+  }
+
+  render(WidgetTester tester) async {
+    await renderWithHandler(tester, null);
   }
 
   inputForm(WidgetTester tester, Cost cost) async {
@@ -46,8 +51,6 @@ void main() {
   testWidgets('should save cost when push submit button', (tester) async {
     final dummyCost = CostBuilder().build();
     await render(tester);
-    when(mockCostRepository.getAll())
-        .thenAnswer((_) async => Costs(values: [dummyCost]));
     await inputForm(tester, dummyCost);
 
     final submitButton = find.byKey(const Key('register-button'));
@@ -57,5 +60,19 @@ void main() {
     verify(mockCostRepository
             .save(argThat(matchingWithoutIdAndRegisteredAt(dummyCost))))
         .called(1);
+  });
+
+  testWidgets('should called success handler when register new data', (tester) async {
+    final dummyCost = CostBuilder().build();
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
+    await renderWithHandler(tester, () => mockCostRepository.getAll());
+    await inputForm(tester, dummyCost);
+
+    final submitButton = find.byKey(const Key('register-button'));
+    await tester.tap(submitButton);
+    await tester.pumpAndSettle();
+
+    verify(mockCostRepository.getAll()).called(1);
   });
 }
