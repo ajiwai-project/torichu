@@ -22,7 +22,6 @@ void main() {
     mockCostRepository = MockCostRepository();
   });
 
-
   renderWithHandler(WidgetTester tester, Function? handleOnSuccess) async {
     await tester.pumpWidget(ProviderScope(overrides: [
       costRepositoryProvider.overrideWith((ref) => mockCostRepository)
@@ -62,7 +61,8 @@ void main() {
         .called(1);
   });
 
-  testWidgets('should called success handler when register new data', (tester) async {
+  testWidgets('should called success handler when register new data',
+      (tester) async {
     final dummyCost = CostBuilder().build();
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => Costs(values: [dummyCost]));

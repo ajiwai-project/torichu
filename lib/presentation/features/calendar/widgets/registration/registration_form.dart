@@ -28,8 +28,9 @@ class RegistrationForm extends HookConsumerWidget {
                   _SizeSelector(
                       state.size, (value) => viewModel.setSize(value)),
                 ]),
-                _RegistrationButton(
-                    () => viewModel.register().then((_) => onSuccess != null ? onSuccess!() : null)),
+                _RegistrationButton(() => viewModel
+                    .register()
+                    .then((_) => onSuccess != null ? onSuccess!() : null)),
               ],
             )));
   }
@@ -44,11 +45,10 @@ class _TitleField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
         key: const Key('title-field'),
-        decoration:
-
-            const InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: 'タイトルを入力', labelText: 'タイトル'),
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'タイトルを入力',
+            labelText: 'タイトル'),
         onChanged: onChanged);
   }
 }
@@ -63,8 +63,7 @@ class _PriceField extends StatelessWidget {
     return TextField(
         key: const Key('price-field'),
         decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: '金額を入力', labelText: '金額'),
+            border: OutlineInputBorder(), hintText: '金額を入力', labelText: '金額'),
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         onChanged: (value) => onChanged(int.parse(value)));
@@ -91,8 +90,7 @@ class _SizeSelector extends StatelessWidget {
       }).toList(),
       onChanged: (Size? value) => onChanged(value!),
       decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: 'サイズを選択', labelText: 'サイズ'),
+          border: OutlineInputBorder(), hintText: 'サイズを選択', labelText: 'サイズ'),
     );
   }
 }
