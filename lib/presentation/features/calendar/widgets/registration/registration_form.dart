@@ -22,7 +22,7 @@ class RegistrationForm extends HookConsumerWidget {
               children: [
                 Column(children: [
                   _TitleField((value) => viewModel.setTitle(value)),
-                  _AmountField((value) => viewModel.setPrice(value)),
+                  _PriceField((value) => viewModel.setPrice(value)),
                   _SizeSelector(
                       state.size, (value) => viewModel.setSize(value)),
                 ]),
@@ -43,20 +43,21 @@ class _TitleField extends StatelessWidget {
     return TextField(
         key: const Key('title-field'),
         decoration:
+
             const InputDecoration(hintText: 'タイトルを入力', labelText: 'タイトル'),
         onChanged: onChanged);
   }
 }
 
-class _AmountField extends StatelessWidget {
+class _PriceField extends StatelessWidget {
   final Function(int) onChanged;
 
-  const _AmountField(this.onChanged, {Key? key}) : super(key: key);
+  const _PriceField(this.onChanged, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-        key: const Key('amount-field'),
+        key: const Key('price-field'),
         decoration: const InputDecoration(hintText: '金額を入力', labelText: '金額'),
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
