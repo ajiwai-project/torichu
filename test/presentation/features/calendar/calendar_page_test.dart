@@ -5,7 +5,7 @@ import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
-import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
+import 'package:flutter_template/presentation/features/calendar/calendar_page.dart'; import 'package:flutter_template/presentation/features/registration/registration_page.dart';
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -181,4 +181,17 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     });
   });
+
+  group("registration cost", () {
+    testWidgets('Not show registration panel', (tester) async {
+        final cost = CostBuilder().build();
+        when(mockCostRepository.getAll())
+              .thenAnswer((_) async => Costs(values: [cost]));
+        await render(tester); 
+        expect(find.byType(RegistrationPage), findsNothing);
+    });
+    //TODO Iconが見つからなくてドラッグできない
+    testWidgets('show registration panel when swipe up bottom widget', (tester) async {
+    });
+  }, skip: true);
 }
