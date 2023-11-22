@@ -1,6 +1,7 @@
 import 'package:clock/clock.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/domain/cost/size.dart';
@@ -14,6 +15,7 @@ import 'package:intl/intl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../domain/cost/cost_mather.dart';
 import '../../../domain/cost/model_support.dart';
 import 'calendar_page_test.mocks.dart';
 
@@ -183,6 +185,27 @@ void main() {
     });
   });
 
+  swipeUpBottomWidget(tester) async {
+    final collapsedIcon = find.byKey(const Key('collapsed'));
+    await tester.pumpAndSettle();
+    await tester.drag(collapsedIcon, const Offset(0, -500));
+  }
+
+  inputForm(WidgetTester tester, Cost cost) async {
+    final titleField = find.byKey(const Key('title-field'));
+    await tester.enterText(titleField, cost.title.value);
+
+    final priceField = find.byKey(const Key('price-field'));
+    await tester.enterText(priceField, cost.amount.value.toString());
+
+    final sizeField = find.byKey(const Key('size-field'));
+    await tester.tap(sizeField);
+    await tester.pumpAndSettle();
+    final sizeItem = find.text(cost.size.upperCase());
+    await tester.tap(sizeItem);
+    await tester.pumpAndSettle();
+  }
+
   group("registration cost", () {
     testWidgets('Not show registration panel', (tester) async {
       final cost = CostBuilder().build();
@@ -191,8 +214,30 @@ void main() {
       await render(tester);
       expect(find.byType(RegistrationForm), findsNothing);
     });
-    //TODO Iconが見つからなくてドラッグできない
     testWidgets('show registration panel when swipe up bottom widget',
-        (tester) async {});
-  }, skip: true);
+        (tester) async {
+      when(mockCostRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: []));
+      await render(tester);
+      await swipeUpBottomWidget(tester);
+      expect(find.byType(RegistrationForm), findsOneWidget);
+    });
+    testWidgets('should save cost when push submit button', (tester) async {
+      when(mockCostRepository.getAll())
+          .thenAnswer((_) async => const Costs(values: []));
+      final dummyCost = CostBuilder().build();
+      await render(tester);
+      await swipeUpBottomWidget(tester);
+      await inputForm(tester, dummyCost);
+
+      final submitButton = find.byKey(const Key('register-button'));
+      await tester.tap(submitButton);
+      await tester.pumpAndSettle();
+
+      verify(mockCostRepository
+              .save(argThat(matchingWithoutIdAndRegisteredAt(dummyCost))))
+          .called(1);
+      verify(mockCostRepository.getAll()).called(2);
+    });
+  });
 }

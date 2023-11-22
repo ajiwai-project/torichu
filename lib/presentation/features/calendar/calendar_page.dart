@@ -92,7 +92,8 @@ class CalendarWidget extends StatelessWidget {
         ],
       )),
       panel: RegistrationForm(onSuccess: onRegistred),
-      collapsed: const Center(child: Icon(Icons.expand_less)),
+      collapsed:
+          const Center(child: Icon(Icons.expand_less, key: Key('collapsed'))),
       color: Colors.red,
       minHeight: 30,
       borderRadius: const BorderRadius.only(
