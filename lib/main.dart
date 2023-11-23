@@ -19,5 +19,5 @@ void main() async {
                   bodyLarge: TextStyle(color: darkColorScheme.onBackground),
                   bodyMedium: TextStyle(color: darkColorScheme.onBackground),
                   bodySmall: TextStyle(color: darkColorScheme.onBackground))),
-          home: const CalendarPage())));
+          home: const SafeArea(child: CalendarPage()))));
 }
