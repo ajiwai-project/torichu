@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/color_schemes.g.dart';
-import 'package:flutter_template/presentation/features/routing/app_with_bottom_navigationbar.dart';
+import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
 import 'package:flutter_template/infrastructure/sqlite/database.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,5 +19,5 @@ void main() async {
                   bodyLarge: TextStyle(color: darkColorScheme.onBackground),
                   bodyMedium: TextStyle(color: darkColorScheme.onBackground),
                   bodySmall: TextStyle(color: darkColorScheme.onBackground))),
-          home: const AppWithBottomNavigationbar())));
+          home: const CalendarPage())));
 }

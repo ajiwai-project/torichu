@@ -3,9 +3,10 @@ import 'package:flutter_template/domain/cost/cost.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/domain/cost/title.dart';
-import 'package:flutter_template/presentation/features/registration/registration_state.dart';
 import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'registration_state.dart';
 
 final registrationViewModelProvider =
     StateNotifierProvider<RegistrationViewModel, RegistartionState>(

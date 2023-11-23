@@ -1,13 +1,13 @@
 import 'package:flutter_template/domain/cost/cost_repository.dart';
 import 'package:flutter_template/domain/cost/size.dart';
-import 'package:flutter_template/presentation/features/registration/registration_view_model.dart';
+import 'package:flutter_template/presentation/features/calendar/widgets/registration/registration_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:clock/clock.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../domain/cost/cost_mather.dart';
-import '../../../domain/cost/model_support.dart';
+import '../../../../../domain/cost/cost_mather.dart';
+import '../../../../../domain/cost/model_support.dart';
 import 'registration_view_model_test.mocks.dart';
 
 @GenerateMocks([CostRepository])
