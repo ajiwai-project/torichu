@@ -69,22 +69,22 @@ class _$RegistartionStateCopyWithImpl<$Res, $Val extends RegistartionState>
 }
 
 /// @nodoc
-abstract class _$$_RegistrationStateCopyWith<$Res>
+abstract class _$$RegistrationStateImplCopyWith<$Res>
     implements $RegistartionStateCopyWith<$Res> {
-  factory _$$_RegistrationStateCopyWith(_$_RegistrationState value,
-          $Res Function(_$_RegistrationState) then) =
-      __$$_RegistrationStateCopyWithImpl<$Res>;
+  factory _$$RegistrationStateImplCopyWith(_$RegistrationStateImpl value,
+          $Res Function(_$RegistrationStateImpl) then) =
+      __$$RegistrationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title, int price, Size? size});
 }
 
 /// @nodoc
-class __$$_RegistrationStateCopyWithImpl<$Res>
-    extends _$RegistartionStateCopyWithImpl<$Res, _$_RegistrationState>
-    implements _$$_RegistrationStateCopyWith<$Res> {
-  __$$_RegistrationStateCopyWithImpl(
-      _$_RegistrationState _value, $Res Function(_$_RegistrationState) _then)
+class __$$RegistrationStateImplCopyWithImpl<$Res>
+    extends _$RegistartionStateCopyWithImpl<$Res, _$RegistrationStateImpl>
+    implements _$$RegistrationStateImplCopyWith<$Res> {
+  __$$RegistrationStateImplCopyWithImpl(_$RegistrationStateImpl _value,
+      $Res Function(_$RegistrationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
     Object? price = null,
     Object? size = freezed,
   }) {
-    return _then(_$_RegistrationState(
+    return _then(_$RegistrationStateImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_RegistrationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RegistrationState implements _RegistrationState {
-  const _$_RegistrationState({this.title = '', this.price = 0, this.size});
+class _$RegistrationStateImpl implements _RegistrationState {
+  const _$RegistrationStateImpl({this.title = '', this.price = 0, this.size});
 
   @override
   @JsonKey()
@@ -134,7 +134,7 @@ class _$_RegistrationState implements _RegistrationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RegistrationState &&
+            other is _$RegistrationStateImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.size, size) || other.size == size));
@@ -146,8 +146,8 @@ class _$_RegistrationState implements _RegistrationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RegistrationStateCopyWith<_$_RegistrationState> get copyWith =>
-      __$$_RegistrationStateCopyWithImpl<_$_RegistrationState>(
+  _$$RegistrationStateImplCopyWith<_$RegistrationStateImpl> get copyWith =>
+      __$$RegistrationStateImplCopyWithImpl<_$RegistrationStateImpl>(
           this, _$identity);
 }
 
@@ -155,7 +155,7 @@ abstract class _RegistrationState implements RegistartionState {
   const factory _RegistrationState(
       {final String title,
       final int price,
-      final Size? size}) = _$_RegistrationState;
+      final Size? size}) = _$RegistrationStateImpl;
 
   @override
   String get title;
@@ -165,6 +165,6 @@ abstract class _RegistrationState implements RegistartionState {
   Size? get size;
   @override
   @JsonKey(ignore: true)
-  _$$_RegistrationStateCopyWith<_$_RegistrationState> get copyWith =>
+  _$$RegistrationStateImplCopyWith<_$RegistrationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -103,9 +103,10 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
 }
 
 /// @nodoc
-abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
-  factory _$$_CostCopyWith(_$_Cost value, $Res Function(_$_Cost) then) =
-      __$$_CostCopyWithImpl<$Res>;
+abstract class _$$CostImplCopyWith<$Res> implements $CostCopyWith<$Res> {
+  factory _$$CostImplCopyWith(
+          _$CostImpl value, $Res Function(_$CostImpl) then) =
+      __$$CostImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -122,9 +123,10 @@ abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
-    implements _$$_CostCopyWith<$Res> {
-  __$$_CostCopyWithImpl(_$_Cost _value, $Res Function(_$_Cost) _then)
+class __$$CostImplCopyWithImpl<$Res>
+    extends _$CostCopyWithImpl<$Res, _$CostImpl>
+    implements _$$CostImplCopyWith<$Res> {
+  __$$CostImplCopyWithImpl(_$CostImpl _value, $Res Function(_$CostImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,7 +138,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? size = null,
     Object? registeredAt = null,
   }) {
-    return _then(_$_Cost(
+    return _then(_$CostImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -163,8 +165,8 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
 
 /// @nodoc
 
-class _$_Cost implements _Cost {
-  _$_Cost(
+class _$CostImpl implements _Cost {
+  _$CostImpl(
       {required this.id,
       required this.title,
       required this.amount,
@@ -191,7 +193,7 @@ class _$_Cost implements _Cost {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Cost &&
+            other is _$CostImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
@@ -207,8 +209,8 @@ class _$_Cost implements _Cost {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CostCopyWith<_$_Cost> get copyWith =>
-      __$$_CostCopyWithImpl<_$_Cost>(this, _$identity);
+  _$$CostImplCopyWith<_$CostImpl> get copyWith =>
+      __$$CostImplCopyWithImpl<_$CostImpl>(this, _$identity);
 }
 
 abstract class _Cost implements Cost {
@@ -217,7 +219,7 @@ abstract class _Cost implements Cost {
       required final Title title,
       required final Amount amount,
       required final Size size,
-      required final DateTime registeredAt}) = _$_Cost;
+      required final DateTime registeredAt}) = _$CostImpl;
 
   @override
   String get id;
@@ -231,5 +233,6 @@ abstract class _Cost implements Cost {
   DateTime get registeredAt;
   @override
   @JsonKey(ignore: true)
-  _$$_CostCopyWith<_$_Cost> get copyWith => throw _privateConstructorUsedError;
+  _$$CostImplCopyWith<_$CostImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
