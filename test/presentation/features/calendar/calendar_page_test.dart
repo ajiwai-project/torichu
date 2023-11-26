@@ -8,13 +8,12 @@ import 'package:flutter_template/domain/cost/size.dart';
 import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_page.dart';
 import 'package:flutter_template/presentation/features/calendar/widgets/registration/registration_form.dart';
+import 'package:flutter_template/presentation/features/calendar/widgets/saying/saying_view.dart';
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
+import 'package:mockito/annotations.dart'; import 'package:mockito/mockito.dart';
 import '../../../domain/cost/cost_mather.dart';
 import '../../../domain/cost/model_support.dart';
 import 'calendar_page_test.mocks.dart';
@@ -135,6 +134,19 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CostListItem), findsNWidgets(2));
+    });
+  });
+
+  testWidgets('Saying widget should be shown if costs is empty', (tester) async {
+    final today = DateTime(2023, 10, 10);
+    withClock(Clock.fixed(today), () async {
+      when(mockCostRepository.getAll()).thenAnswer((_) async =>
+          const Costs(values: []));
+
+      await render(tester);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SayingWidget), findsOneWidget);
     });
   });
 

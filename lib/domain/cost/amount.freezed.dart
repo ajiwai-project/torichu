@@ -55,19 +55,21 @@ class _$AmountCopyWithImpl<$Res, $Val extends Amount>
 }
 
 /// @nodoc
-abstract class _$$_AmountCopyWith<$Res> implements $AmountCopyWith<$Res> {
-  factory _$$_AmountCopyWith(_$_Amount value, $Res Function(_$_Amount) then) =
-      __$$_AmountCopyWithImpl<$Res>;
+abstract class _$$AmountImplCopyWith<$Res> implements $AmountCopyWith<$Res> {
+  factory _$$AmountImplCopyWith(
+          _$AmountImpl value, $Res Function(_$AmountImpl) then) =
+      __$$AmountImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int value});
 }
 
 /// @nodoc
-class __$$_AmountCopyWithImpl<$Res>
-    extends _$AmountCopyWithImpl<$Res, _$_Amount>
-    implements _$$_AmountCopyWith<$Res> {
-  __$$_AmountCopyWithImpl(_$_Amount _value, $Res Function(_$_Amount) _then)
+class __$$AmountImplCopyWithImpl<$Res>
+    extends _$AmountCopyWithImpl<$Res, _$AmountImpl>
+    implements _$$AmountImplCopyWith<$Res> {
+  __$$AmountImplCopyWithImpl(
+      _$AmountImpl _value, $Res Function(_$AmountImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -75,7 +77,7 @@ class __$$_AmountCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_Amount(
+    return _then(_$AmountImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -86,8 +88,8 @@ class __$$_AmountCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Amount implements _Amount {
-  _$_Amount({required this.value})
+class _$AmountImpl implements _Amount {
+  _$AmountImpl({required this.value})
       : assert(value >= 0),
         assert(value <= 9999999);
 
@@ -103,7 +105,7 @@ class _$_Amount implements _Amount {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Amount &&
+            other is _$AmountImpl &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -113,17 +115,17 @@ class _$_Amount implements _Amount {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AmountCopyWith<_$_Amount> get copyWith =>
-      __$$_AmountCopyWithImpl<_$_Amount>(this, _$identity);
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
+      __$$AmountImplCopyWithImpl<_$AmountImpl>(this, _$identity);
 }
 
 abstract class _Amount implements Amount {
-  factory _Amount({required final int value}) = _$_Amount;
+  factory _Amount({required final int value}) = _$AmountImpl;
 
   @override
   int get value;
   @override
   @JsonKey(ignore: true)
-  _$$_AmountCopyWith<_$_Amount> get copyWith =>
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

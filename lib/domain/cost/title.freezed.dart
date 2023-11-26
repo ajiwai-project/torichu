@@ -55,18 +55,21 @@ class _$TitleCopyWithImpl<$Res, $Val extends Title>
 }
 
 /// @nodoc
-abstract class _$$_TitleCopyWith<$Res> implements $TitleCopyWith<$Res> {
-  factory _$$_TitleCopyWith(_$_Title value, $Res Function(_$_Title) then) =
-      __$$_TitleCopyWithImpl<$Res>;
+abstract class _$$TitleImplCopyWith<$Res> implements $TitleCopyWith<$Res> {
+  factory _$$TitleImplCopyWith(
+          _$TitleImpl value, $Res Function(_$TitleImpl) then) =
+      __$$TitleImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res, _$_Title>
-    implements _$$_TitleCopyWith<$Res> {
-  __$$_TitleCopyWithImpl(_$_Title _value, $Res Function(_$_Title) _then)
+class __$$TitleImplCopyWithImpl<$Res>
+    extends _$TitleCopyWithImpl<$Res, _$TitleImpl>
+    implements _$$TitleImplCopyWith<$Res> {
+  __$$TitleImplCopyWithImpl(
+      _$TitleImpl _value, $Res Function(_$TitleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -74,7 +77,7 @@ class __$$_TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res, _$_Title>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_Title(
+    return _then(_$TitleImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -85,8 +88,8 @@ class __$$_TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res, _$_Title>
 
 /// @nodoc
 
-class _$_Title implements _Title {
-  _$_Title({required this.value})
+class _$TitleImpl implements _Title {
+  _$TitleImpl({required this.value})
       : assert(value.length <= 100),
         assert(value.isNotEmpty);
 
@@ -102,7 +105,7 @@ class _$_Title implements _Title {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Title &&
+            other is _$TitleImpl &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -112,17 +115,17 @@ class _$_Title implements _Title {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TitleCopyWith<_$_Title> get copyWith =>
-      __$$_TitleCopyWithImpl<_$_Title>(this, _$identity);
+  _$$TitleImplCopyWith<_$TitleImpl> get copyWith =>
+      __$$TitleImplCopyWithImpl<_$TitleImpl>(this, _$identity);
 }
 
 abstract class _Title implements Title {
-  factory _Title({required final String value}) = _$_Title;
+  factory _Title({required final String value}) = _$TitleImpl;
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_TitleCopyWith<_$_Title> get copyWith =>
+  _$$TitleImplCopyWith<_$TitleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

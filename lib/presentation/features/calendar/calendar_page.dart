@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/domain/cost/costs.dart';
+import 'package:flutter_template/presentation/features/calendar/widgets/saying/saying_view.dart';
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -87,8 +88,10 @@ class CalendarWidget extends StatelessWidget {
               onDaySelected: (selectedDay, focusedDay) =>
                   onDaySelected(selectedDay)),
           Expanded(
-              child: CostList(costsByDateTime[focusedDay]?.values ?? [],
-                  onListItemDismissed))
+              child: costsByDateTime[focusedDay]?.values != null
+                  ? CostList(
+                      costsByDateTime[focusedDay]!.values, onListItemDismissed)
+                  : const SayingWidget()),
         ],
       )),
       panel: RegistrationForm(onSuccess: onRegistred),
