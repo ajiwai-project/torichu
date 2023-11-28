@@ -7,7 +7,6 @@ import 'package:flutter_template/presentation/features/calendar/widgets/saying/s
 import 'package:flutter_template/presentation/widgets/cost_list/cost_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'calendar_view_model.dart';
@@ -55,8 +54,7 @@ class CalendarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('yyyyMMdd');
-    return SlidingUpPanel(
-      body: Center(
+    return Center(
           child: Column(
         children: [
           TableCalendar(
@@ -92,15 +90,23 @@ class CalendarWidget extends StatelessWidget {
                   ? CostList(
                       costsByDateTime[focusedDay]!.values, onListItemDismissed)
                   : const SayingWidget()),
+          GestureDetector(
+              onPanUpdate: (details) {
+                if (details.delta.dy < 0) {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => RegistrationForm(onSuccess: onRegistred));
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                margin: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.all(4),
+                child: const Icon(Icons.expand_less, size: 32, key: Key('expand-area')),
+            )) 
         ],
-      )),
-      panel: RegistrationForm(onSuccess: onRegistred),
-      collapsed:
-          const Center(child: Icon(Icons.expand_less, key: Key('collapsed'))),
-      color: Colors.red,
-      minHeight: 30,
-      borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(18.0), topRight: Radius.circular(18.0)),
+      )
     );
   }
 }
