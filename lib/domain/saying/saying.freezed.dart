@@ -61,19 +61,21 @@ class _$SayingCopyWithImpl<$Res, $Val extends Saying>
 }
 
 /// @nodoc
-abstract class _$$_SayingCopyWith<$Res> implements $SayingCopyWith<$Res> {
-  factory _$$_SayingCopyWith(_$_Saying value, $Res Function(_$_Saying) then) =
-      __$$_SayingCopyWithImpl<$Res>;
+abstract class _$$SayingImplCopyWith<$Res> implements $SayingCopyWith<$Res> {
+  factory _$$SayingImplCopyWith(
+          _$SayingImpl value, $Res Function(_$SayingImpl) then) =
+      __$$SayingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value, String author});
 }
 
 /// @nodoc
-class __$$_SayingCopyWithImpl<$Res>
-    extends _$SayingCopyWithImpl<$Res, _$_Saying>
-    implements _$$_SayingCopyWith<$Res> {
-  __$$_SayingCopyWithImpl(_$_Saying _value, $Res Function(_$_Saying) _then)
+class __$$SayingImplCopyWithImpl<$Res>
+    extends _$SayingCopyWithImpl<$Res, _$SayingImpl>
+    implements _$$SayingImplCopyWith<$Res> {
+  __$$SayingImplCopyWithImpl(
+      _$SayingImpl _value, $Res Function(_$SayingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,7 +84,7 @@ class __$$_SayingCopyWithImpl<$Res>
     Object? value = null,
     Object? author = null,
   }) {
-    return _then(_$_Saying(
+    return _then(_$SayingImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -97,8 +99,8 @@ class __$$_SayingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Saying implements _Saying {
-  const _$_Saying({required this.value, required this.author});
+class _$SayingImpl implements _Saying {
+  const _$SayingImpl({required this.value, required this.author});
 
   @override
   final String value;
@@ -114,7 +116,7 @@ class _$_Saying implements _Saying {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Saying &&
+            other is _$SayingImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.author, author) || other.author == author));
   }
@@ -125,13 +127,14 @@ class _$_Saying implements _Saying {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SayingCopyWith<_$_Saying> get copyWith =>
-      __$$_SayingCopyWithImpl<_$_Saying>(this, _$identity);
+  _$$SayingImplCopyWith<_$SayingImpl> get copyWith =>
+      __$$SayingImplCopyWithImpl<_$SayingImpl>(this, _$identity);
 }
 
 abstract class _Saying implements Saying {
   const factory _Saying(
-      {required final String value, required final String author}) = _$_Saying;
+      {required final String value,
+      required final String author}) = _$SayingImpl;
 
   @override
   String get value;
@@ -139,6 +142,6 @@ abstract class _Saying implements Saying {
   String get author;
   @override
   @JsonKey(ignore: true)
-  _$$_SayingCopyWith<_$_Saying> get copyWith =>
+  _$$SayingImplCopyWith<_$SayingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

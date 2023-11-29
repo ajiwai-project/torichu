@@ -55,18 +55,21 @@ class _$CostsCopyWithImpl<$Res, $Val extends Costs>
 }
 
 /// @nodoc
-abstract class _$$_CostsCopyWith<$Res> implements $CostsCopyWith<$Res> {
-  factory _$$_CostsCopyWith(_$_Costs value, $Res Function(_$_Costs) then) =
-      __$$_CostsCopyWithImpl<$Res>;
+abstract class _$$CostsImplCopyWith<$Res> implements $CostsCopyWith<$Res> {
+  factory _$$CostsImplCopyWith(
+          _$CostsImpl value, $Res Function(_$CostsImpl) then) =
+      __$$CostsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Cost> values});
 }
 
 /// @nodoc
-class __$$_CostsCopyWithImpl<$Res> extends _$CostsCopyWithImpl<$Res, _$_Costs>
-    implements _$$_CostsCopyWith<$Res> {
-  __$$_CostsCopyWithImpl(_$_Costs _value, $Res Function(_$_Costs) _then)
+class __$$CostsImplCopyWithImpl<$Res>
+    extends _$CostsCopyWithImpl<$Res, _$CostsImpl>
+    implements _$$CostsImplCopyWith<$Res> {
+  __$$CostsImplCopyWithImpl(
+      _$CostsImpl _value, $Res Function(_$CostsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -74,7 +77,7 @@ class __$$_CostsCopyWithImpl<$Res> extends _$CostsCopyWithImpl<$Res, _$_Costs>
   $Res call({
     Object? values = null,
   }) {
-    return _then(_$_Costs(
+    return _then(_$CostsImpl(
       values: null == values
           ? _value._values
           : values // ignore: cast_nullable_to_non_nullable
@@ -85,8 +88,8 @@ class __$$_CostsCopyWithImpl<$Res> extends _$CostsCopyWithImpl<$Res, _$_Costs>
 
 /// @nodoc
 
-class _$_Costs implements _Costs {
-  const _$_Costs({required final List<Cost> values}) : _values = values;
+class _$CostsImpl implements _Costs {
+  const _$CostsImpl({required final List<Cost> values}) : _values = values;
 
   final List<Cost> _values;
   @override
@@ -105,7 +108,7 @@ class _$_Costs implements _Costs {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Costs &&
+            other is _$CostsImpl &&
             const DeepCollectionEquality().equals(other._values, _values));
   }
 
@@ -116,17 +119,17 @@ class _$_Costs implements _Costs {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CostsCopyWith<_$_Costs> get copyWith =>
-      __$$_CostsCopyWithImpl<_$_Costs>(this, _$identity);
+  _$$CostsImplCopyWith<_$CostsImpl> get copyWith =>
+      __$$CostsImplCopyWithImpl<_$CostsImpl>(this, _$identity);
 }
 
 abstract class _Costs implements Costs {
-  const factory _Costs({required final List<Cost> values}) = _$_Costs;
+  const factory _Costs({required final List<Cost> values}) = _$CostsImpl;
 
   @override
   List<Cost> get values;
   @override
   @JsonKey(ignore: true)
-  _$$_CostsCopyWith<_$_Costs> get copyWith =>
+  _$$CostsImplCopyWith<_$CostsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

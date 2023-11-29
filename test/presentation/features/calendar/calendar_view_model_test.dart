@@ -43,7 +43,7 @@ void main() {
 
       await sut.load();
 
-      expect(sut.debugState.value!.costsByDateTime, costs.costsGroupByDate);
+      expect(sut.state.value!.costsByDateTime, costs.costsGroupByDate);
     });
 
     test('should set focused day to starting of today', () async {
@@ -54,7 +54,7 @@ void main() {
 
         await sut.load();
 
-        expect(sut.debugState.value!.focusedDay, DateTime.utc(2023, 10, 10));
+        expect(sut.state.value!.focusedDay, DateTime.utc(2023, 10, 10));
       });
     });
   });
@@ -68,7 +68,7 @@ void main() {
       await sut.load();
       sut.setFocusedDay(specifiedDay);
 
-      expect(sut.debugState.value!.focusedDay, specifiedDay);
+      expect(sut.state.value!.focusedDay, specifiedDay);
     });
   });
 }
