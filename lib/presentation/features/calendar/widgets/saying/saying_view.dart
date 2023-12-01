@@ -4,7 +4,7 @@ import 'package:flutter_template/presentation/features/calendar/widgets/saying/s
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SayingWidget extends HookConsumerWidget {
-  const SayingWidget({Key? key}) : super(key: key);
+  const SayingWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

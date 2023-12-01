@@ -13,7 +13,7 @@ import 'calendar_view_model.dart';
 import './widgets/registration/registration_form.dart';
 
 class CalendarPage extends HookConsumerWidget {
-  const CalendarPage({Key? key}) : super(key: key);
+  const CalendarPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
