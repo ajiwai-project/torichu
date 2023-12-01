@@ -7,7 +7,7 @@ import 'registration_view_model.dart';
 
 class RegistrationForm extends HookConsumerWidget {
   final Function? onSuccess;
-  const RegistrationForm({Key? key, this.onSuccess}) : super(key: key);
+  const RegistrationForm({super.key, this.onSuccess});
 
 
   @override
@@ -56,7 +56,7 @@ class RegistrationForm extends HookConsumerWidget {
 class _TitleField extends StatelessWidget {
   final Function(String) onChanged;
 
-  const _TitleField(this.onChanged, {Key? key}) : super(key: key);
+  const _TitleField(this.onChanged);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _TitleField extends StatelessWidget {
 class _PriceField extends StatelessWidget {
   final Function(int) onChanged;
 
-  const _PriceField(this.onChanged, {Key? key}) : super(key: key);
+  const _PriceField(this.onChanged);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _SizeSelector extends StatelessWidget {
   final Size? size;
   final Function(Size) onChanged;
 
-  const _SizeSelector(this.size, this.onChanged, {Key? key}) : super(key: key);
+  const _SizeSelector(this.size, this.onChanged);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +115,7 @@ class _SizeSelector extends StatelessWidget {
 class _RegistrationButton extends StatelessWidget {
   final Function onPressed;
 
-  const _RegistrationButton(this.onPressed, {Key? key}) : super(key: key);
+  const _RegistrationButton(this.onPressed);
 
   @override
   Widget build(BuildContext context) {
