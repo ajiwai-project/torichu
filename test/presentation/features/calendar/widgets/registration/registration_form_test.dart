@@ -75,4 +75,18 @@ void main() {
 
     verify(mockCostRepository.getAll()).called(1);
   });
+
+  testWidgets('should show snackbar when register new data',
+      (tester) async {
+    final dummyCost = CostBuilder().build();
+    when(mockCostRepository.getAll())
+        .thenAnswer((_) async => Costs(values: [dummyCost]));
+    await renderWithHandler(tester, () => mockCostRepository.getAll());
+    await inputForm(tester, dummyCost);
+
+    final submitButton = find.byKey(const Key('register-button'));
+    await tester.tap(submitButton);
+    await tester.pump();
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
 }
