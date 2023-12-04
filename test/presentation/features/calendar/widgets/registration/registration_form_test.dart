@@ -76,8 +76,7 @@ void main() {
     verify(mockCostRepository.getAll()).called(1);
   });
 
-  testWidgets('should show snackbar when register new data',
-      (tester) async {
+  testWidgets('should show snackbar when register new data', (tester) async {
     final dummyCost = CostBuilder().build();
     when(mockCostRepository.getAll())
         .thenAnswer((_) async => Costs(values: [dummyCost]));
