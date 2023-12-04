@@ -12,6 +12,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'calendar_view_model.dart';
 import './widgets/registration/registration_form.dart';
 
+final priceFormatter = NumberFormat("#,###");
+
 class CalendarPage extends HookConsumerWidget {
   const CalendarPage({super.key});
 
@@ -28,8 +30,13 @@ class CalendarPage extends HookConsumerWidget {
     return Scaffold(
         body: state.when(
             data: (data) => CalendarWidget(
-                data.costsByDateTime,
+                data.costs?.costsGroupByDate ?? {},
                 data.focusedDay,
+                data.costs
+                        ?.filterByMonth(
+                            data.focusedDay.year, data.focusedDay.month)
+                        .sumOfAmount ??
+                    0,
                 viewModel.remove,
                 viewModel.setFocusedDay,
                 viewModel.load),
@@ -43,71 +50,83 @@ class CalendarPage extends HookConsumerWidget {
 class CalendarWidget extends StatelessWidget {
   final Map<DateTime, Costs> costsByDateTime;
   final DateTime focusedDay;
+  final int totalPriceByMonth;
   final Function onListItemDismissed;
   final Function onDaySelected;
   final Function onRegistred;
 
-  const CalendarWidget(this.costsByDateTime, this.focusedDay,
-      this.onListItemDismissed, this.onDaySelected, this.onRegistred,
+  const CalendarWidget(
+      this.costsByDateTime,
+      this.focusedDay,
+      this.totalPriceByMonth,
+      this.onListItemDismissed,
+      this.onDaySelected,
+      this.onRegistred,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('yyyyMMdd');
     return Center(
-          child: Column(
-        children: [
-          TableCalendar(
-              firstDay: DateTime.parse(ReleaseDate.stringValue),
-              lastDay: clock.now(),
-              focusedDay: focusedDay,
-              daysOfWeekHeight: 32,
-              headerStyle: const HeaderStyle(formatButtonVisible: false),
-              calendarBuilders: CalendarBuilders(
-                  defaultBuilder: (context, day, focusedDay) =>
-                      DayWidget(day, focused: isSameDay(day, focusedDay)),
-                  todayBuilder: (context, day, focusedDay) =>
-                      DayWidget(day, focused: isSameDay(day, focusedDay)),
-                  outsideBuilder: (context, day, focusedDay) => DayWidget(day),
-                  disabledBuilder: (context, day, focusedDay) => DayWidget(day),
-                  markerBuilder: (context, day, events) {
-                    final costs = costsByDateTime[day];
-                    return Container(
-                        key: Key('${dateFormat.format(day)}-size'),
-                        alignment: Alignment.bottomCenter,
-                        child: Text(costs?.sumOfSize.toString() ?? '',
-                            style: const TextStyle(fontSize: 20)));
-                  },
-                  dowBuilder: (context, day) {
-                    final daysOfWeek = DateFormat.E().format(day);
-                    return Container(
-                        alignment: Alignment.center, child: Text(daysOfWeek));
-                  }),
-              onDaySelected: (selectedDay, focusedDay) =>
-                  onDaySelected(selectedDay)),
-          Expanded(
-              child: costsByDateTime[focusedDay]?.values != null
-                  ? CostList(
-                      costsByDateTime[focusedDay]!.values, onListItemDismissed)
-                  : const SayingWidget()),
-          GestureDetector(
-              onPanUpdate: (details) {
-                if (details.delta.dy < 0) {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) => RegistrationForm(onSuccess: onRegistred));
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.all(4),
-                child: const Icon(Icons.expand_less, size: 32, key: Key('expand-area')),
-            )) 
-        ],
-      )
-    );
+        child: Column(
+      children: [
+        TableCalendar(
+            firstDay: DateTime.parse(ReleaseDate.stringValue),
+            lastDay: clock.now(),
+            focusedDay: focusedDay,
+            daysOfWeekHeight: 32,
+            headerStyle: const HeaderStyle(formatButtonVisible: false),
+            calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, day, focusedDay) =>
+                    DayWidget(day, focused: isSameDay(day, focusedDay)),
+                todayBuilder: (context, day, focusedDay) =>
+                    DayWidget(day, focused: isSameDay(day, focusedDay)),
+                outsideBuilder: (context, day, focusedDay) => DayWidget(day),
+                disabledBuilder: (context, day, focusedDay) => DayWidget(day),
+                markerBuilder: (context, day, events) {
+                  final costs = costsByDateTime[day];
+                  return Container(
+                      key: Key('${dateFormat.format(day)}-size'),
+                      alignment: Alignment.bottomCenter,
+                      child: Text(costs?.sumOfSize.toString() ?? '',
+                          style: const TextStyle(fontSize: 20)));
+                },
+                dowBuilder: (context, day) {
+                  final daysOfWeek = DateFormat.E().format(day);
+                  return Container(
+                      alignment: Alignment.center, child: Text(daysOfWeek));
+                }),
+            onPageChanged: (focusedDay) => onDaySelected(focusedDay),
+            onDaySelected: (selectedDay, focusedDay) =>
+                onDaySelected(selectedDay)),
+        Expanded(
+            child: costsByDateTime[focusedDay]?.values != null
+                ? CostList(
+                    costsByDateTime[focusedDay]!.values, onListItemDismissed)
+                : const SayingWidget()),
+        GestureDetector(
+            onPanUpdate: (details) {
+              if (details.delta.dy < 0) {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        RegistrationForm(onSuccess: onRegistred));
+              }
+            },
+            child: Container(
+              width: double.infinity,
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+              margin: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+              child: Row(children: [
+                const Icon(Icons.expand_less,
+                    size: 32, key: Key('expand-area')),
+                Text('￥${priceFormatter.format(totalPriceByMonth)}',
+                    style: const TextStyle(fontSize: 16))
+              ]),
+            ))
+      ],
+    ));
   }
 }
 

@@ -1,6 +1,5 @@
 import 'package:clock/clock.dart';
 import 'package:flutter_template/domain/cost/cost_repository.dart';
-import 'package:flutter_template/domain/cost/costs.dart';
 import 'package:flutter_template/infrastructure/sqlite/domain/cost/cost_db_repository.dart';
 import 'package:flutter_template/presentation/features/calendar/calendar_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,8 +18,9 @@ class CalendarViewModel extends StateNotifier<AsyncValue<CalendarState>> {
       final costs = await _costRepository.getAll();
       final now = clock.now();
       state = AsyncValue.data(CalendarState(
-          costsByDateTime: costs.costsGroupByDate,
-          focusedDay: DateTime.utc(now.year, now.month, now.day)));
+        costs: costs,
+        focusedDay: DateTime.utc(now.year, now.month, now.day),
+      ));
     } on Exception catch (err, stack) {
       state = AsyncValue.error(err, stack);
     }
@@ -36,6 +36,8 @@ class CalendarViewModel extends StateNotifier<AsyncValue<CalendarState>> {
   }
 
   void setFocusedDay(DateTime focusedDay) {
-    state = state.whenData((value) => value.copyWith(focusedDay: focusedDay));
+    state.whenData((value) {
+      state = AsyncValue.data(value.copyWith(focusedDay: focusedDay));
+    });
   }
 }

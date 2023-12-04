@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 class CostListItem extends StatelessWidget {
   final Cost cost;
   final Function(DismissDirection) onDismissed;
-  const CostListItem({super.key, required this.cost, required this.onDismissed});
+  const CostListItem(
+      {super.key, required this.cost, required this.onDismissed});
 
   @override
   Widget build(BuildContext context) {

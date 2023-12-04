@@ -43,7 +43,7 @@ void main() {
 
       await sut.load();
 
-      expect(sut.state.value!.costsByDateTime, costs.costsGroupByDate);
+      expect(sut.state.value!.costs, costs);
     });
 
     test('should set focused day to starting of today', () async {
