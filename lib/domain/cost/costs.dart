@@ -41,5 +41,14 @@ extension CostsExtention on Costs {
             .toList());
   }
 
+  Costs filterByMonth(int year, int month) {
+    return Costs(
+        values: values
+            .where((element) =>
+                element.registeredAt.year == year &&
+                element.registeredAt.month == month)
+            .toList());
+  }
+
   bool get isEmpty => values.isEmpty;
 }
