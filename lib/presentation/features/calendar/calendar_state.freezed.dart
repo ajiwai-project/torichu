@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CalendarState {
-  Map<DateTime, Costs> get costsByDateTime =>
-      throw _privateConstructorUsedError;
+  Costs? get costs => throw _privateConstructorUsedError;
   DateTime get focusedDay => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,9 @@ abstract class $CalendarStateCopyWith<$Res> {
           CalendarState value, $Res Function(CalendarState) then) =
       _$CalendarStateCopyWithImpl<$Res, CalendarState>;
   @useResult
-  $Res call({Map<DateTime, Costs> costsByDateTime, DateTime focusedDay});
+  $Res call({Costs? costs, DateTime focusedDay});
+
+  $CostsCopyWith<$Res>? get costs;
 }
 
 /// @nodoc
@@ -47,19 +48,31 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? costsByDateTime = null,
+    Object? costs = freezed,
     Object? focusedDay = null,
   }) {
     return _then(_value.copyWith(
-      costsByDateTime: null == costsByDateTime
-          ? _value.costsByDateTime
-          : costsByDateTime // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, Costs>,
+      costs: freezed == costs
+          ? _value.costs
+          : costs // ignore: cast_nullable_to_non_nullable
+              as Costs?,
       focusedDay: null == focusedDay
           ? _value.focusedDay
           : focusedDay // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CostsCopyWith<$Res>? get costs {
+    if (_value.costs == null) {
+      return null;
+    }
+
+    return $CostsCopyWith<$Res>(_value.costs!, (value) {
+      return _then(_value.copyWith(costs: value) as $Val);
+    });
   }
 }
 
@@ -71,7 +84,10 @@ abstract class _$$CalendarStateImplCopyWith<$Res>
       __$$CalendarStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<DateTime, Costs> costsByDateTime, DateTime focusedDay});
+  $Res call({Costs? costs, DateTime focusedDay});
+
+  @override
+  $CostsCopyWith<$Res>? get costs;
 }
 
 /// @nodoc
@@ -85,14 +101,14 @@ class __$$CalendarStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? costsByDateTime = null,
+    Object? costs = freezed,
     Object? focusedDay = null,
   }) {
     return _then(_$CalendarStateImpl(
-      costsByDateTime: null == costsByDateTime
-          ? _value._costsByDateTime
-          : costsByDateTime // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, Costs>,
+      costs: freezed == costs
+          ? _value.costs
+          : costs // ignore: cast_nullable_to_non_nullable
+              as Costs?,
       focusedDay: null == focusedDay
           ? _value.focusedDay
           : focusedDay // ignore: cast_nullable_to_non_nullable
@@ -104,26 +120,16 @@ class __$$CalendarStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CalendarStateImpl implements _CalendarState {
-  const _$CalendarStateImpl(
-      {final Map<DateTime, Costs> costsByDateTime = const {},
-      required this.focusedDay})
-      : _costsByDateTime = costsByDateTime;
+  const _$CalendarStateImpl({this.costs, required this.focusedDay});
 
-  final Map<DateTime, Costs> _costsByDateTime;
   @override
-  @JsonKey()
-  Map<DateTime, Costs> get costsByDateTime {
-    if (_costsByDateTime is EqualUnmodifiableMapView) return _costsByDateTime;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_costsByDateTime);
-  }
-
+  final Costs? costs;
   @override
   final DateTime focusedDay;
 
   @override
   String toString() {
-    return 'CalendarState(costsByDateTime: $costsByDateTime, focusedDay: $focusedDay)';
+    return 'CalendarState(costs: $costs, focusedDay: $focusedDay)';
   }
 
   @override
@@ -131,15 +137,13 @@ class _$CalendarStateImpl implements _CalendarState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CalendarStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._costsByDateTime, _costsByDateTime) &&
+            (identical(other.costs, costs) || other.costs == costs) &&
             (identical(other.focusedDay, focusedDay) ||
                 other.focusedDay == focusedDay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_costsByDateTime), focusedDay);
+  int get hashCode => Object.hash(runtimeType, costs, focusedDay);
 
   @JsonKey(ignore: true)
   @override
@@ -150,11 +154,11 @@ class _$CalendarStateImpl implements _CalendarState {
 
 abstract class _CalendarState implements CalendarState {
   const factory _CalendarState(
-      {final Map<DateTime, Costs> costsByDateTime,
+      {final Costs? costs,
       required final DateTime focusedDay}) = _$CalendarStateImpl;
 
   @override
-  Map<DateTime, Costs> get costsByDateTime;
+  Costs? get costs;
   @override
   DateTime get focusedDay;
   @override
